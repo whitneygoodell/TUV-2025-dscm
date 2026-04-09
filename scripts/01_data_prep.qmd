@@ -1,0 +1,287 @@
+---
+title: "TUV dscm data prep"
+subtitle: "Synthesizing dropcam annotations for TUV report"
+author: "whitney"
+format: html
+---
+
+# Overview
+
+This script imports raw Tator annotations and metadata, and merges and cleans data from the TUV 2025 expedition.
+
+
+```{r}
+#| label: setup
+#| echo: true
+#| message: false
+#| warning: false
+#| results: hide
+
+library(tidyverse)
+library(readxl)
+library(gt)
+library(PristineSeasR2)
+
+ps_paths <- ps_science_paths()
+exp_path <- file.path(ps_paths$expeditions, "TUV-2025")
+```
+
+** NOTES FOR LATER:  
+- refine manual exclusions (check contradictory attracted/not attracted)
+```{r}
+#| label: load data
+#| include: false # hides the code and output from the final report
+
+
+# Define data path
+excel_file <- file.path(exp_path, "data/primary/raw/dscm/TUV_DOEX0112_dscm_Data_Summary.xlsx")
+
+# 1. Load datasets
+tator_data <- read_excel(excel_file, sheet = "Tator_Data_Summary")
+
+# Skip  first row (CATAMI header group name)
+metadata <- read_excel(excel_file, sheet = "Field_Log_Metadata", skip = 1)
+
+# 2. Select columns of interest
+metadata_subset <- metadata %>%
+  select(Deployment, `Depth (m)`, Location, `Substrate (Hard/Soft)`) %>%
+  rename(deployment = Deployment)
+
+# 3. Merge metadata with annotation data
+master_data <- tator_data %>%
+  select(-`depth(m)`) %>% # Remove original depth column to avoid duplicates
+  left_join(metadata_subset, by = "deployment") %>%
+  rename(depth_m = `Depth (m)`,
+         substrate_type = `Substrate (Hard/Soft)`,
+         location = Location)
+
+# ==============================================================================
+# APPLY MANUAL EXCLUSIONS (QA/QC)
+# ==============================================================================
+exclusion_file <- file.path(exp_path, "data/primary/raw/dscm/manual_exclusions.csv")
+
+if (file.exists(exclusion_file)) {
+  # Read in the exclusions file
+  exclusions <- read_csv(exclusion_file, show_col_types = FALSE)
+  
+  # Store row count before exclusion for a helpful message
+  rows_before <- nrow(master_data)
+  
+  # Drop the matching records from master_data
+  master_data <- master_data %>%
+    anti_join(exclusions, by = c("deployment", "scientificName"))
+  
+  rows_after <- nrow(master_data)
+  message(paste("Applied manual exclusions. Dropped", (rows_before - rows_after), "records."))
+  
+} else {
+  message("No manual_exclusions.csv file found. Proceeding with all records.")
+}
+
+# 4. Split data into general observations and quantitative attracted scavengers
+species_list_data <- master_data 
+
+quant_data <- master_data %>%
+  filter(attracted == "Attracted")
+
+
+message("Data prep complete!")
+```
+Basic summary: calculates all the values to reference in report text.  
+** NOTES FOR LATER:  
+- need to refine code to remove unsuccessful (i.e. no data) deployments from summary stats  
+- need to refine distinct taxa counts, i.e. remove higher-level taxonomies if lower-level are also present in the dataset.  
+```{r}
+#| label: meta-summary-stats
+#| include: false
+
+# 1. Deployment Metadata Summaries (1 row per deployment)
+deploy_meta <- species_list_data %>%
+  select(deployment, depth_m, substrate_type) %>%
+  distinct()
+
+total_deps <- nrow(deploy_meta)
+mean_depth <- round(mean(deploy_meta$depth_m, na.rm = TRUE), 1)
+sd_depth <- round(sd(deploy_meta$depth_m, na.rm = TRUE), 1)
+min_depth <- min(deploy_meta$depth_m, na.rm = TRUE)
+max_depth <- max(deploy_meta$depth_m, na.rm = TRUE)
+
+n_soft <- sum(str_detect(tolower(deploy_meta$substrate_type), "soft"), na.rm = TRUE)
+n_hard <- sum(str_detect(tolower(deploy_meta$substrate_type), "hard"), na.rm = TRUE)
+
+# Broad taxa summaries
+clean_taxa <- species_list_data %>%
+  filter(!is.na(scientificName)) %>%
+  mutate(fauna_group = if_else(phylum == "Chordata", "Fish", "Invertebrate"))
+
+# Get distinct counts
+taxa_counts <- clean_taxa %>%
+  group_by(fauna_group) %>%
+  summarise(total = n_distinct(scientificName))
+
+n_fish <- taxa_counts %>% filter(fauna_group == "Fish") %>% pull(total)
+n_inverts <- taxa_counts %>% filter(fauna_group == "Invertebrate") %>% pull(total)
+
+
+```
+
+We deployed `r total_deps` deep-sea cameras in the Tuvalu EEZ, ranging in depths from `r min_depth` to `r max_depth` m (mean ± SD = `r mean_depth` ± `r sd_depth` m). Substrates represented across deployments were mixed, with about two-thirds of the deployments (n= `r n_hard`) on hard, rocky substrate, and the other third on soft, sandy substrate (n = `r n_soft`). Across these deployments, `r n_fish` distinct fish taxa and `r n_inverts` distinct invertebrate taxa were observed.
+
+SPECIES TABLE
+Table of all the taxa observed on deep sea cameras
+
+** NOTES FOR LATER:  
+- need to refine the taxa, remove redundancies (higher taxa)  
+- put in phylogenetic order  
+```{r}
+#| label: species-table
+#| echo: false
+#| message: false
+#| warning: false
+
+library(gt)
+
+# 1. Calculate depth ranges for ALL taxa
+taxon_depths <- clean_taxa %>%
+  group_by(phylum, class, order, family, scientificName) %>%
+  summarise(
+    min_d = min(depth_m, na.rm = TRUE),
+    max_d = max(depth_m, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    # If min and max are the same, just print the number. Otherwise, print "min - max"
+    Depth_m = if_else(min_d == max_d, 
+                      as.character(min_d), 
+                      paste0(min_d, " - ", max_d))
+  ) %>%
+  select(-min_d, -max_d)
+
+# 2. Calculate quantitative stats strictly for ATTRACTED taxa
+taxon_quant <- clean_taxa %>%
+  filter(attracted == "Attracted") %>%
+  group_by(phylum, class, order, family, scientificName) %>%
+  summarise(
+    # total_deps was calculated in our first summary chunk!
+    freq_occ = round((n_distinct(deployment) / total_deps) * 100),
+    MaxN = max(individualCount, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    # Convert to characters so they play nicely with blanks later
+    Freq_occ = as.character(freq_occ),
+    MaxN = as.character(MaxN)
+  ) %>%
+  select(-freq_occ)
+
+
+# Define axonomic hierarchies; the exact phylogenetic order for Phyla
+# pulled this from a .csv key file I built for SLB
+# (Anything not on this list will automatically drop to the bottom)
+phylo_phyla <- c(
+  "Foraminifera", "Microsporidia", "Porifera", "Cnidaria", 
+  "Ctenophora", "Nemertea", "Annelida", "Mollusca", 
+  "Arthropoda", "Echinodermata", "Chaetognatha", "Chordata"
+)
+
+phylo_classes <- c(
+  "Hexactinellida", "Hexacorallia", "Hydrozoa", "Octocorallia", "Scyphozoa",
+  "Tentaculata", "Polychaeta", "Copepoda", "Malacostraca", "Cephalopoda",
+  "Gastropoda", "Asteroidea", "Crinoidea", "Echinoidea", "Holothuroidea",
+  "Ophiuroidea", "Appendicularia", "Myxini", "Holocephali", "Elasmobranchii", "Teleostei"
+)
+
+phylo_orders <- c(
+  "Actiniaria", "Anthoathecata", "Narcomedusae", "Trachymedusae", 
+  "Siphonophora", "Siphonophorae", "Malacalcyonacea", "Scleralcyonacea", 
+  "Coronatae", "Cydippida", "Terebellida", "Amphipoda", "Decapoda", 
+  "Euphausiacea", "Mysida", "Nautilida", "Buccinida", "Paxillosida", 
+  "Valvatida", "Comatulida", "Isocrinida", "Aspidodiadematoida", 
+  "Cidaroida", "Diadematoida", "Echinothurioida", "Elasipodida", 
+  "Euryalida", "Chimaeriformes", "Aulopiformes", "Lampriformes", 
+  "Ophidiiformes", "Perciformes", "Siluriformes", "Stomiiformes", "Trachichthyiformes"
+)
+
+phylo_families <- c(
+  "Stylasteridae", "Aeginidae", "Rhopalonematidae", "Acanthogorgiidae", 
+  "Balticinidae", "Primnoidae", "Periphyllidae", "Acrocirridae", 
+  "Eurytheneidae", "Acanthephyridae", "Aristeidae", "Calappidae", 
+  "Crangonidae", "Eumunididae", "Geryonidae", "Homolidae", "Lithodidae", 
+  "Lyreididae", "Munididae", "Munidopsidae", "Nematocarcinidae", 
+  "Nephropidae", "Oregoniidae", "Pandalidae", "Parapaguridae", "Platymaia", 
+  "Scyllaridae", "Sergestidae", "Solenoceridae", "Synaxidae", "Nautilus", 
+  "Buccinidae", "Astropectinidae", "Goniasteridae", "Isselicrinidae", 
+  "Aspidodiadematidae", "Cidaridae", "Diadematidae", "Echinothuriidae", 
+  "Elpidiidae", "Euryalidae", "Rhinochimaeridae", "Chimaeridae", "Aulopidae", 
+  "Lophotidae", "Ophidiidae", "Epigonidae", "Sternoptychidae", "Stomiidae", 
+  "Trachichthyidae", "Halosauridae", "Macrouridae"
+)
+
+# 3. Merge them, apply phylogenetic factors, and clean up
+table_data <- taxon_depths %>%
+  left_join(taxon_quant, by = c("phylum", "class", "order", "family", "scientificName")) %>%
+  
+  mutate(
+    # Phylum strictly follows our list
+    phylum = factor(phylum, levels = phylo_phyla),
+    # Lower ranks prioritize our list, then sort any new ones alphabetically
+    class = fct_relevel(factor(class), phylo_classes),
+    order = fct_relevel(factor(order), phylo_orders),
+    family = fct_relevel(factor(family), phylo_families)
+  ) %>%
+  
+  # Now R will arrange them using your custom SLB logic!
+  arrange(phylum, class, order, family, scientificName) %>%
+  
+  # Convert back to character so we can clean up the NA values
+  mutate(across(everything(), as.character)) %>% 
+  mutate(across(everything(), ~replace_na(.x, "")))
+
+# 4. Generate the gt table
+table_data %>%
+  gt() %>%
+  tab_header(
+    title = "Taxonomic Inventory of Deep-Sea Camera Observations",
+    subtitle = "Tuvalu"
+  ) %>%
+  cols_label(
+    phylum = "Phylum",
+    class = "Class",
+    order = "Order",
+    family = "Family",
+    scientificName = "Lowest Taxonomic ID",
+    Depth_m = "Depth (m)",
+    Freq_occ = "Freq. of Occ. (%)",
+    MaxN = "MaxN"
+  ) %>%
+  tab_style(
+    style = cell_text(style = "italic"),
+    locations = cells_body(
+      columns = scientificName,
+      rows = str_detect(scientificName, " ")
+    )
+  ) %>%
+  # Center align our new quantitative columns so they look sharp
+  cols_align(
+    align = "center",
+    columns = c(Depth_m, Freq_occ, MaxN)
+  ) %>%
+  # Define specific widths for columns so they fit tightly
+ cols_width(
+    Depth_m ~ px(140),     # <--- Bumped this up so the depth ranges don't break!
+    Freq_occ ~ px(90),  
+    MaxN ~ px(80),
+    scientificName ~ px(180)
+  ) %>%
+ tab_style(
+    style = cell_text(whitespace = "nowrap"),
+    locations = cells_body(columns = Depth_m)
+  ) %>%
+  opt_row_striping() %>%
+  tab_options(
+    data_row.padding = px(5),
+    table.font.size = px(12) # table font size
+  )
+```
+```
+
