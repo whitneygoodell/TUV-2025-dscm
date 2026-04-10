@@ -68,10 +68,11 @@ source("scripts/prep/02_refined_taxa_list.R")
 
 # Summarize Deployments
 deploy_meta <- clean_taxa %>% 
-  select(deployment, depth_m, substrate_type) %>% 
+  select(deployment, depth_m, substrate_type, valid_for_freq) %>% 
   distinct()
 
 total_deps <- nrow(deploy_meta)
+valid_freq_deps <- deploy_meta %>% filter(valid_for_freq == TRUE) %>% nrow() # Accounts for excluded deployments (that were incomplete); Calculate the denominator specifically for frequency of occ. math
 mean_depth <- round(mean(deploy_meta$depth_m, na.rm = TRUE), 1)
 sd_depth <- round(sd(deploy_meta$depth_m, na.rm = TRUE), 1)
 min_depth <- min(deploy_meta$depth_m, na.rm = TRUE)
@@ -84,8 +85,105 @@ n_hard <- sum(str_detect(tolower(deploy_meta$substrate_type), "hard"), na.rm = T
 
 We deployed `r total_deps` deep-sea cameras in the Tuvalu EEZ, ranging in depths from `r min_depth` to `r max_depth` m (mean ± SD = `r mean_depth` ± `r sd_depth` m). Substrates represented across deployments were mixed, with about two-thirds of the deployments (n= `r n_hard`) on hard, rocky substrate, and the other third on soft, sandy substrate (n = `r n_soft`).  
 
-** NOTES FOR LATER:  
-- refine summary stats by removing deployments that weren't successful or provided any data
+```{r}
+#| label: fig-depth-profile
+#| fig-cap: "Distribution of camera deployments across depth. Stacked colors indicate deployments included in quantitative frequency analyses versus partial deployments used only for taxon presence and MaxN."
+#| echo: false
+#| message: false
+#| warning: false
+
+library(ggplot2)
+library(dplyr)
+
+# 1. Prep the data: Make the TRUE/FALSE flag human-readable for the legend
+
+plot_data <- deploy_meta %>%
+  # Drop any rows where depth might be missing just in case
+  filter(!is.na(depth_m)) %>% 
+  mutate(
+    effort_status = case_when(
+      valid_for_freq == TRUE ~ "Full Deployment (All Metrics)",
+      valid_for_freq == FALSE ~ "Partial Deployment (Presence/MaxN Only)",
+      is.na(valid_for_freq) ~ "Partial Deployment (Presence/MaxN Only)", # Catches any stray NAs
+      TRUE ~ "Partial Deployment (Presence/MaxN Only)"
+    ),
+    # Factor to force the order in the legend and the stack
+    effort_status = factor(effort_status, levels = c("Full Deployment (All Metrics)", "Partial Deployment (Presence/MaxN Only)"))
+  )
+
+# 2. Build the ggplot
+# Dynamically calculate the bottom of the y-axis, rounding up to the nearest 100
+max_depth <- ceiling(max(plot_data$depth_m, na.rm = TRUE) / 100) * 100
+
+ggplot(plot_data, aes(y = depth_m, fill = effort_status)) +
+  # Using a histogram mapped directly to the y-axis makes it horizontal
+  geom_histogram(
+    binwidth = 100, # Change binwidth here
+    boundary = 0, 
+    color = "black", 
+    linewidth = 0.3,
+    position = position_stack(reverse = TRUE) # <--- fixes order of stacks, with full deployments first
+  ) +
+  
+  # Y-axis inverted so surface is at the top, forced to start exactly at 0 and end at max_depth
+  # Labels at 500m, minor gridlines at 200m
+ scale_y_reverse(
+    limits = c(0, max_depth),
+    breaks = seq(0, max_depth, by = 500),       # Text labels every 500m
+    minor_breaks = seq(0, max_depth, by = 100), # marks every 100m
+    expand = expansion(add = c(100, 0)), # starts at 0, pads 200m at bottom
+  # This magic argument forces the minor_breaks to draw physical tick marks!
+    guide = guide_axis(minor.ticks = TRUE) 
+  ) +
+  
+  # X-axis with whole numbers for deployment counts
+  scale_x_continuous(
+    limits = c(0, 8), # x-axis to 8
+    breaks = seq(0, 8, by = 1),
+    expand = expansion(mult = c(0, 0)) # Keeps 0 flush, no padding on right
+  ) +
+  
+  scale_fill_manual(values = c(
+    "Full Deployment (All Metrics)" = "#2c7fb8",
+    "Partial Deployment (Presence/MaxN Only)"  = "#9ecae1"   # A complementary light blue 
+  )) +
+  
+  # Clean up labels
+  labs(
+    y = "Depth (m)",
+    x = "Number of Deployments",
+    fill = NULL # no title
+  ) +
+  
+  # Use a clean theme perfect for reports
+  theme_minimal(base_size = 12) +
+  theme(
+    # --- LEGEND PLACEMENT ---
+    # c(1, 1) is the absolute top-right corner of the plotting area
+    legend.position = c(0.98, 0.98), 
+    legend.justification = c(1, 1), # Anchors the legend box to the top-right coordinate
+    legend.direction = "vertical",  # Stacks the keys vertically
+    legend.background = element_rect(fill = "white", color = NA), # Adds a tiny invisible white shield behind it
+    legend.text = element_text(size = 8), # font size
+    
+    # --- AXIS TITLE SPACING ---
+    # margin(t, r, b, l) - Adds 15 points of space to the Right side of the Y-axis title
+    axis.title.y = element_text(margin = margin(r = 15), color = "black"),
+    axis.title.x = element_text(color = "black"),   # gridline controls
+    
+    panel.grid = element_blank(), # Turn off ALL background gridlines
+    axis.text = element_text(color = "black"),
+    axis.line = element_line(color = "black"),
+    
+    # physical tick marks on (theme_minimal usually hides them)
+    axis.ticks = element_line(color = "black"),
+    
+    # control tick lengths (Minor ticks will automatically be half the size)
+    axis.ticks.length = unit(0.2, "cm"),
+    axis.minor.ticks.length = rel(0.3) 
+  )
+```
+
 
 ```{r}
 #| label: taxa-richness
@@ -103,15 +201,12 @@ n_total <- total_taxa_refined
 
 Across these deployments, `r n_fish` distinct fish taxa and `r n_inverts` distinct invertebrate taxa were observed, for a total of `r n_total` distinct taxa that were observed on deep sea cameras in Tuvalu.
 
-# Taxa Inventory
+# Taxa Inventory  
 
+Worth noting this doesn't account for distinct morphospecies. This dataset didn't have any that would change the biodiversity metrics, but for future datasets, will need to check for differentiations by morphospecies.  
 
-SPECIES TABLE
+SPECIES TABLE  
 Table of all the taxa observed on deep sea cameras
-
-** NOTES FOR LATER:  
-- need to manually refine the taxa in the report, remove redundancies (higher taxa)  
-
 ```{r}
 #| label: species-table
 #| echo: false
@@ -119,6 +214,20 @@ Table of all the taxa observed on deep sea cameras
 #| warning: false
 
 library(gt)
+
+# List of taxa to manually exclude from the visual table
+# Build this as you go; just keep adding names here separated by commas.
+table_exclusions <- c(
+  "Animalia",
+  "Myxinidae",
+  "Chordata",
+  "Actinopterygii",
+  "Actinopteri",
+  "Lutjanidae",
+  "Epigonidae",
+  "Arthropoda"
+)
+
 
 # ===== 1. QUANTITATIVE METRICS ===========
 
@@ -142,7 +251,9 @@ taxon_quant <- clean_taxa %>%
   filter(attracted == "Attracted") %>%
   group_by(phylum, class, order, family, scientificName) %>%
   summarise(
-    freq_occ = round((n_distinct(deployment) / total_deps) * 100),
+    # FREQ: Only count deployments where valid_for_freq is TRUE, divide by valid_freq_deps
+    freq_occ = round((n_distinct(deployment[valid_for_freq == TRUE]) / valid_freq_deps) * 100),
+    # MAXN: Keep using all deployments, no changes
     MaxN = max(individualCount, na.rm = TRUE),
     .groups = "drop"
   ) %>%
@@ -180,6 +291,9 @@ tentative_list <- clean_taxa %>%
 table_data <- taxon_depths %>%
   left_join(taxon_quant, by = c("phylum", "class", "order", "family", "scientificName")) %>%
   left_join(tentative_list, by = c("phylum", "class", "order", "family", "scientificName")) %>%
+  
+  # manual exclusions
+  filter(!scientificName %in% table_exclusions) %>%
   
   mutate(
     # Apply phylogenetic sorting rules
@@ -260,4 +374,267 @@ table_data %>%
     data_row.padding = px(5),
     table.font.size = px(12)
   )
+```
+
+
+# Exploratory taxa summaries
+
+## Shark richness, Fish families, Abundant taxa  
+
+```{r}
+#| label: explore-taxa-interest
+#| echo: false
+#| message: false
+#| warning: false
+
+# 1. Distinct Sharks and Chimaeras
+# (Filtering true_richness_list by the Classes we defined in our phylo_keys)
+sharks_chimaeras <- true_richness_list %>%
+  filter(class %in% c("Elasmobranchii", "Holocephali")) %>%
+  nrow()
+
+# Calculate distinct families of bony fish (excluding sharks, chimaeras, hagfish, and pelagic tunicates)
+bony_fish_families_count <- clean_taxa %>%
+  filter(
+    phylum == "Chordata", 
+    !class %in% c("Elasmobranchii", "Holocephali", "Myxini", "Appendicularia"),
+    family != ""
+  ) %>%
+  summarise(n = n_distinct(family)) %>%
+  pull(n)
+
+cat("--- DISTINCT FISH GROUPS ---\n")
+cat("Total non-redundant shark & chimaera taxa:", sharks_chimaeras, "\n")
+cat("Total distinct bony fish families:", bony_fish_families_count, "\n\n")
+
+# Calculate phyla
+phylum_count <- clean_taxa %>%
+  summarise(n = n_distinct(phylum)) %>%
+  pull(n)
+
+cat("--- DISTINCT PHYLA ---\n")
+cat("Total number of phyla:", phylum_count, "\n")
+
+# 2. Distinct Chordate Families & Frequencies of Occurrence
+chordate_families_count <- clean_taxa %>%
+  filter(phylum == "Chordata", family != "") %>%
+  summarise(n = n_distinct(family)) %>%
+  pull(n)
+
+all_chordate_families <- clean_taxa %>%
+  # Add valid_for_freq == TRUE to the filter, so incomplete deployments aren't included in freq. of occ.
+  filter(phylum == "Chordata", family != "", valid_for_freq == TRUE) %>%
+  group_by(family) %>%
+  # Divide by valid_freq_deps
+  summarise(freq_occ = round((n_distinct(deployment) / valid_freq_deps) * 100, 1)) %>%
+  arrange(desc(freq_occ))
+
+cat("--- CHORDATE FAMILIES ---\n")
+cat("Total distinct chordate families:", chordate_families_count, "\n")
+cat("Frequency of occurrence for ALL chordate families:\n")
+print(all_chordate_families, n = Inf) 
+cat("\n")
+
+# 2b. Distinct invert orders & Frequencies of Occurrence
+invert_order_count <- clean_taxa %>%
+  filter(phylum != "Chordata", order != "") %>%
+  summarise(n = n_distinct(order)) %>%
+  pull(n)
+
+all_invert_orders <- clean_taxa %>%
+  # Add valid_for_freq == TRUE to the filter, so incomplete deployments aren't included in freq. of occ.
+  filter(phylum != "Chordata", order != "", valid_for_freq == TRUE) %>%
+  group_by(order) %>%
+  # Divide by valid_freq_deps
+  summarise(freq_occ = round((n_distinct(deployment) / valid_freq_deps) * 100, 1)) %>%
+  arrange(desc(freq_occ))
+
+cat("--- INVERT ORDERS ---\n")
+cat("Total distinct invert orders:", invert_order_count, "\n")
+cat("Frequency of occurrence for ALL invert orders:\n")
+print(all_invert_orders, n = Inf) 
+cat("\n")
+
+# 3. Highest MaxN (Abundance) - for Fish and Inverts
+top_maxn_fish <- clean_taxa %>%
+  filter(!is.na(individualCount), phylum == "Chordata") %>%
+  group_by(scientificName) %>%
+  summarise(MaxN = max(individualCount, na.rm = TRUE), .groups = "drop") %>%
+  # Grab top 10
+  slice_max(order_by = MaxN, n = 10, with_ties = FALSE) %>%
+  arrange(desc(MaxN))
+
+top_maxn_inverts <- clean_taxa %>%
+  filter(!is.na(individualCount), phylum != "Chordata") %>%
+  group_by(scientificName) %>%
+  summarise(MaxN = max(individualCount, na.rm = TRUE), .groups = "drop") %>%
+  # Grab top 10
+  slice_max(order_by = MaxN, n = 10, with_ties = FALSE) %>%
+  arrange(desc(MaxN))
+
+cat("--- TOP 10 MOST ABUNDANT FISHES (Highest MaxN) ---\n")
+print(top_maxn_fish)
+cat("\n")
+
+cat("--- TOP 10 MOST ABUNDANT INVERTEBRATES (Highest MaxN) ---\n")
+print(top_maxn_inverts)
+```
+# Characteristic fauna by depth zone  
+For this chunk, we are going to define your depth bins using "case_when()". 
+
+**Important ecological math note:** When calculating the frequency of occurrence for a depth zone, we don't divide by the *total* number of deployments on the expedition. We divide by the number of deployments *inside that specific depth bin*. (e.g., If a fish is seen on 5 deep deployments, and there were only 6 deep deployments total, it has an 83% frequency for that zone, making it highly characteristic!)
+```{r}
+#| label: explore-depth-zones
+#| echo: false
+#| message: false
+#| warning: false
+
+# 1. Define Depth Zones and calculate deployments per zone
+zone_deps <- deploy_meta %>%
+  mutate(
+    depth_zone = case_when(
+      depth_m < 700 ~ "<700 m",
+      depth_m >= 700 & depth_m <= 1500 ~ "700-1500 m",
+      depth_m > 1500 ~ ">1500 m"
+    ),
+    depth_zone = factor(depth_zone, levels = c("<700 m", "700-1500 m", ">1500 m"))
+  ) %>%
+  filter(!is.na(depth_zone)) %>%
+  group_by(depth_zone) %>%
+  summarise(
+    total_zone_deps = n(),
+    # NEW: Count how many VALID deployments are in each zone
+    valid_zone_deps = sum(valid_for_freq == TRUE), 
+    .groups = "drop"
+  )
+
+# Merge zone definitions and fauna groups into the main data
+zone_data <- clean_taxa %>%
+  mutate(
+    depth_zone = case_when(
+      depth_m < 700 ~ "<700 m",
+      depth_m >= 700 & depth_m <= 1500 ~ "700-1500 m",
+      depth_m > 1500 ~ ">1500 m"
+    ),
+    depth_zone = factor(depth_zone, levels = c("<700 m", "700-1500 m", ">1500 m")),
+    fauna_group = if_else(phylum == "Chordata", "Fish", "Invertebrate")
+  ) %>%
+  left_join(zone_deps, by = "depth_zone") %>%
+  filter(!is.na(depth_zone)) # Drop rows without depth data
+
+# =========================================================
+# ROUND A: Characteristic Taxa by Lowest ID (scientificName)
+# =========================================================
+zone_sp_freq <- zone_data %>%
+  filter(scientificName != "", valid_for_freq == TRUE) %>%
+  group_by(depth_zone, fauna_group, scientificName) %>%
+  summarise(
+    occ = n_distinct(deployment),
+    # Divide occurrences by the number of deployments IN THAT ZONE
+    freq_occ = round((n_distinct(deployment) / first(valid_zone_deps)) * 100, 1),
+    .groups = "drop"
+  ) %>%
+  group_by(depth_zone, fauna_group) %>%
+  # Grab top 10 for EACH zone and fauna group
+  slice_max(order_by = freq_occ, n = 10, with_ties = FALSE) %>%
+  arrange(depth_zone, desc(freq_occ)) %>%
+  ungroup()
+
+cat("=== ROUND A: TOP 10 TAXA BY DEPTH (Lowest ID) ===\n\n")
+
+cat("--- FISHES ---\n")
+print(zone_sp_freq %>% filter(fauna_group == "Fish") %>% select(-fauna_group), n = Inf)
+cat("\n")
+
+cat("--- INVERTEBRATES ---\n")
+print(zone_sp_freq %>% filter(fauna_group == "Invertebrate") %>% select(-fauna_group), n = Inf)
+cat("\n")
+
+# =========================================================
+# ROUND B: Characteristic Taxa by Fish Family / Invert Order
+# =========================================================
+zone_higher_freq <- zone_data %>%
+  mutate(
+    # Create a dynamic grouping column: Family for Fish, Order for Inverts
+    taxa_group = if_else(fauna_group == "Fish", family, order)
+  ) %>%
+  # Filter out blanks just in case a record lacks family/order
+  filter(taxa_group != "", valid_for_freq == TRUE) %>%
+  group_by(depth_zone, fauna_group, taxa_group) %>%
+  summarise(
+    occ = n_distinct(deployment),
+    freq_occ = round((n_distinct(deployment) / first(valid_zone_deps)) * 100, 1),
+    .groups = "drop"
+  ) %>%
+  group_by(depth_zone, fauna_group) %>%
+  # Grab top 10 for EACH zone and fauna group
+  slice_max(order_by = freq_occ, n = 10, with_ties = FALSE) %>%
+  arrange(depth_zone, desc(freq_occ)) %>%
+  ungroup()
+
+cat("=== ROUND B: TOP 10 HIGHER TAXA BY DEPTH (Fish Family / Invert Order) ===\n\n")
+
+cat("--- FISHES (By Family) ---\n")
+print(zone_higher_freq %>% filter(fauna_group == "Fish") %>% select(-fauna_group), n = Inf)
+cat("\n")
+
+cat("--- INVERTEBRATES (By Order) ---\n")
+print(zone_higher_freq %>% filter(fauna_group == "Invertebrate") %>% select(-fauna_group), n = Inf)
+```
+
+If you run those chunks interactively (the green play button), RStudio will print out neat, text-based summaries directly below the chunk. This makes it incredibly easy to scan the outputs and start writing paragraphs like: 
+
+*"The deep-sea community was dominated by... with the family Macrouridae occurring in X% of deployments. In the mesopelagic zone (<700m), the characteristic fauna shifted to..."*
+
+The deep zone is pretty distinct. Let's look at whether there are taxa that occurred here that also occurred elsewhere. 
+```{r}
+#| label: explore-deep-taxa
+#| echo: false
+#| message: false
+#| warning: false
+
+# 1. Identify all unique taxa seen deeper than 1900 m
+deep_taxa_list <- clean_taxa %>%
+  filter(depth_m > 1900, scientificName != "") %>%
+  distinct(scientificName) %>%
+  pull(scientificName)
+
+# 2. Track those specific taxa across the ENTIRE dataset
+deep_taxa_overlap <- clean_taxa %>%
+  filter(scientificName %in% deep_taxa_list) %>%
+  group_by(phylum, family, scientificName) %>%
+  summarise(
+    min_depth = min(depth_m, na.rm = TRUE),
+    max_depth = max(depth_m, na.rm = TRUE),
+    n_deep_deps = n_distinct(deployment[depth_m > 1900]),
+    n_shallow_deps = n_distinct(deployment[depth_m <= 1900]),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    # Categorize them based on whether they ever showed up shallow
+    distribution = if_else(n_shallow_deps == 0, "Exclusive to >1900m", "Shared with Shallower Depths")
+  ) %>%
+  arrange(distribution, min_depth, desc(n_deep_deps))
+
+# 3. Print the results cleanly
+cat("=== FAUNAL DISTINCTNESS: TAXA OBSERVED > 1900m ===\n\n")
+
+cat(paste("Total unique taxa observed > 1900m:", length(deep_taxa_list), "\n\n"))
+
+cat("--- EXCLUSIVE TO >1900m ---\n")
+exclusive_taxa <- deep_taxa_overlap %>% filter(distribution == "Exclusive to >1900m")
+if(nrow(exclusive_taxa) > 0) {
+  print(exclusive_taxa %>% select(family, scientificName, n_deep_deps, min_depth, max_depth), n = Inf)
+} else {
+  cat("None. All deep taxa were also found shallower.\n")
+}
+cat("\n")
+
+cat("--- SHARED WITH SHALLOWER DEPTHS ---\n")
+shared_taxa <- deep_taxa_overlap %>% filter(distribution == "Shared with Shallower Depths")
+if(nrow(shared_taxa) > 0) {
+  print(shared_taxa %>% select(family, scientificName, n_deep_deps, n_shallow_deps, min_depth, max_depth), n = Inf)
+} else {
+  cat("None. All deep taxa are entirely restricted to >1900m.\n")
+}
 ```

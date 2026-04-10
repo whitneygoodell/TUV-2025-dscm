@@ -102,8 +102,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="overview" class="level1">
-<h1>Overview</h1>
+<section id="prep" class="level1">
+<h1>Prep</h1>
 <p>This script processes the dscm annotation dataset (provided by DARC) for inclusion in expedition report.<br>
 Data has been prepped using 01_data_prep.qmd and 02_refined_taxa_list.R.</p>
 <div class="cell">
@@ -180,35 +180,47 @@ Refined Invertebrate Taxa: 65
 46 Hexactinellida    ""                  Class    </code></pre>
 </div>
 </div>
+</section>
+<section id="sampling-summary" class="level1">
+<h1>Sampling summary</h1>
 <p>We deployed 34 deep-sea cameras in the Tuvalu EEZ, ranging in depths from 390 to 2051 m (mean ± SD = 1223.5 ± 617.7 m). Substrates represented across deployments were mixed, with about two-thirds of the deployments (n= 23) on hard, rocky substrate, and the other third on soft, sandy substrate (n = 11).</p>
-<p>** NOTES FOR LATER:<br>
-- refine summary stats by removing deployments that weren’t successful or provided any data</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-depth-profile" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="dscm_report_analysis_files/figure-html/fig-depth-profile-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Figure&nbsp;1: Distribution of camera deployments across depth. Stacked colors indicate deployments included in quantitative frequency analyses versus partial deployments used only for taxon presence and MaxN.</figcaption>
+</figure>
+</div>
+</div>
+</div>
 <p>Across these deployments, 40 distinct fish taxa and 65 distinct invertebrate taxa were observed, for a total of 105 distinct taxa that were observed on deep sea cameras in Tuvalu.</p>
-<section id="taxa-inventory" class="level3">
-<h3 class="anchored" data-anchor-id="taxa-inventory">Taxa Inventory</h3>
-<p>SPECIES TABLE Table of all the taxa observed on deep sea cameras</p>
-<p>** NOTES FOR LATER:<br>
-- need to manually refine the taxa in the report, remove redundancies (higher taxa)</p>
+</section>
+<section id="taxa-inventory" class="level1">
+<h1>Taxa Inventory</h1>
+<p>Worth noting this doesn’t account for distinct morphospecies. This dataset didn’t have any that would change the biodiversity metrics, but for future datasets, will need to check for differentiations by morphospecies.</p>
+<p>SPECIES TABLE<br>
+Table of all the taxa observed on deep sea cameras</p>
 <div class="cell">
 <div class="cell-output-display">
 
-<div id="yvhmfxlost" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#yvhmfxlost table {
+<div id="bindmhyqgy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#bindmhyqgy table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#yvhmfxlost thead, #yvhmfxlost tbody, #yvhmfxlost tfoot, #yvhmfxlost tr, #yvhmfxlost td, #yvhmfxlost th {
+#bindmhyqgy thead, #bindmhyqgy tbody, #bindmhyqgy tfoot, #bindmhyqgy tr, #bindmhyqgy td, #bindmhyqgy th {
   border-style: none;
 }
 
-#yvhmfxlost p {
+#bindmhyqgy p {
   margin: 0;
   padding: 0;
 }
 
-#yvhmfxlost .gt_table {
+#bindmhyqgy .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -234,12 +246,12 @@ Refined Invertebrate Taxa: 65
   border-left-color: #D3D3D3;
 }
 
-#yvhmfxlost .gt_caption {
+#bindmhyqgy .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#yvhmfxlost .gt_title {
+#bindmhyqgy .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -251,7 +263,7 @@ Refined Invertebrate Taxa: 65
   border-bottom-width: 0;
 }
 
-#yvhmfxlost .gt_subtitle {
+#bindmhyqgy .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -263,7 +275,7 @@ Refined Invertebrate Taxa: 65
   border-top-width: 0;
 }
 
-#yvhmfxlost .gt_heading {
+#bindmhyqgy .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -275,13 +287,13 @@ Refined Invertebrate Taxa: 65
   border-right-color: #D3D3D3;
 }
 
-#yvhmfxlost .gt_bottom_border {
+#bindmhyqgy .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#yvhmfxlost .gt_col_headings {
+#bindmhyqgy .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -296,7 +308,7 @@ Refined Invertebrate Taxa: 65
   border-right-color: #D3D3D3;
 }
 
-#yvhmfxlost .gt_col_heading {
+#bindmhyqgy .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -316,7 +328,7 @@ Refined Invertebrate Taxa: 65
   overflow-x: hidden;
 }
 
-#yvhmfxlost .gt_column_spanner_outer {
+#bindmhyqgy .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -328,15 +340,15 @@ Refined Invertebrate Taxa: 65
   padding-right: 4px;
 }
 
-#yvhmfxlost .gt_column_spanner_outer:first-child {
+#bindmhyqgy .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#yvhmfxlost .gt_column_spanner_outer:last-child {
+#bindmhyqgy .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#yvhmfxlost .gt_column_spanner {
+#bindmhyqgy .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -348,11 +360,11 @@ Refined Invertebrate Taxa: 65
   width: 100%;
 }
 
-#yvhmfxlost .gt_spanner_row {
+#bindmhyqgy .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#yvhmfxlost .gt_group_heading {
+#bindmhyqgy .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -378,7 +390,7 @@ Refined Invertebrate Taxa: 65
   text-align: left;
 }
 
-#yvhmfxlost .gt_empty_group_heading {
+#bindmhyqgy .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -393,15 +405,15 @@ Refined Invertebrate Taxa: 65
   vertical-align: middle;
 }
 
-#yvhmfxlost .gt_from_md > :first-child {
+#bindmhyqgy .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#yvhmfxlost .gt_from_md > :last-child {
+#bindmhyqgy .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#yvhmfxlost .gt_row {
+#bindmhyqgy .gt_row {
   padding-top: 5px;
   padding-bottom: 5px;
   padding-left: 5px;
@@ -420,7 +432,7 @@ Refined Invertebrate Taxa: 65
   overflow-x: hidden;
 }
 
-#yvhmfxlost .gt_stub {
+#bindmhyqgy .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -433,7 +445,7 @@ Refined Invertebrate Taxa: 65
   padding-right: 5px;
 }
 
-#yvhmfxlost .gt_stub_row_group {
+#bindmhyqgy .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -447,15 +459,15 @@ Refined Invertebrate Taxa: 65
   vertical-align: top;
 }
 
-#yvhmfxlost .gt_row_group_first td {
+#bindmhyqgy .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#yvhmfxlost .gt_row_group_first th {
+#bindmhyqgy .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#yvhmfxlost .gt_summary_row {
+#bindmhyqgy .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -465,16 +477,16 @@ Refined Invertebrate Taxa: 65
   padding-right: 5px;
 }
 
-#yvhmfxlost .gt_first_summary_row {
+#bindmhyqgy .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#yvhmfxlost .gt_first_summary_row.thick {
+#bindmhyqgy .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#yvhmfxlost .gt_last_summary_row {
+#bindmhyqgy .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -484,7 +496,7 @@ Refined Invertebrate Taxa: 65
   border-bottom-color: #D3D3D3;
 }
 
-#yvhmfxlost .gt_grand_summary_row {
+#bindmhyqgy .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -494,7 +506,7 @@ Refined Invertebrate Taxa: 65
   padding-right: 5px;
 }
 
-#yvhmfxlost .gt_first_grand_summary_row {
+#bindmhyqgy .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -504,7 +516,7 @@ Refined Invertebrate Taxa: 65
   border-top-color: #D3D3D3;
 }
 
-#yvhmfxlost .gt_last_grand_summary_row_top {
+#bindmhyqgy .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -514,11 +526,11 @@ Refined Invertebrate Taxa: 65
   border-bottom-color: #D3D3D3;
 }
 
-#yvhmfxlost .gt_striped {
+#bindmhyqgy .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#yvhmfxlost .gt_table_body {
+#bindmhyqgy .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -527,7 +539,7 @@ Refined Invertebrate Taxa: 65
   border-bottom-color: #D3D3D3;
 }
 
-#yvhmfxlost .gt_footnotes {
+#bindmhyqgy .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -541,7 +553,7 @@ Refined Invertebrate Taxa: 65
   border-right-color: #D3D3D3;
 }
 
-#yvhmfxlost .gt_footnote {
+#bindmhyqgy .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -550,7 +562,7 @@ Refined Invertebrate Taxa: 65
   padding-right: 5px;
 }
 
-#yvhmfxlost .gt_sourcenotes {
+#bindmhyqgy .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -564,7 +576,7 @@ Refined Invertebrate Taxa: 65
   border-right-color: #D3D3D3;
 }
 
-#yvhmfxlost .gt_sourcenote {
+#bindmhyqgy .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -572,72 +584,72 @@ Refined Invertebrate Taxa: 65
   padding-right: 5px;
 }
 
-#yvhmfxlost .gt_left {
+#bindmhyqgy .gt_left {
   text-align: left;
 }
 
-#yvhmfxlost .gt_center {
+#bindmhyqgy .gt_center {
   text-align: center;
 }
 
-#yvhmfxlost .gt_right {
+#bindmhyqgy .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#yvhmfxlost .gt_font_normal {
+#bindmhyqgy .gt_font_normal {
   font-weight: normal;
 }
 
-#yvhmfxlost .gt_font_bold {
+#bindmhyqgy .gt_font_bold {
   font-weight: bold;
 }
 
-#yvhmfxlost .gt_font_italic {
+#bindmhyqgy .gt_font_italic {
   font-style: italic;
 }
 
-#yvhmfxlost .gt_super {
+#bindmhyqgy .gt_super {
   font-size: 65%;
 }
 
-#yvhmfxlost .gt_footnote_marks {
+#bindmhyqgy .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#yvhmfxlost .gt_asterisk {
+#bindmhyqgy .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#yvhmfxlost .gt_indent_1 {
+#bindmhyqgy .gt_indent_1 {
   text-indent: 5px;
 }
 
-#yvhmfxlost .gt_indent_2 {
+#bindmhyqgy .gt_indent_2 {
   text-indent: 10px;
 }
 
-#yvhmfxlost .gt_indent_3 {
+#bindmhyqgy .gt_indent_3 {
   text-indent: 15px;
 }
 
-#yvhmfxlost .gt_indent_4 {
+#bindmhyqgy .gt_indent_4 {
   text-indent: 20px;
 }
 
-#yvhmfxlost .gt_indent_5 {
+#bindmhyqgy .gt_indent_5 {
   text-indent: 25px;
 }
 
-#yvhmfxlost .katex-display {
+#bindmhyqgy .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#yvhmfxlost div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#bindmhyqgy div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -886,7 +898,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="TmVtZXJ0ZWE="><span class="gt_from_md">Nemertea</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">1058</td>
 <td headers="MaxN" class="gt_row gt_center">1</td>
-<td headers="Freq_occ" class="gt_row gt_center">3</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center">4</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left gt_striped">Annelida</td>
 <td headers="class" class="gt_row gt_left gt_striped">Polychaeta</td>
 <td headers="order" class="gt_row gt_left gt_striped">Terebellida</td>
@@ -902,7 +914,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="T251cGhpZGFlPGJyPihUZW50YXRpdmU6ICpIeWFsaW5vZWNpYSogc3AuKQ=="><span class="gt_from_md">Onuphidae<br>(Tentative: <em>Hyalinoecia</em> sp.)</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">464</td>
 <td headers="MaxN" class="gt_row gt_center">1</td>
-<td headers="Freq_occ" class="gt_row gt_center">3</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center">4</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left gt_striped">Annelida</td>
 <td headers="class" class="gt_row gt_left gt_striped">Polychaeta</td>
 <td headers="order" class="gt_row gt_left gt_striped">Phyllodocida</td>
@@ -926,7 +938,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="QW5uZWxpZGE="><span class="gt_from_md">Annelida</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">434</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">3</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped">4</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Mollusca</td>
 <td headers="class" class="gt_row gt_left">Cephalopoda</td>
 <td headers="order" class="gt_row gt_left"></td>
@@ -934,7 +946,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="RGVjYXBvZGlmb3JtZXM8YnI+KFRlbnRhdGl2ZTogKklkaW90ZXV0aGlzIGNvcmRpZm9ybWlzKik="><span class="gt_from_md">Decapodiformes<br>(Tentative: <em>Idioteuthis cordiformis</em>)</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">1177</td>
 <td headers="MaxN" class="gt_row gt_center">1</td>
-<td headers="Freq_occ" class="gt_row gt_center">3</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center">4</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left gt_striped">Mollusca</td>
 <td headers="class" class="gt_row gt_left gt_striped">Gastropoda</td>
 <td headers="order" class="gt_row gt_left gt_striped"></td>
@@ -942,7 +954,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="R2FzdHJvcG9kYQ=="><span class="gt_from_md">Gastropoda</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">434 - 555</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">5</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">3</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped">4</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Arthropoda</td>
 <td headers="class" class="gt_row gt_left">Copepoda</td>
 <td headers="order" class="gt_row gt_left"></td>
@@ -958,7 +970,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KkV1cnl0aGVuZXMqIHNwLg=="><span class="gt_from_md"><em>Eurythenes</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">1041 - 2051</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">5</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">26</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped">31</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Arthropoda</td>
 <td headers="class" class="gt_row gt_left">Malacostraca</td>
 <td headers="order" class="gt_row gt_left">Amphipoda</td>
@@ -966,7 +978,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="QW1waGlwb2RhPGJyPihUZW50YXRpdmU6IEV1cnl0aGVuZXMp"><span class="gt_from_md">Amphipoda<br>(Tentative: Eurythenes)</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">390 - 2051</td>
 <td headers="MaxN" class="gt_row gt_center">1000</td>
-<td headers="Freq_occ" class="gt_row gt_center">88</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center">92</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left gt_striped">Arthropoda</td>
 <td headers="class" class="gt_row gt_left gt_striped">Malacostraca</td>
 <td headers="order" class="gt_row gt_left gt_striped">Decapoda</td>
@@ -974,7 +986,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="QWNhbnRoZXBoeXJpZGFl"><span class="gt_from_md">Acanthephyridae</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">443 - 2011</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">2</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">26</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped">27</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Arthropoda</td>
 <td headers="class" class="gt_row gt_left">Malacostraca</td>
 <td headers="order" class="gt_row gt_left">Decapoda</td>
@@ -982,7 +994,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="QXJpc3RlaWRhZQ=="><span class="gt_from_md">Aristeidae</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">443 - 2051</td>
 <td headers="MaxN" class="gt_row gt_center">2</td>
-<td headers="Freq_occ" class="gt_row gt_center">47</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center">42</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left gt_striped">Arthropoda</td>
 <td headers="class" class="gt_row gt_left gt_striped">Malacostraca</td>
 <td headers="order" class="gt_row gt_left gt_striped">Decapoda</td>
@@ -990,7 +1002,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KkV1bXVuaWRhKiBzcC4="><span class="gt_from_md"><em>Eumunida</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">390</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">3</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped">0</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Arthropoda</td>
 <td headers="class" class="gt_row gt_left">Malacostraca</td>
 <td headers="order" class="gt_row gt_left">Decapoda</td>
@@ -998,7 +1010,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="SG9tb2xpZGFl"><span class="gt_from_md">Homolidae</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">390 - 1050</td>
 <td headers="MaxN" class="gt_row gt_center">2</td>
-<td headers="Freq_occ" class="gt_row gt_center">21</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center">19</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left gt_striped">Arthropoda</td>
 <td headers="class" class="gt_row gt_left gt_striped">Malacostraca</td>
 <td headers="order" class="gt_row gt_left gt_striped">Decapoda</td>
@@ -1006,7 +1018,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KkxhbW9oYSogc3Au"><span class="gt_from_md"><em>Lamoha</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">390 - 1177</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">2</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">24</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped">19</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Arthropoda</td>
 <td headers="class" class="gt_row gt_left">Malacostraca</td>
 <td headers="order" class="gt_row gt_left">Decapoda</td>
@@ -1014,7 +1026,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="TGl0aG9kaWRhZQ=="><span class="gt_from_md">Lithodidae</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">929 - 1005</td>
 <td headers="MaxN" class="gt_row gt_center">1</td>
-<td headers="Freq_occ" class="gt_row gt_center">9</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center">8</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left gt_striped">Arthropoda</td>
 <td headers="class" class="gt_row gt_left gt_striped">Malacostraca</td>
 <td headers="order" class="gt_row gt_left gt_striped">Decapoda</td>
@@ -1022,7 +1034,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="Kk5lb2xpdGhvZGVzKiBzcC4="><span class="gt_from_md"><em>Neolithodes</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">1141</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">2</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">3</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped">4</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Arthropoda</td>
 <td headers="class" class="gt_row gt_left">Malacostraca</td>
 <td headers="order" class="gt_row gt_left">Decapoda</td>
@@ -1030,7 +1042,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KlBhcmFsb21pcyogc3Au"><span class="gt_from_md"><em>Paralomis</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">565 - 758</td>
 <td headers="MaxN" class="gt_row gt_center">1</td>
-<td headers="Freq_occ" class="gt_row gt_center">6</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center">4</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left gt_striped">Arthropoda</td>
 <td headers="class" class="gt_row gt_left gt_striped">Malacostraca</td>
 <td headers="order" class="gt_row gt_left gt_striped">Decapoda</td>
@@ -1038,7 +1050,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KkFnb25vbmlkYSogc3Au"><span class="gt_from_md"><em>Agononida</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">390 - 758</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">9</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">21</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped">15</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Arthropoda</td>
 <td headers="class" class="gt_row gt_left">Malacostraca</td>
 <td headers="order" class="gt_row gt_left">Decapoda</td>
@@ -1046,7 +1058,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="Kk11bmlkYSogc3Au"><span class="gt_from_md"><em>Munida</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">464 - 1041</td>
 <td headers="MaxN" class="gt_row gt_center">1</td>
-<td headers="Freq_occ" class="gt_row gt_center">9</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center">12</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left gt_striped">Arthropoda</td>
 <td headers="class" class="gt_row gt_left gt_striped">Malacostraca</td>
 <td headers="order" class="gt_row gt_left gt_striped">Decapoda</td>
@@ -1054,7 +1066,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="TXVuaWRpZGFlPGJyPihUZW50YXRpdmU6ICpBZ29ub25pZGEqIHNwLik="><span class="gt_from_md">Munididae<br>(Tentative: <em>Agononida</em> sp.)</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">390 - 979</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">3</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">21</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped">23</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Arthropoda</td>
 <td headers="class" class="gt_row gt_left">Malacostraca</td>
 <td headers="order" class="gt_row gt_left">Decapoda</td>
@@ -1062,7 +1074,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KlBhcmFtdW5pZGEqIHNwLg=="><span class="gt_from_md"><em>Paramunida</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">443</td>
 <td headers="MaxN" class="gt_row gt_center">2</td>
-<td headers="Freq_occ" class="gt_row gt_center">3</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center">4</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left gt_striped">Arthropoda</td>
 <td headers="class" class="gt_row gt_left gt_striped">Malacostraca</td>
 <td headers="order" class="gt_row gt_left gt_striped">Decapoda</td>
@@ -1070,7 +1082,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="TXVuaWRvcHNpZGFl"><span class="gt_from_md">Munidopsidae</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">978</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">3</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped">4</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Arthropoda</td>
 <td headers="class" class="gt_row gt_left">Malacostraca</td>
 <td headers="order" class="gt_row gt_left">Decapoda</td>
@@ -1078,7 +1090,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="Kk5lbWF0b2NhcmNpbnVzKiBzcC4="><span class="gt_from_md"><em>Nematocarcinus</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">390 - 2051</td>
 <td headers="MaxN" class="gt_row gt_center">8</td>
-<td headers="Freq_occ" class="gt_row gt_center">53</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center">54</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left gt_striped">Arthropoda</td>
 <td headers="class" class="gt_row gt_left gt_striped">Malacostraca</td>
 <td headers="order" class="gt_row gt_left gt_striped">Decapoda</td>
@@ -1086,7 +1098,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KkN5cnRvbWFpYSogc3Au"><span class="gt_from_md"><em>Cyrtomaia</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">390 - 555</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">2</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">9</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped">4</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Arthropoda</td>
 <td headers="class" class="gt_row gt_left">Malacostraca</td>
 <td headers="order" class="gt_row gt_left">Decapoda</td>
@@ -1094,7 +1106,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KkhldGVyb2NhcnB1cyogc3AuPGJyPihUZW50YXRpdmU6ICpIZXRlcm9jYXJwdXMgZW5zaWZlciosICpIZXRlcm9jYXJwdXMgaGF5YXNoaWkqKQ=="><span class="gt_from_md"><em>Heterocarpus</em> sp.<br>(Tentative: <em>Heterocarpus ensifer</em>, <em>Heterocarpus hayashii</em>)</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">390 - 1177</td>
 <td headers="MaxN" class="gt_row gt_center">35</td>
-<td headers="Freq_occ" class="gt_row gt_center">53</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center">46</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left gt_striped">Arthropoda</td>
 <td headers="class" class="gt_row gt_left gt_striped">Malacostraca</td>
 <td headers="order" class="gt_row gt_left gt_striped">Decapoda</td>
@@ -1102,7 +1114,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KkhldGVyb2NhcnB1cyBlbnNpZmVyKg=="><span class="gt_from_md"><em>Heterocarpus ensifer</em></span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">390 - 504</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">13</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">9</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped">4</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Arthropoda</td>
 <td headers="class" class="gt_row gt_left">Malacostraca</td>
 <td headers="order" class="gt_row gt_left">Decapoda</td>
@@ -1110,7 +1122,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KkhldGVyb2NhcnB1cyBsYWV2aWdhdHVzKg=="><span class="gt_from_md"><em>Heterocarpus laevigatus</em></span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">464 - 1051</td>
 <td headers="MaxN" class="gt_row gt_center">18</td>
-<td headers="Freq_occ" class="gt_row gt_center">12</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center">15</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left gt_striped">Arthropoda</td>
 <td headers="class" class="gt_row gt_left gt_striped">Malacostraca</td>
 <td headers="order" class="gt_row gt_left gt_striped">Decapoda</td>
@@ -1118,7 +1130,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="UGFuZGFsaWRhZTxicj4oVGVudGF0aXZlOiAqSGV0ZXJvY2FycHVzKiBzcC4sICpQbGVzaW9uaWthKiBzcC4p"><span class="gt_from_md">Pandalidae<br>(Tentative: <em>Heterocarpus</em> sp., <em>Plesionika</em> sp.)</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">390 - 1177</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">19</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">32</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped">23</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Arthropoda</td>
 <td headers="class" class="gt_row gt_left">Malacostraca</td>
 <td headers="order" class="gt_row gt_left">Decapoda</td>
@@ -1134,7 +1146,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KlBhcmFwYWd1cnVzKiBzcC4="><span class="gt_from_md"><em>Parapagurus</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">1050 - 1177</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">2</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">6</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped">8</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Arthropoda</td>
 <td headers="class" class="gt_row gt_left">Malacostraca</td>
 <td headers="order" class="gt_row gt_left">Decapoda</td>
@@ -1142,7 +1154,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KlN5bXBhZ3VydXMgZG9mbGVpbmkq"><span class="gt_from_md"><em>Sympagurus dofleini</em></span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">443 - 565</td>
 <td headers="MaxN" class="gt_row gt_center">1</td>
-<td headers="Freq_occ" class="gt_row gt_center">9</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center">4</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left gt_striped">Arthropoda</td>
 <td headers="class" class="gt_row gt_left gt_striped">Malacostraca</td>
 <td headers="order" class="gt_row gt_left gt_striped">Decapoda</td>
@@ -1150,7 +1162,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="QmVudGhlc2ljeW1pZGFl"><span class="gt_from_md">Benthesicymidae</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">989 - 2015</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">2</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">18</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped">19</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Arthropoda</td>
 <td headers="class" class="gt_row gt_left">Malacostraca</td>
 <td headers="order" class="gt_row gt_left">Decapoda</td>
@@ -1158,7 +1170,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KkNpbGlvcGFndXJ1cyogc3Au"><span class="gt_from_md"><em>Ciliopagurus</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">434</td>
 <td headers="MaxN" class="gt_row gt_center">6</td>
-<td headers="Freq_occ" class="gt_row gt_center">3</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center">4</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left gt_striped">Arthropoda</td>
 <td headers="class" class="gt_row gt_left gt_striped">Malacostraca</td>
 <td headers="order" class="gt_row gt_left gt_striped">Decapoda</td>
@@ -1166,7 +1178,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="UHJvZ2VyeW9uaWRhZQ=="><span class="gt_from_md">Progeryonidae</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">434</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">3</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped">4</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Arthropoda</td>
 <td headers="class" class="gt_row gt_left">Malacostraca</td>
 <td headers="order" class="gt_row gt_left">Decapoda</td>
@@ -1174,7 +1186,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="QW5vbXVyYTxicj4oVGVudGF0aXZlOiBHYWxhdGhlb2lkZWEsIE11bmlkaWRhZSk="><span class="gt_from_md">Anomura<br>(Tentative: Galatheoidea, Munididae)</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">390 - 978</td>
 <td headers="MaxN" class="gt_row gt_center">3</td>
-<td headers="Freq_occ" class="gt_row gt_center">15</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center">8</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left gt_striped">Arthropoda</td>
 <td headers="class" class="gt_row gt_left gt_striped">Malacostraca</td>
 <td headers="order" class="gt_row gt_left gt_striped">Decapoda</td>
@@ -1190,7 +1202,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="Q2FyaWRlYTxicj4oVGVudGF0aXZlOiBBY2FudGhlcGh5cmlkYWUsIFBhbmRhbGlkYWUp"><span class="gt_from_md">Caridea<br>(Tentative: Acanthephyridae, Pandalidae)</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">390 - 1982</td>
 <td headers="MaxN" class="gt_row gt_center">5</td>
-<td headers="Freq_occ" class="gt_row gt_center">32</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center">27</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left gt_striped">Arthropoda</td>
 <td headers="class" class="gt_row gt_left gt_striped">Malacostraca</td>
 <td headers="order" class="gt_row gt_left gt_striped">Decapoda</td>
@@ -1198,7 +1210,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="Q2hpcm9zdHlsb2lkZWE="><span class="gt_from_md">Chirostyloidea</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">434</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">4</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">3</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped">4</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Arthropoda</td>
 <td headers="class" class="gt_row gt_left">Malacostraca</td>
 <td headers="order" class="gt_row gt_left">Decapoda</td>
@@ -1206,7 +1218,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="RGVjYXBvZGE8YnI+KFRlbnRhdGl2ZTogQ2FyaWRlYSwgRGVuZHJvYnJhbmNoaWF0YSk="><span class="gt_from_md">Decapoda<br>(Tentative: Caridea, Dendrobranchiata)</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">434 - 2046</td>
 <td headers="MaxN" class="gt_row gt_center">2</td>
-<td headers="Freq_occ" class="gt_row gt_center">41</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center">38</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left gt_striped">Arthropoda</td>
 <td headers="class" class="gt_row gt_left gt_striped">Malacostraca</td>
 <td headers="order" class="gt_row gt_left gt_striped">Decapoda</td>
@@ -1214,7 +1226,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="UGFndXJvaWRlYQ=="><span class="gt_from_md">Paguroidea</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">390 - 443</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">5</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">9</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped">8</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Arthropoda</td>
 <td headers="class" class="gt_row gt_left">Malacostraca</td>
 <td headers="order" class="gt_row gt_left">Decapoda</td>
@@ -1222,7 +1234,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="UGVuYWVvaWRlYTxicj4oVGVudGF0aXZlOiBCZW50aGVzaWN5bWlkYWUp"><span class="gt_from_md">Penaeoidea<br>(Tentative: Benthesicymidae)</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">565 - 2051</td>
 <td headers="MaxN" class="gt_row gt_center">4</td>
-<td headers="Freq_occ" class="gt_row gt_center">68</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center">69</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left gt_striped">Arthropoda</td>
 <td headers="class" class="gt_row gt_left gt_striped">Malacostraca</td>
 <td headers="order" class="gt_row gt_left gt_striped">Mysida</td>
@@ -1230,7 +1242,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="TXlzaWRh"><span class="gt_from_md">Mysida</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">390 - 2051</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">35</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">68</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped">77</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Arthropoda</td>
 <td headers="class" class="gt_row gt_left">Malacostraca</td>
 <td headers="order" class="gt_row gt_left">Isopoda</td>
@@ -1246,7 +1258,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="TXVubm9wc2lkYWU="><span class="gt_from_md">Munnopsidae</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">1051 - 2051</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">3</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped">4</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Arthropoda</td>
 <td headers="class" class="gt_row gt_left">Malacostraca</td>
 <td headers="order" class="gt_row gt_left">Isopoda</td>
@@ -1262,7 +1274,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KkduYXRob3BoYXVzaWEqIHNwLg=="><span class="gt_from_md"><em>Gnathophausia</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">744</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">3</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped">4</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Arthropoda</td>
 <td headers="class" class="gt_row gt_left">Malacostraca</td>
 <td headers="order" class="gt_row gt_left"></td>
@@ -1270,135 +1282,119 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="UGVyYWNhcmlkYTxicj4oVGVudGF0aXZlOiBNeXNpZGEp"><span class="gt_from_md">Peracarida<br>(Tentative: Mysida)</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">1982</td>
 <td headers="MaxN" class="gt_row gt_center">1</td>
-<td headers="Freq_occ" class="gt_row gt_center">3</td></tr>
-    <tr><td headers="phylum" class="gt_row gt_left gt_striped">Arthropoda</td>
-<td headers="class" class="gt_row gt_left gt_striped"></td>
-<td headers="order" class="gt_row gt_left gt_striped"></td>
-<td headers="family" class="gt_row gt_left gt_striped"></td>
-<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="QXJ0aHJvcG9kYQ=="><span class="gt_from_md">Arthropoda</span></span></td>
-<td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">978 - 989</td>
+<td headers="Freq_occ" class="gt_row gt_center">0</td></tr>
+    <tr><td headers="phylum" class="gt_row gt_left gt_striped">Echinodermata</td>
+<td headers="class" class="gt_row gt_left gt_striped">Asteroidea</td>
+<td headers="order" class="gt_row gt_left gt_striped">Valvatida</td>
+<td headers="family" class="gt_row gt_left gt_striped">Goniasteridae</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="R29uaWFzdGVyaWRhZQ=="><span class="gt_from_md">Goniasteridae</span></span></td>
+<td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">555</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped"></td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped"></td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Echinodermata</td>
 <td headers="class" class="gt_row gt_left">Asteroidea</td>
 <td headers="order" class="gt_row gt_left">Valvatida</td>
 <td headers="family" class="gt_row gt_left">Goniasteridae</td>
-<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="R29uaWFzdGVyaWRhZQ=="><span class="gt_from_md">Goniasteridae</span></span></td>
-<td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">555</td>
-<td headers="MaxN" class="gt_row gt_center"></td>
-<td headers="Freq_occ" class="gt_row gt_center"></td></tr>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="Kk1lZGlhc3Rlciogc3AuPGJyPihUZW50YXRpdmU6ICpNZWRpYXN0ZXIgb3JuYXR1cyop"><span class="gt_from_md"><em>Mediaster</em> sp.<br>(Tentative: <em>Mediaster ornatus</em>)</span></span></td>
+<td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">443 - 521</td>
+<td headers="MaxN" class="gt_row gt_center">3</td>
+<td headers="Freq_occ" class="gt_row gt_center">4</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left gt_striped">Echinodermata</td>
 <td headers="class" class="gt_row gt_left gt_striped">Asteroidea</td>
 <td headers="order" class="gt_row gt_left gt_striped">Valvatida</td>
-<td headers="family" class="gt_row gt_left gt_striped">Goniasteridae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="Kk1lZGlhc3Rlciogc3AuPGJyPihUZW50YXRpdmU6ICpNZWRpYXN0ZXIgb3JuYXR1cyop"><span class="gt_from_md"><em>Mediaster</em> sp.<br>(Tentative: <em>Mediaster ornatus</em>)</span></span></td>
-<td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">443 - 521</td>
-<td headers="MaxN" class="gt_row gt_center gt_striped">3</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">6</td></tr>
-    <tr><td headers="phylum" class="gt_row gt_left">Echinodermata</td>
-<td headers="class" class="gt_row gt_left">Asteroidea</td>
-<td headers="order" class="gt_row gt_left">Valvatida</td>
-<td headers="family" class="gt_row gt_left">Asterinidae</td>
-<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KlRyZW1hc3RlciBtaXJhYmlsaXMq"><span class="gt_from_md"><em>Tremaster mirabilis</em></span></span></td>
-<td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">434</td>
-<td headers="MaxN" class="gt_row gt_center"></td>
-<td headers="Freq_occ" class="gt_row gt_center"></td></tr>
-    <tr><td headers="phylum" class="gt_row gt_left gt_striped">Echinodermata</td>
-<td headers="class" class="gt_row gt_left gt_striped">Asteroidea</td>
-<td headers="order" class="gt_row gt_left gt_striped">Spinulosida</td>
-<td headers="family" class="gt_row gt_left gt_striped">Echinasteridae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KkhlbnJpY2lhKiBzcC4="><span class="gt_from_md"><em>Henricia</em> sp.</span></span></td>
-<td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">978</td>
+<td headers="family" class="gt_row gt_left gt_striped">Asterinidae</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KlRyZW1hc3RlciBtaXJhYmlsaXMq"><span class="gt_from_md"><em>Tremaster mirabilis</em></span></span></td>
+<td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">434</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped"></td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped"></td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Echinodermata</td>
-<td headers="class" class="gt_row gt_left">Crinoidea</td>
-<td headers="order" class="gt_row gt_left">Comatulida</td>
-<td headers="family" class="gt_row gt_left"></td>
-<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="Q29tYXR1bGlkYQ=="><span class="gt_from_md">Comatulida</span></span></td>
+<td headers="class" class="gt_row gt_left">Asteroidea</td>
+<td headers="order" class="gt_row gt_left">Spinulosida</td>
+<td headers="family" class="gt_row gt_left">Echinasteridae</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KkhlbnJpY2lhKiBzcC4="><span class="gt_from_md"><em>Henricia</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">978</td>
 <td headers="MaxN" class="gt_row gt_center"></td>
 <td headers="Freq_occ" class="gt_row gt_center"></td></tr>
     <tr><td headers="phylum" class="gt_row gt_left gt_striped">Echinodermata</td>
 <td headers="class" class="gt_row gt_left gt_striped">Crinoidea</td>
-<td headers="order" class="gt_row gt_left gt_striped">Isocrinida</td>
-<td headers="family" class="gt_row gt_left gt_striped">Isocrinidae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="Kk1ldGFjcmludXMqIHNwLg=="><span class="gt_from_md"><em>Metacrinus</em> sp.</span></span></td>
-<td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">555</td>
+<td headers="order" class="gt_row gt_left gt_striped">Comatulida</td>
+<td headers="family" class="gt_row gt_left gt_striped"></td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="Q29tYXR1bGlkYQ=="><span class="gt_from_md">Comatulida</span></span></td>
+<td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">978</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped"></td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped"></td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Echinodermata</td>
-<td headers="class" class="gt_row gt_left">Echinoidea</td>
-<td headers="order" class="gt_row gt_left">Aspidodiadematoida</td>
-<td headers="family" class="gt_row gt_left">Aspidodiadematidae</td>
-<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="QXNwaWRvZGlhZGVtYXRpZGFl"><span class="gt_from_md">Aspidodiadematidae</span></span></td>
+<td headers="class" class="gt_row gt_left">Crinoidea</td>
+<td headers="order" class="gt_row gt_left">Isocrinida</td>
+<td headers="family" class="gt_row gt_left">Isocrinidae</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="Kk1ldGFjcmludXMqIHNwLg=="><span class="gt_from_md"><em>Metacrinus</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">555</td>
 <td headers="MaxN" class="gt_row gt_center"></td>
 <td headers="Freq_occ" class="gt_row gt_center"></td></tr>
     <tr><td headers="phylum" class="gt_row gt_left gt_striped">Echinodermata</td>
 <td headers="class" class="gt_row gt_left gt_striped">Echinoidea</td>
-<td headers="order" class="gt_row gt_left gt_striped">Echinothurioida</td>
-<td headers="family" class="gt_row gt_left gt_striped">Echinothuriidae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KkVjaGlub3RodXJpaW5hZSogc3Au"><span class="gt_from_md"><em>Echinothuriinae</em> sp.</span></span></td>
-<td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">390 - 464</td>
-<td headers="MaxN" class="gt_row gt_center gt_striped">2</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">6</td></tr>
-    <tr><td headers="phylum" class="gt_row gt_left">Echinodermata</td>
-<td headers="class" class="gt_row gt_left">Echinoidea</td>
-<td headers="order" class="gt_row gt_left"></td>
-<td headers="family" class="gt_row gt_left"></td>
-<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="RWNoaW5vaWRlYTxicj4oVGVudGF0aXZlOiBFY2hpbm90aHVyaWlkYWUp"><span class="gt_from_md">Echinoidea<br>(Tentative: Echinothuriidae)</span></span></td>
-<td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">390 - 758</td>
-<td headers="MaxN" class="gt_row gt_center">1</td>
-<td headers="Freq_occ" class="gt_row gt_center">3</td></tr>
-    <tr><td headers="phylum" class="gt_row gt_left gt_striped">Echinodermata</td>
-<td headers="class" class="gt_row gt_left gt_striped">Holothuroidea</td>
-<td headers="order" class="gt_row gt_left gt_striped">Elasipodida</td>
-<td headers="family" class="gt_row gt_left gt_striped">Elpidiidae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="RWxwaWRpaWRhZQ=="><span class="gt_from_md">Elpidiidae</span></span></td>
-<td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">1982</td>
+<td headers="order" class="gt_row gt_left gt_striped">Aspidodiadematoida</td>
+<td headers="family" class="gt_row gt_left gt_striped">Aspidodiadematidae</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="QXNwaWRvZGlhZGVtYXRpZGFl"><span class="gt_from_md">Aspidodiadematidae</span></span></td>
+<td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">555</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped"></td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped"></td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Echinodermata</td>
-<td headers="class" class="gt_row gt_left">Ophiuroidea</td>
-<td headers="order" class="gt_row gt_left">Euryalida</td>
-<td headers="family" class="gt_row gt_left">Euryalidae</td>
-<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="Kk9waGlvY3JlYXMqIHNwLjxicj4oVGVudGF0aXZlOiAqT3BoaW9jcmVhcyBjYXVkYXR1cyop"><span class="gt_from_md"><em>Ophiocreas</em> sp.<br>(Tentative: <em>Ophiocreas caudatus</em>)</span></span></td>
-<td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">443</td>
+<td headers="class" class="gt_row gt_left">Echinoidea</td>
+<td headers="order" class="gt_row gt_left">Echinothurioida</td>
+<td headers="family" class="gt_row gt_left">Echinothuriidae</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KkVjaGlub3RodXJpaW5hZSogc3Au"><span class="gt_from_md"><em>Echinothuriinae</em> sp.</span></span></td>
+<td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">390 - 464</td>
+<td headers="MaxN" class="gt_row gt_center">2</td>
+<td headers="Freq_occ" class="gt_row gt_center">4</td></tr>
+    <tr><td headers="phylum" class="gt_row gt_left gt_striped">Echinodermata</td>
+<td headers="class" class="gt_row gt_left gt_striped">Echinoidea</td>
+<td headers="order" class="gt_row gt_left gt_striped"></td>
+<td headers="family" class="gt_row gt_left gt_striped"></td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="RWNoaW5vaWRlYTxicj4oVGVudGF0aXZlOiBFY2hpbm90aHVyaWlkYWUp"><span class="gt_from_md">Echinoidea<br>(Tentative: Echinothuriidae)</span></span></td>
+<td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">390 - 758</td>
+<td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped">0</td></tr>
+    <tr><td headers="phylum" class="gt_row gt_left">Echinodermata</td>
+<td headers="class" class="gt_row gt_left">Holothuroidea</td>
+<td headers="order" class="gt_row gt_left">Elasipodida</td>
+<td headers="family" class="gt_row gt_left">Elpidiidae</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="RWxwaWRpaWRhZQ=="><span class="gt_from_md">Elpidiidae</span></span></td>
+<td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">1982</td>
 <td headers="MaxN" class="gt_row gt_center"></td>
 <td headers="Freq_occ" class="gt_row gt_center"></td></tr>
     <tr><td headers="phylum" class="gt_row gt_left gt_striped">Echinodermata</td>
 <td headers="class" class="gt_row gt_left gt_striped">Ophiuroidea</td>
-<td headers="order" class="gt_row gt_left gt_striped"></td>
-<td headers="family" class="gt_row gt_left gt_striped"></td>
-<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="T3BoaXVyb2lkZWE="><span class="gt_from_md">Ophiuroidea</span></span></td>
-<td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">390 - 978</td>
-<td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">15</td></tr>
-    <tr><td headers="phylum" class="gt_row gt_left">Chaetognatha</td>
-<td headers="class" class="gt_row gt_left"></td>
+<td headers="order" class="gt_row gt_left gt_striped">Euryalida</td>
+<td headers="family" class="gt_row gt_left gt_striped">Euryalidae</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="Kk9waGlvY3JlYXMqIHNwLjxicj4oVGVudGF0aXZlOiAqT3BoaW9jcmVhcyBjYXVkYXR1cyop"><span class="gt_from_md"><em>Ophiocreas</em> sp.<br>(Tentative: <em>Ophiocreas caudatus</em>)</span></span></td>
+<td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">443</td>
+<td headers="MaxN" class="gt_row gt_center gt_striped"></td>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped"></td></tr>
+    <tr><td headers="phylum" class="gt_row gt_left">Echinodermata</td>
+<td headers="class" class="gt_row gt_left">Ophiuroidea</td>
 <td headers="order" class="gt_row gt_left"></td>
 <td headers="family" class="gt_row gt_left"></td>
-<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="Q2hhZXRvZ25hdGhh"><span class="gt_from_md">Chaetognatha</span></span></td>
-<td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">390 - 2006</td>
-<td headers="MaxN" class="gt_row gt_center"></td>
-<td headers="Freq_occ" class="gt_row gt_center"></td></tr>
-    <tr><td headers="phylum" class="gt_row gt_left gt_striped">Chordata</td>
-<td headers="class" class="gt_row gt_left gt_striped">Myxini</td>
-<td headers="order" class="gt_row gt_left gt_striped">Myxiniformes</td>
-<td headers="family" class="gt_row gt_left gt_striped">Myxinidae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KkVwdGF0cmV0dXMqIHNwLjxicj4oVGVudGF0aXZlOiAqRXB0YXRyZXR1cyBjZi4gY2FybGh1YmJzaSop"><span class="gt_from_md"><em>Eptatretus</em> sp.<br>(Tentative: <em>Eptatretus cf. carlhubbsi</em>)</span></span></td>
-<td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">2046</td>
-<td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">3</td></tr>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="T3BoaXVyb2lkZWE="><span class="gt_from_md">Ophiuroidea</span></span></td>
+<td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">390 - 978</td>
+<td headers="MaxN" class="gt_row gt_center">1</td>
+<td headers="Freq_occ" class="gt_row gt_center">8</td></tr>
+    <tr><td headers="phylum" class="gt_row gt_left gt_striped">Chaetognatha</td>
+<td headers="class" class="gt_row gt_left gt_striped"></td>
+<td headers="order" class="gt_row gt_left gt_striped"></td>
+<td headers="family" class="gt_row gt_left gt_striped"></td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="Q2hhZXRvZ25hdGhh"><span class="gt_from_md">Chaetognatha</span></span></td>
+<td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">390 - 2006</td>
+<td headers="MaxN" class="gt_row gt_center gt_striped"></td>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped"></td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Chordata</td>
 <td headers="class" class="gt_row gt_left">Myxini</td>
 <td headers="order" class="gt_row gt_left">Myxiniformes</td>
 <td headers="family" class="gt_row gt_left">Myxinidae</td>
-<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="TXl4aW5pZGFl"><span class="gt_from_md">Myxinidae</span></span></td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KkVwdGF0cmV0dXMqIHNwLjxicj4oVGVudGF0aXZlOiAqRXB0YXRyZXR1cyBjZi4gY2FybGh1YmJzaSop"><span class="gt_from_md"><em>Eptatretus</em> sp.<br>(Tentative: <em>Eptatretus cf. carlhubbsi</em>)</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">2046</td>
 <td headers="MaxN" class="gt_row gt_center">1</td>
-<td headers="Freq_occ" class="gt_row gt_center">3</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center">4</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left gt_striped">Chordata</td>
 <td headers="class" class="gt_row gt_left gt_striped">Myxini</td>
 <td headers="order" class="gt_row gt_left gt_striped"></td>
@@ -1406,7 +1402,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="TXl4aW5p"><span class="gt_from_md">Myxini</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">2011</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">3</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped">4</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Chordata</td>
 <td headers="class" class="gt_row gt_left">Holocephali</td>
 <td headers="order" class="gt_row gt_left">Chimaeriformes</td>
@@ -1414,7 +1410,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="Q2hpbWFlcmlkYWU8YnI+KFRlbnRhdGl2ZTogKkh5ZHJvbGFndXMqIHNwLik="><span class="gt_from_md">Chimaeridae<br>(Tentative: <em>Hydrolagus</em> sp.)</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">2006 - 2046</td>
 <td headers="MaxN" class="gt_row gt_center">2</td>
-<td headers="Freq_occ" class="gt_row gt_center">6</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center">8</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left gt_striped">Chordata</td>
 <td headers="class" class="gt_row gt_left gt_striped">Holocephali</td>
 <td headers="order" class="gt_row gt_left gt_striped">Chimaeriformes</td>
@@ -1422,7 +1418,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="Kkh5ZHJvbGFndXMqIHNwLg=="><span class="gt_from_md"><em>Hydrolagus</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">1947 - 2046</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">2</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">29</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped">35</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Chordata</td>
 <td headers="class" class="gt_row gt_left">Elasmobranchii</td>
 <td headers="order" class="gt_row gt_left">Carcharhiniformes</td>
@@ -1430,7 +1426,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KlBzZXVkb3RyaWFraXMgbWljcm9kb24q"><span class="gt_from_md"><em>Pseudotriakis microdon</em></span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">390 - 1177</td>
 <td headers="MaxN" class="gt_row gt_center">2</td>
-<td headers="Freq_occ" class="gt_row gt_center">56</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center">54</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left gt_striped">Chordata</td>
 <td headers="class" class="gt_row gt_left gt_striped">Elasmobranchii</td>
 <td headers="order" class="gt_row gt_left gt_striped">Echinorhiniformes</td>
@@ -1438,7 +1434,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KkVjaGlub3JoaW51cyBjb29rZWkq"><span class="gt_from_md"><em>Echinorhinus cookei</em></span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">390 - 443</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">9</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped">8</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Chordata</td>
 <td headers="class" class="gt_row gt_left">Elasmobranchii</td>
 <td headers="order" class="gt_row gt_left">Hexanchiformes</td>
@@ -1446,7 +1442,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KkhleGFuY2h1cyBncmlzZXVzKg=="><span class="gt_from_md"><em>Hexanchus griseus</em></span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">390 - 1051</td>
 <td headers="MaxN" class="gt_row gt_center">2</td>
-<td headers="Freq_occ" class="gt_row gt_center">32</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center">27</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left gt_striped">Chordata</td>
 <td headers="class" class="gt_row gt_left gt_striped">Elasmobranchii</td>
 <td headers="order" class="gt_row gt_left gt_striped">Lamniformes</td>
@@ -1454,7 +1450,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="Kk9kb250YXNwaXMgZmVyb3gq"><span class="gt_from_md"><em>Odontaspis ferox</em></span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">978</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">3</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped">4</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Chordata</td>
 <td headers="class" class="gt_row gt_left">Elasmobranchii</td>
 <td headers="order" class="gt_row gt_left">Myliobatiformes</td>
@@ -1462,7 +1458,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KlBsZXNpb2JhdGlzIGRhdmllc2kq"><span class="gt_from_md"><em>Plesiobatis daviesi</em></span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">443</td>
 <td headers="MaxN" class="gt_row gt_center">1</td>
-<td headers="Freq_occ" class="gt_row gt_center">3</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center">4</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left gt_striped">Chordata</td>
 <td headers="class" class="gt_row gt_left gt_striped">Elasmobranchii</td>
 <td headers="order" class="gt_row gt_left gt_striped">Squaliformes</td>
@@ -1470,7 +1466,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KkNlbnRyb3Bob3J1cyB1eWF0byo="><span class="gt_from_md"><em>Centrophorus uyato</em></span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">464 - 758</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">2</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">9</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped">8</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Chordata</td>
 <td headers="class" class="gt_row gt_left">Elasmobranchii</td>
 <td headers="order" class="gt_row gt_left">Squaliformes</td>
@@ -1478,7 +1474,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KkNlbnRyb3NjeW1udXMqIHNwLjxicj4oVGVudGF0aXZlOiAqQ2VudHJvc2N5bW51cyBvd3N0b25paSop"><span class="gt_from_md"><em>Centroscymnus</em> sp.<br>(Tentative: <em>Centroscymnus owstonii</em>)</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">1058</td>
 <td headers="MaxN" class="gt_row gt_center">1</td>
-<td headers="Freq_occ" class="gt_row gt_center">3</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center">4</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left gt_striped">Chordata</td>
 <td headers="class" class="gt_row gt_left gt_striped">Elasmobranchii</td>
 <td headers="order" class="gt_row gt_left gt_striped">Squaliformes</td>
@@ -1486,7 +1482,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="U29tbmlvc2lkYWU="><span class="gt_from_md">Somniosidae</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">978 - 2011</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">15</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped">19</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Chordata</td>
 <td headers="class" class="gt_row gt_left">Elasmobranchii</td>
 <td headers="order" class="gt_row gt_left">Squaliformes</td>
@@ -1494,7 +1490,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KlNvbW5pb3N1cyogc3AuPGJyPihUZW50YXRpdmU6ICpTb21uaW9zdXMgcGFjaWZpY3VzKik="><span class="gt_from_md"><em>Somniosus</em> sp.<br>(Tentative: <em>Somniosus pacificus</em>)</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">2003</td>
 <td headers="MaxN" class="gt_row gt_center">1</td>
-<td headers="Freq_occ" class="gt_row gt_center">3</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center">4</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left gt_striped">Chordata</td>
 <td headers="class" class="gt_row gt_left gt_striped">Elasmobranchii</td>
 <td headers="order" class="gt_row gt_left gt_striped">Squaliformes</td>
@@ -1502,7 +1498,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KlNvbW5pb3N1cyBwYWNpZmljdXMq"><span class="gt_from_md"><em>Somniosus pacificus</em></span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">989 - 2011</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">2</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">12</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped">15</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Chordata</td>
 <td headers="class" class="gt_row gt_left">Elasmobranchii</td>
 <td headers="order" class="gt_row gt_left">Squaliformes</td>
@@ -1510,7 +1506,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="U3F1YWxpZm9ybWVz"><span class="gt_from_md">Squaliformes</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">565 - 1058</td>
 <td headers="MaxN" class="gt_row gt_center">1</td>
-<td headers="Freq_occ" class="gt_row gt_center">6</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center">4</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left gt_striped">Chordata</td>
 <td headers="class" class="gt_row gt_left gt_striped">Elasmobranchii</td>
 <td headers="order" class="gt_row gt_left gt_striped">Torpediniformes</td>
@@ -1518,7 +1514,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KlRldHJvbmFyY2UqIHNwLjxicj4oVGVudGF0aXZlOiAqVGV0cm9uYXJjZSBub2JpbGlhbmEqKQ=="><span class="gt_from_md"><em>Tetronarce</em> sp.<br>(Tentative: <em>Tetronarce nobiliana</em>)</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">434</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">3</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped">4</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Chordata</td>
 <td headers="class" class="gt_row gt_left">Elasmobranchii</td>
 <td headers="order" class="gt_row gt_left"></td>
@@ -1534,7 +1530,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KkJhc3NvZ2lnYXMqIHNwLg=="><span class="gt_from_md"><em>Bassogigas</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">2003 - 2046</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">6</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped">8</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Chordata</td>
 <td headers="class" class="gt_row gt_left">Teleostei</td>
 <td headers="order" class="gt_row gt_left">Ophidiiformes</td>
@@ -1542,7 +1538,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KkJhc3NvemV0dXMqIHNwLg=="><span class="gt_from_md"><em>Bassozetus</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">2000</td>
 <td headers="MaxN" class="gt_row gt_center">1</td>
-<td headers="Freq_occ" class="gt_row gt_center">3</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center">4</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left gt_striped">Chordata</td>
 <td headers="class" class="gt_row gt_left gt_striped">Teleostei</td>
 <td headers="order" class="gt_row gt_left gt_striped">Ophidiiformes</td>
@@ -1550,7 +1546,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="T3BoaWRpaWRhZTxicj4oVGVudGF0aXZlOiAqQmFzc296ZXR1cyogc3AuLCAqUG9yb2dhZHVzKiBzcC4p"><span class="gt_from_md">Ophidiidae<br>(Tentative: <em>Bassozetus</em> sp., <em>Porogadus</em> sp.)</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">1947 - 2051</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">24</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped">27</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Chordata</td>
 <td headers="class" class="gt_row gt_left">Teleostei</td>
 <td headers="order" class="gt_row gt_left">Ophidiiformes</td>
@@ -1558,7 +1554,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KlNwZWN0cnVuY3VsdXMqIHNwLg=="><span class="gt_from_md"><em>Spectrunculus</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">2000 - 2011</td>
 <td headers="MaxN" class="gt_row gt_center">1</td>
-<td headers="Freq_occ" class="gt_row gt_center">6</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center">8</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left gt_striped">Chordata</td>
 <td headers="class" class="gt_row gt_left gt_striped">Teleostei</td>
 <td headers="order" class="gt_row gt_left gt_striped">Perciformes</td>
@@ -1566,7 +1562,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="TGlwYXJpZGFl"><span class="gt_from_md">Liparidae</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">1177</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">3</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped">4</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Chordata</td>
 <td headers="class" class="gt_row gt_left">Teleostei</td>
 <td headers="order" class="gt_row gt_left">Perciformes</td>
@@ -1582,7 +1578,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="U2NvcnBhZW5vaWRlaQ=="><span class="gt_from_md">Scorpaenoidei</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">390</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">3</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped">0</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Chordata</td>
 <td headers="class" class="gt_row gt_left">Teleostei</td>
 <td headers="order" class="gt_row gt_left">Stomiiformes</td>
@@ -1603,122 +1599,106 @@ Refined Invertebrate Taxa: 65
 <td headers="class" class="gt_row gt_left">Teleostei</td>
 <td headers="order" class="gt_row gt_left">Acropomatiformes</td>
 <td headers="family" class="gt_row gt_left">Epigonidae</td>
-<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="RXBpZ29uaWRhZQ=="><span class="gt_from_md">Epigonidae</span></span></td>
-<td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">390 - 443</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KkVwaWdvbnVzKiBzcC4="><span class="gt_from_md"><em>Epigonus</em> sp.</span></span></td>
+<td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">390 - 565</td>
 <td headers="MaxN" class="gt_row gt_center"></td>
 <td headers="Freq_occ" class="gt_row gt_center"></td></tr>
     <tr><td headers="phylum" class="gt_row gt_left gt_striped">Chordata</td>
 <td headers="class" class="gt_row gt_left gt_striped">Teleostei</td>
 <td headers="order" class="gt_row gt_left gt_striped">Acropomatiformes</td>
-<td headers="family" class="gt_row gt_left gt_striped">Epigonidae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KkVwaWdvbnVzKiBzcC4="><span class="gt_from_md"><em>Epigonus</em> sp.</span></span></td>
-<td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">390 - 565</td>
+<td headers="family" class="gt_row gt_left gt_striped">Acropomatidae</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="QWNyb3BvbWF0aWRhZQ=="><span class="gt_from_md">Acropomatidae</span></span></td>
+<td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">390</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped"></td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped"></td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Chordata</td>
 <td headers="class" class="gt_row gt_left">Teleostei</td>
-<td headers="order" class="gt_row gt_left">Acropomatiformes</td>
-<td headers="family" class="gt_row gt_left">Acropomatidae</td>
-<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="QWNyb3BvbWF0aWRhZQ=="><span class="gt_from_md">Acropomatidae</span></span></td>
-<td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">390</td>
-<td headers="MaxN" class="gt_row gt_center"></td>
-<td headers="Freq_occ" class="gt_row gt_center"></td></tr>
+<td headers="order" class="gt_row gt_left">Anguilliformes</td>
+<td headers="family" class="gt_row gt_left">Congridae</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KkJhdGh5Y29uZ3J1cyogc3Au"><span class="gt_from_md"><em>Bathycongrus</em> sp.</span></span></td>
+<td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">464 - 865</td>
+<td headers="MaxN" class="gt_row gt_center">1</td>
+<td headers="Freq_occ" class="gt_row gt_center">4</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left gt_striped">Chordata</td>
 <td headers="class" class="gt_row gt_left gt_striped">Teleostei</td>
 <td headers="order" class="gt_row gt_left gt_striped">Anguilliformes</td>
 <td headers="family" class="gt_row gt_left gt_striped">Congridae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KkJhdGh5Y29uZ3J1cyogc3Au"><span class="gt_from_md"><em>Bathycongrus</em> sp.</span></span></td>
-<td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">464 - 865</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KkNvbmdlciogc3Au"><span class="gt_from_md"><em>Conger</em> sp.</span></span></td>
+<td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">390</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">6</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped">0</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Chordata</td>
 <td headers="class" class="gt_row gt_left">Teleostei</td>
 <td headers="order" class="gt_row gt_left">Anguilliformes</td>
 <td headers="family" class="gt_row gt_left">Congridae</td>
-<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KkNvbmdlciogc3Au"><span class="gt_from_md"><em>Conger</em> sp.</span></span></td>
-<td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">390</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="Q29uZ3JpZGFlPGJyPihUZW50YXRpdmU6ICpBcmlvc29tYSogc3AuLCAqQmF0aHljb25ncnVzKiBzcC4p"><span class="gt_from_md">Congridae<br>(Tentative: <em>Ariosoma</em> sp., <em>Bathycongrus</em> sp.)</span></span></td>
+<td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">434 - 1050</td>
 <td headers="MaxN" class="gt_row gt_center">1</td>
-<td headers="Freq_occ" class="gt_row gt_center">3</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center">8</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left gt_striped">Chordata</td>
 <td headers="class" class="gt_row gt_left gt_striped">Teleostei</td>
 <td headers="order" class="gt_row gt_left gt_striped">Anguilliformes</td>
-<td headers="family" class="gt_row gt_left gt_striped">Congridae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="Q29uZ3JpZGFlPGJyPihUZW50YXRpdmU6ICpBcmlvc29tYSogc3AuLCAqQmF0aHljb25ncnVzKiBzcC4p"><span class="gt_from_md">Congridae<br>(Tentative: <em>Ariosoma</em> sp., <em>Bathycongrus</em> sp.)</span></span></td>
-<td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">434 - 1050</td>
+<td headers="family" class="gt_row gt_left gt_striped">Ophichthidae</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="T3BoaWNodGhpZGFl"><span class="gt_from_md">Ophichthidae</span></span></td>
+<td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">434 - 758</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">6</td></tr>
-    <tr><td headers="phylum" class="gt_row gt_left">Chordata</td>
-<td headers="class" class="gt_row gt_left">Teleostei</td>
-<td headers="order" class="gt_row gt_left">Anguilliformes</td>
-<td headers="family" class="gt_row gt_left">Ophichthidae</td>
-<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="T3BoaWNodGhpZGFl"><span class="gt_from_md">Ophichthidae</span></span></td>
-<td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">434 - 758</td>
-<td headers="MaxN" class="gt_row gt_center">1</td>
-<td headers="Freq_occ" class="gt_row gt_center">6</td></tr>
-    <tr><td headers="phylum" class="gt_row gt_left gt_striped">Chordata</td>
-<td headers="class" class="gt_row gt_left gt_striped">Teleostei</td>
-<td headers="order" class="gt_row gt_left gt_striped">Anguilliformes</td>
-<td headers="family" class="gt_row gt_left gt_striped">Synaphobranchidae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="U3luYXBob2JyYW5jaGlkYWU8YnI+KFRlbnRhdGl2ZTogKlN5bmFwaG9icmFuY2h1cyogc3AuKQ=="><span class="gt_from_md">Synaphobranchidae<br>(Tentative: <em>Synaphobranchus</em> sp.)</span></span></td>
-<td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">443 - 2006</td>
-<td headers="MaxN" class="gt_row gt_center gt_striped">6</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">35</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped">8</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Chordata</td>
 <td headers="class" class="gt_row gt_left">Teleostei</td>
 <td headers="order" class="gt_row gt_left">Anguilliformes</td>
 <td headers="family" class="gt_row gt_left">Synaphobranchidae</td>
-<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KlN5bmFwaG9icmFuY2h1cyogc3AuPGJyPihUZW50YXRpdmU6ICpTeW5hcGhvYnJhbmNodXMgYWZmaW5pcyosICpTeW5hcGhvYnJhbmNodXMgYnJldmlkb3JzYWxpcyop"><span class="gt_from_md"><em>Synaphobranchus</em> sp.<br>(Tentative: <em>Synaphobranchus affinis</em>, <em>Synaphobranchus brevidorsalis</em>)</span></span></td>
-<td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">744 - 2046</td>
-<td headers="MaxN" class="gt_row gt_center">5</td>
-<td headers="Freq_occ" class="gt_row gt_center">50</td></tr>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="U3luYXBob2JyYW5jaGlkYWU8YnI+KFRlbnRhdGl2ZTogKlN5bmFwaG9icmFuY2h1cyogc3AuKQ=="><span class="gt_from_md">Synaphobranchidae<br>(Tentative: <em>Synaphobranchus</em> sp.)</span></span></td>
+<td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">443 - 2006</td>
+<td headers="MaxN" class="gt_row gt_center">6</td>
+<td headers="Freq_occ" class="gt_row gt_center">42</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left gt_striped">Chordata</td>
 <td headers="class" class="gt_row gt_left gt_striped">Teleostei</td>
 <td headers="order" class="gt_row gt_left gt_striped">Anguilliformes</td>
 <td headers="family" class="gt_row gt_left gt_striped">Synaphobranchidae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KlN5bmFwaG9icmFuY2h1cyBicmV2aWRvcnNhbGlzKg=="><span class="gt_from_md"><em>Synaphobranchus brevidorsalis</em></span></span></td>
-<td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">865 - 2051</td>
-<td headers="MaxN" class="gt_row gt_center gt_striped">4</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">38</td></tr>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KlN5bmFwaG9icmFuY2h1cyogc3AuPGJyPihUZW50YXRpdmU6ICpTeW5hcGhvYnJhbmNodXMgYWZmaW5pcyosICpTeW5hcGhvYnJhbmNodXMgYnJldmlkb3JzYWxpcyop"><span class="gt_from_md"><em>Synaphobranchus</em> sp.<br>(Tentative: <em>Synaphobranchus affinis</em>, <em>Synaphobranchus brevidorsalis</em>)</span></span></td>
+<td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">744 - 2046</td>
+<td headers="MaxN" class="gt_row gt_center gt_striped">5</td>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped">62</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Chordata</td>
 <td headers="class" class="gt_row gt_left">Teleostei</td>
 <td headers="order" class="gt_row gt_left">Anguilliformes</td>
-<td headers="family" class="gt_row gt_left"></td>
-<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="QW5ndWlsbGlmb3JtZXM8YnI+KFRlbnRhdGl2ZTogT3BoaWNodGhpZGFlLCBTeW5hcGhvYnJhbmNoaWRhZSk="><span class="gt_from_md">Anguilliformes<br>(Tentative: Ophichthidae, Synaphobranchidae)</span></span></td>
-<td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">434 - 2046</td>
-<td headers="MaxN" class="gt_row gt_center">5</td>
-<td headers="Freq_occ" class="gt_row gt_center">47</td></tr>
+<td headers="family" class="gt_row gt_left">Synaphobranchidae</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KlN5bmFwaG9icmFuY2h1cyBicmV2aWRvcnNhbGlzKg=="><span class="gt_from_md"><em>Synaphobranchus brevidorsalis</em></span></span></td>
+<td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">865 - 2051</td>
+<td headers="MaxN" class="gt_row gt_center">4</td>
+<td headers="Freq_occ" class="gt_row gt_center">38</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left gt_striped">Chordata</td>
 <td headers="class" class="gt_row gt_left gt_striped">Teleostei</td>
-<td headers="order" class="gt_row gt_left gt_striped">Beryciformes</td>
-<td headers="family" class="gt_row gt_left gt_striped">Berycidae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="QmVyeWNpZGFl"><span class="gt_from_md">Berycidae</span></span></td>
-<td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">744</td>
-<td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">3</td></tr>
+<td headers="order" class="gt_row gt_left gt_striped">Anguilliformes</td>
+<td headers="family" class="gt_row gt_left gt_striped"></td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="QW5ndWlsbGlmb3JtZXM8YnI+KFRlbnRhdGl2ZTogT3BoaWNodGhpZGFlLCBTeW5hcGhvYnJhbmNoaWRhZSk="><span class="gt_from_md">Anguilliformes<br>(Tentative: Ophichthidae, Synaphobranchidae)</span></span></td>
+<td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">434 - 2046</td>
+<td headers="MaxN" class="gt_row gt_center gt_striped">5</td>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped">50</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Chordata</td>
 <td headers="class" class="gt_row gt_left">Teleostei</td>
 <td headers="order" class="gt_row gt_left">Beryciformes</td>
 <td headers="family" class="gt_row gt_left">Berycidae</td>
-<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KkJlcnl4KiBzcC4="><span class="gt_from_md"><em>Beryx</em> sp.</span></span></td>
-<td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">464</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="QmVyeWNpZGFl"><span class="gt_from_md">Berycidae</span></span></td>
+<td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">744</td>
 <td headers="MaxN" class="gt_row gt_center">1</td>
-<td headers="Freq_occ" class="gt_row gt_center">3</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center">4</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left gt_striped">Chordata</td>
 <td headers="class" class="gt_row gt_left gt_striped">Teleostei</td>
-<td headers="order" class="gt_row gt_left gt_striped">Eupercaria incertae sedis</td>
-<td headers="family" class="gt_row gt_left gt_striped">Lutjanidae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KkV0ZWxpcyogc3AuPGJyPihUZW50YXRpdmU6ICpFdGVsaXMgYm93ZW5pKik="><span class="gt_from_md"><em>Etelis</em> sp.<br>(Tentative: <em>Etelis boweni</em>)</span></span></td>
-<td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">390 - 555</td>
+<td headers="order" class="gt_row gt_left gt_striped">Beryciformes</td>
+<td headers="family" class="gt_row gt_left gt_striped">Berycidae</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KkJlcnl4KiBzcC4="><span class="gt_from_md"><em>Beryx</em> sp.</span></span></td>
+<td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">464</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">15</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped">4</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Chordata</td>
 <td headers="class" class="gt_row gt_left">Teleostei</td>
 <td headers="order" class="gt_row gt_left">Eupercaria incertae sedis</td>
 <td headers="family" class="gt_row gt_left">Lutjanidae</td>
-<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="THV0amFuaWRhZQ=="><span class="gt_from_md">Lutjanidae</span></span></td>
-<td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">390</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KkV0ZWxpcyogc3AuPGJyPihUZW50YXRpdmU6ICpFdGVsaXMgYm93ZW5pKik="><span class="gt_from_md"><em>Etelis</em> sp.<br>(Tentative: <em>Etelis boweni</em>)</span></span></td>
+<td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">390 - 555</td>
 <td headers="MaxN" class="gt_row gt_center">1</td>
-<td headers="Freq_occ" class="gt_row gt_center">3</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center">15</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left gt_striped">Chordata</td>
 <td headers="class" class="gt_row gt_left gt_striped">Teleostei</td>
 <td headers="order" class="gt_row gt_left gt_striped">Gadiformes</td>
@@ -1726,7 +1706,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KkNvZWxvcmluY2h1cyogc3AuPGJyPihUZW50YXRpdmU6ICpDb2Vsb3JpbmNodXMgcGFyYWxsZWx1cyop"><span class="gt_from_md"><em>Coelorinchus</em> sp.<br>(Tentative: <em>Coelorinchus parallelus</em>)</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">1050 - 1058</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">6</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped">8</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Chordata</td>
 <td headers="class" class="gt_row gt_left">Teleostei</td>
 <td headers="order" class="gt_row gt_left">Gadiformes</td>
@@ -1734,7 +1714,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KkNvcnlwaGFlbm9pZGVzKiBzcC4="><span class="gt_from_md"><em>Coryphaenoides</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">1947 - 2046</td>
 <td headers="MaxN" class="gt_row gt_center">2</td>
-<td headers="Freq_occ" class="gt_row gt_center">15</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center">19</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left gt_striped">Chordata</td>
 <td headers="class" class="gt_row gt_left gt_striped">Teleostei</td>
 <td headers="order" class="gt_row gt_left gt_striped">Gadiformes</td>
@@ -1742,7 +1722,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KkNvcnlwaGFlbm9pZGVzIGxvbmdpY2lycmh1cyo="><span class="gt_from_md"><em>Coryphaenoides longicirrhus</em></span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">2046 - 2051</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">6</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped">8</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Chordata</td>
 <td headers="class" class="gt_row gt_left">Teleostei</td>
 <td headers="order" class="gt_row gt_left">Gadiformes</td>
@@ -1758,7 +1738,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="Kkh5bWVub2NlcGhhbHVzKiBzcC4="><span class="gt_from_md"><em>Hymenocephalus</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">758</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">3</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped">4</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Chordata</td>
 <td headers="class" class="gt_row gt_left">Teleostei</td>
 <td headers="order" class="gt_row gt_left">Gadiformes</td>
@@ -1766,7 +1746,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="TWFjcm91cmlkYWU8YnI+KFRlbnRhdGl2ZTogKkh5bWVub2NlcGhhbHVzKiBzcC4sICpNYWxhY29jZXBoYWx1cyogc3AuLCAqUHNldWRvY2V0b251cnVzKiBzcC4sICpWZW50cmlmb3NzYSogc3AuKQ=="><span class="gt_from_md">Macrouridae<br>(Tentative: <em>Hymenocephalus</em> sp., <em>Malacocephalus</em> sp., <em>Pseudocetonurus</em> sp., <em>Ventrifossa</em> sp.)</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">443 - 2051</td>
 <td headers="MaxN" class="gt_row gt_center">1</td>
-<td headers="Freq_occ" class="gt_row gt_center">35</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center">46</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left gt_striped">Chordata</td>
 <td headers="class" class="gt_row gt_left gt_striped">Teleostei</td>
 <td headers="order" class="gt_row gt_left gt_striped">Gadiformes</td>
@@ -1774,7 +1754,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="Kk1hbGFjb2NlcGhhbHVzKiBzcC4="><span class="gt_from_md"><em>Malacocephalus</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">434 - 989</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">29</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped">27</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Chordata</td>
 <td headers="class" class="gt_row gt_left">Teleostei</td>
 <td headers="order" class="gt_row gt_left">Gadiformes</td>
@@ -1782,7 +1762,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KlZlbnRyaWZvc3NhKiBzcC4="><span class="gt_from_md"><em>Ventrifossa</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">929</td>
 <td headers="MaxN" class="gt_row gt_center">1</td>
-<td headers="Freq_occ" class="gt_row gt_center">3</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center">4</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left gt_striped">Chordata</td>
 <td headers="class" class="gt_row gt_left gt_striped">Teleostei</td>
 <td headers="order" class="gt_row gt_left gt_striped">Gadiformes</td>
@@ -1790,7 +1770,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KkFudGltb3JhIHJvc3RyYXRhKg=="><span class="gt_from_md"><em>Antimora rostrata</em></span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">1947 - 2011</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">2</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">15</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped">12</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Chordata</td>
 <td headers="class" class="gt_row gt_left">Teleostei</td>
 <td headers="order" class="gt_row gt_left">Gadiformes</td>
@@ -1798,7 +1778,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="TW9yaWRhZQ=="><span class="gt_from_md">Moridae</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">443</td>
 <td headers="MaxN" class="gt_row gt_center">1</td>
-<td headers="Freq_occ" class="gt_row gt_center">3</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center">4</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left gt_striped">Chordata</td>
 <td headers="class" class="gt_row gt_left gt_striped">Teleostei</td>
 <td headers="order" class="gt_row gt_left gt_striped">Notacanthiformes</td>
@@ -1814,7 +1794,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KlBvbHltaXhpYSogc3Au"><span class="gt_from_md"><em>Polymixia</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">390 - 504</td>
 <td headers="MaxN" class="gt_row gt_center">2</td>
-<td headers="Freq_occ" class="gt_row gt_center">15</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center">12</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left gt_striped">Chordata</td>
 <td headers="class" class="gt_row gt_left gt_striped">Teleostei</td>
 <td headers="order" class="gt_row gt_left gt_striped">Scombriformes</td>
@@ -1822,7 +1802,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KlRhcmFjdGljaHRoeXMgc3RlaW5kYWNobmVyaSo="><span class="gt_from_md"><em>Taractichthys steindachneri</em></span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">504 - 555</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">3</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">6</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped">4</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Chordata</td>
 <td headers="class" class="gt_row gt_left">Teleostei</td>
 <td headers="order" class="gt_row gt_left">Scombriformes</td>
@@ -1830,7 +1810,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KlJ1dmV0dHVzIHByZXRpb3N1cyo="><span class="gt_from_md"><em>Ruvettus pretiosus</em></span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">434 - 1051</td>
 <td headers="MaxN" class="gt_row gt_center">1</td>
-<td headers="Freq_occ" class="gt_row gt_center">18</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center">23</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left gt_striped">Chordata</td>
 <td headers="class" class="gt_row gt_left gt_striped">Teleostei</td>
 <td headers="order" class="gt_row gt_left gt_striped">Zeiformes</td>
@@ -1838,7 +1818,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="Kk5lb2N5dHR1cyogc3AuPGJyPihUZW50YXRpdmU6ICpOZW9jeXR0dXMgY2YuIGFjYW50aG9yaHluY2h1cyop"><span class="gt_from_md"><em>Neocyttus</em> sp.<br>(Tentative: <em>Neocyttus cf. acanthorhynchus</em>)</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">978</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">3</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped">4</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Chordata</td>
 <td headers="class" class="gt_row gt_left">Teleostei</td>
 <td headers="order" class="gt_row gt_left">Zeiformes</td>
@@ -1846,39 +1826,7 @@ Refined Invertebrate Taxa: 65
 <td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KkN5dHRvbWltdXMqIHNwLg=="><span class="gt_from_md"><em>Cyttomimus</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">443</td>
 <td headers="MaxN" class="gt_row gt_center">1</td>
-<td headers="Freq_occ" class="gt_row gt_center">3</td></tr>
-    <tr><td headers="phylum" class="gt_row gt_left gt_striped">Chordata</td>
-<td headers="class" class="gt_row gt_left gt_striped"></td>
-<td headers="order" class="gt_row gt_left gt_striped"></td>
-<td headers="family" class="gt_row gt_left gt_striped"></td>
-<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="QWN0aW5vcHRlcmk8YnI+KFRlbnRhdGl2ZTogRXBpZ29uaWRhZSwgTWFjcm91cmlkYWUsIE9waGlkaWlkYWUsIE9waGlkaWlmb3JtZXMp"><span class="gt_from_md">Actinopteri<br>(Tentative: Epigonidae, Macrouridae, Ophidiidae, Ophidiiformes)</span></span></td>
-<td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">390 - 2051</td>
-<td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">38</td></tr>
-    <tr><td headers="phylum" class="gt_row gt_left">Chordata</td>
-<td headers="class" class="gt_row gt_left"></td>
-<td headers="order" class="gt_row gt_left"></td>
-<td headers="family" class="gt_row gt_left"></td>
-<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="QWN0aW5vcHRlcnlnaWk8YnI+KFRlbnRhdGl2ZTogT3BoaWRpaWRhZSk="><span class="gt_from_md">Actinopterygii<br>(Tentative: Ophidiidae)</span></span></td>
-<td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">1051 - 2000</td>
-<td headers="MaxN" class="gt_row gt_center">1</td>
-<td headers="Freq_occ" class="gt_row gt_center">6</td></tr>
-    <tr><td headers="phylum" class="gt_row gt_left gt_striped">Chordata</td>
-<td headers="class" class="gt_row gt_left gt_striped"></td>
-<td headers="order" class="gt_row gt_left gt_striped"></td>
-<td headers="family" class="gt_row gt_left gt_striped"></td>
-<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="Q2hvcmRhdGE8YnI+KFRlbnRhdGl2ZTogQ2hvbmRyaWNodGh5ZXMp"><span class="gt_from_md">Chordata<br>(Tentative: Chondrichthyes)</span></span></td>
-<td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">1959</td>
-<td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">3</td></tr>
-    <tr><td headers="phylum" class="gt_row gt_left"></td>
-<td headers="class" class="gt_row gt_left"></td>
-<td headers="order" class="gt_row gt_left"></td>
-<td headers="family" class="gt_row gt_left"></td>
-<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="QW5pbWFsaWE8YnI+KFRlbnRhdGl2ZTogTW9sbHVzY2Ep"><span class="gt_from_md">Animalia<br>(Tentative: Mollusca)</span></span></td>
-<td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">979</td>
-<td headers="MaxN" class="gt_row gt_center"></td>
-<td headers="Freq_occ" class="gt_row gt_center"></td></tr>
+<td headers="Freq_occ" class="gt_row gt_center">4</td></tr>
   </tbody>
   
 </table>
@@ -1886,6 +1834,377 @@ Refined Invertebrate Taxa: 65
 </div>
 </div>
 </section>
+<section id="exploratory-taxa-summaries" class="level1">
+<h1>Exploratory taxa summaries</h1>
+<section id="shark-richness-fish-families-abundant-taxa" class="level2">
+<h2 class="anchored" data-anchor-id="shark-richness-fish-families-abundant-taxa">Shark richness, Fish families, Abundant taxa</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>--- DISTINCT FISH GROUPS ---</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Total non-redundant shark &amp; chimaera taxa: 11 </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Total distinct bony fish families: 19 </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>--- DISTINCT PHYLA ---</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Total number of phyla: 13 </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>--- CHORDATE FAMILIES ---</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Total distinct chordate families: 29 </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Frequency of occurrence for ALL chordate families:</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 27 × 2
+   family            freq_occ
+   &lt;chr&gt;                &lt;dbl&gt;
+ 1 Synaphobranchidae     80.8
+ 2 Macrouridae           69.2
+ 3 Pseudotriakidae       53.8
+ 4 Chimaeridae           34.6
+ 5 Ophidiidae            34.6
+ 6 Somniosidae           34.6
+ 7 Hexanchidae           26.9
+ 8 Gempylidae            23.1
+ 9 Halosauridae          23.1
+10 Epigonidae            15.4
+11 Lutjanidae            15.4
+12 Moridae               15.4
+13 Congridae             11.5
+14 Polymixiidae          11.5
+15 Berycidae              7.7
+16 Centrophoridae         7.7
+17 Echinorhinidae         7.7
+18 Ophichthidae           7.7
+19 Bramidae               3.8
+20 Gonostomatidae         3.8
+21 Liparidae              3.8
+22 Myxinidae              3.8
+23 Odontaspididae         3.8
+24 Oreosomatidae          3.8
+25 Plesiobatidae          3.8
+26 Torpedinidae           3.8
+27 Zeniontidae            3.8</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>--- INVERT ORDERS ---</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Total distinct invert orders: 26 </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Frequency of occurrence for ALL invert orders:</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 25 × 2
+   order              freq_occ
+   &lt;chr&gt;                 &lt;dbl&gt;
+ 1 Decapoda              100  
+ 2 Amphipoda              92.3
+ 3 Mysida                 84.6
+ 4 Isopoda                50  
+ 5 Scleralcyonacea        11.5
+ 6 Valvatida              11.5
+ 7 Antipatharia            7.7
+ 8 Platyctenida            7.7
+ 9 Scleractinia            7.7
+10 Trachymedusae           7.7
+11 Zoantharia              7.7
+12 Actiniaria              3.8
+13 Aspidodiadematoida      3.8
+14 Comatulida              3.8
+15 Crustaceacida           3.8
+16 Echinothurioida         3.8
+17 Eunicida                3.8
+18 Euryalida               3.8
+19 Isocrinida              3.8
+20 Lophogastrida           3.8
+21 Narcomedusae            3.8
+22 Phyllodocida            3.8
+23 Sceptrulophora          3.8
+24 Spinulosida             3.8
+25 Terebellida             3.8</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>--- TOP 10 MOST ABUNDANT FISHES (Highest MaxN) ---</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 2
+   scientificName                 MaxN
+   &lt;chr&gt;                         &lt;dbl&gt;
+ 1 Synaphobranchidae                 6
+ 2 Anguilliformes                    5
+ 3 Synaphobranchus                   5
+ 4 Epigonus                          4
+ 5 Synaphobranchus brevidorsalis     4
+ 6 Taractichthys steindachneri       3
+ 7 Antimora rostrata                 2
+ 8 Centrophorus uyato                2
+ 9 Chimaeridae                       2
+10 Coryphaenoides                    2</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>--- TOP 10 MOST ABUNDANT INVERTEBRATES (Highest MaxN) ---</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 2
+   scientificName           MaxN
+   &lt;chr&gt;                   &lt;dbl&gt;
+ 1 Amphipoda                1000
+ 2 Heterocarpus               35
+ 3 Mysida                     35
+ 4 Pandalidae                 19
+ 5 Heterocarpus laevigatus    18
+ 6 Plesionika                 17
+ 7 Heterocarpus ensifer       13
+ 8 Agononida                   9
+ 9 Nematocarcinus              8
+10 Ciliopagurus                6</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="characteristic-fauna-by-depth-zone" class="level1">
+<h1>Characteristic fauna by depth zone</h1>
+<p>For this chunk, we are going to define your depth bins using “case_when()”.</p>
+<p><strong>Important ecological math note:</strong> When calculating the frequency of occurrence for a depth zone, we don’t divide by the <em>total</em> number of deployments on the expedition. We divide by the number of deployments <em>inside that specific depth bin</em>. (e.g., If a fish is seen on 5 deep deployments, and there were only 6 deep deployments total, it has an 83% frequency for that zone, making it highly characteristic!)</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>=== ROUND A: TOP 10 TAXA BY DEPTH (Lowest ID) ===</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>--- FISHES ---</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 30 × 4
+   depth_zone scientificName                  occ freq_occ
+   &lt;fct&gt;      &lt;chr&gt;                         &lt;int&gt;    &lt;dbl&gt;
+ 1 &lt;700 m     Anguilliformes                    4    100  
+ 2 &lt;700 m     Epigonus                          4    100  
+ 3 &lt;700 m     Etelis                            4    100  
+ 4 &lt;700 m     Hexanchus griseus                 4    100  
+ 5 &lt;700 m     Malacocephalus                    3     75  
+ 6 &lt;700 m     Polymixia                         3     75  
+ 7 &lt;700 m     Pseudotriakis microdon            3     75  
+ 8 &lt;700 m     Echinorhinus cookei               2     50  
+ 9 &lt;700 m     Ruvettus pretiosus                2     50  
+10 &lt;700 m     Actinopteri                       1     25  
+11 700-1500 m Pseudotriakis microdon           11     91.7
+12 700-1500 m Synaphobranchus                  10     83.3
+13 700-1500 m Macrouridae                       7     58.3
+14 700-1500 m Synaphobranchidae                 7     58.3
+15 700-1500 m Actinopteri                       6     50  
+16 700-1500 m Anguilliformes                    6     50  
+17 700-1500 m Halosauridae                      5     41.7
+18 700-1500 m Malacocephalus                    4     33.3
+19 700-1500 m Ruvettus pretiosus                4     33.3
+20 700-1500 m Somniosidae                       4     33.3
+21 &gt;1500 m    Hydrolagus                        9     90  
+22 &gt;1500 m    Synaphobranchus brevidorsalis     9     90  
+23 &gt;1500 m    Ophidiidae                        8     80  
+24 &gt;1500 m    Actinopteri                       6     60  
+25 &gt;1500 m    Synaphobranchus                   6     60  
+26 &gt;1500 m    Coryphaenoides                    5     50  
+27 &gt;1500 m    Macrouridae                       4     40  
+28 &gt;1500 m    Anguilliformes                    3     30  
+29 &gt;1500 m    Antimora rostrata                 3     30  
+30 &gt;1500 m    Synaphobranchidae                 3     30  </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>--- INVERTEBRATES ---</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 30 × 4
+   depth_zone scientificName    occ freq_occ
+   &lt;fct&gt;      &lt;chr&gt;           &lt;int&gt;    &lt;dbl&gt;
+ 1 &lt;700 m     Plesionika          4    100  
+ 2 &lt;700 m     Ctenophora          3     75  
+ 3 &lt;700 m     Heterocarpus        3     75  
+ 4 &lt;700 m     Munididae           3     75  
+ 5 &lt;700 m     Ophiuroidea         3     75  
+ 6 &lt;700 m     Acanthephyridae     2     50  
+ 7 &lt;700 m     Agononida           2     50  
+ 8 &lt;700 m     Amphipoda           2     50  
+ 9 &lt;700 m     Brachyura           2     50  
+10 &lt;700 m     Caridea             2     50  
+11 700-1500 m Amphipoda          12    100  
+12 700-1500 m Mysida             11     91.7
+13 700-1500 m Nematocarcinus     11     91.7
+14 700-1500 m Heterocarpus        9     75  
+15 700-1500 m Penaeoidea          9     75  
+16 700-1500 m Aristeidae          5     41.7
+17 700-1500 m Caridea             5     41.7
+18 700-1500 m Homolidae           5     41.7
+19 700-1500 m Lamoha              5     41.7
+20 700-1500 m Plesionika          5     41.7
+21 &gt;1500 m    Amphipoda          10    100  
+22 &gt;1500 m    Mysida             10    100  
+23 &gt;1500 m    Penaeoidea          9     90  
+24 &gt;1500 m    Eurythenes          6     60  
+25 &gt;1500 m    Aristeidae          5     50  
+26 &gt;1500 m    Copepoda            5     50  
+27 &gt;1500 m    Munnopsidae         5     50  
+28 &gt;1500 m    Benthesicymidae     4     40  
+29 &gt;1500 m    Decapoda            4     40  
+30 &gt;1500 m    Isopoda             3     30  </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== ROUND B: TOP 10 HIGHER TAXA BY DEPTH (Fish Family / Invert Order) ===</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>--- FISHES (By Family) ---</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 28 × 4
+   depth_zone taxa_group          occ freq_occ
+   &lt;fct&gt;      &lt;chr&gt;             &lt;int&gt;    &lt;dbl&gt;
+ 1 &lt;700 m     Epigonidae            4    100  
+ 2 &lt;700 m     Hexanchidae           4    100  
+ 3 &lt;700 m     Lutjanidae            4    100  
+ 4 &lt;700 m     Macrouridae           3     75  
+ 5 &lt;700 m     Polymixiidae          3     75  
+ 6 &lt;700 m     Pseudotriakidae       3     75  
+ 7 &lt;700 m     Congridae             2     50  
+ 8 &lt;700 m     Echinorhinidae        2     50  
+ 9 &lt;700 m     Gempylidae            2     50  
+10 &lt;700 m     Berycidae             1     25  
+11 700-1500 m Pseudotriakidae      11     91.7
+12 700-1500 m Synaphobranchidae    10     83.3
+13 700-1500 m Macrouridae           9     75  
+14 700-1500 m Somniosidae           6     50  
+15 700-1500 m Halosauridae          5     41.7
+16 700-1500 m Gempylidae            4     33.3
+17 700-1500 m Hexanchidae           3     25  
+18 700-1500 m Berycidae             1      8.3
+19 700-1500 m Centrophoridae        1      8.3
+20 700-1500 m Congridae             1      8.3
+21 &gt;1500 m    Synaphobranchidae    10    100  
+22 &gt;1500 m    Chimaeridae           9     90  
+23 &gt;1500 m    Ophidiidae            9     90  
+24 &gt;1500 m    Macrouridae           6     60  
+25 &gt;1500 m    Moridae               3     30  
+26 &gt;1500 m    Somniosidae           3     30  
+27 &gt;1500 m    Halosauridae          1     10  
+28 &gt;1500 m    Myxinidae             1     10  </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>--- INVERTEBRATES (By Order) ---</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 26 × 4
+   depth_zone taxa_group           occ freq_occ
+   &lt;fct&gt;      &lt;chr&gt;              &lt;int&gt;    &lt;dbl&gt;
+ 1 &lt;700 m     Decapoda               4    100  
+ 2 &lt;700 m     Valvatida              3     75  
+ 3 &lt;700 m     Amphipoda              2     50  
+ 4 &lt;700 m     Isopoda                2     50  
+ 5 &lt;700 m     Platyctenida           2     50  
+ 6 &lt;700 m     Scleralcyonacea        2     50  
+ 7 &lt;700 m     Actiniaria             1     25  
+ 8 &lt;700 m     Antipatharia           1     25  
+ 9 &lt;700 m     Aspidodiadematoida     1     25  
+10 &lt;700 m     Crustaceacida          1     25  
+11 700-1500 m Amphipoda             12    100  
+12 700-1500 m Decapoda              12    100  
+13 700-1500 m Mysida                11     91.7
+14 700-1500 m Isopoda                6     50  
+15 700-1500 m Zoantharia             2     16.7
+16 700-1500 m Antipatharia           1      8.3
+17 700-1500 m Comatulida             1      8.3
+18 700-1500 m Lophogastrida          1      8.3
+19 700-1500 m Narcomedusae           1      8.3
+20 700-1500 m Scleractinia           1      8.3
+21 &gt;1500 m    Amphipoda             10    100  
+22 &gt;1500 m    Decapoda              10    100  
+23 &gt;1500 m    Mysida                10    100  
+24 &gt;1500 m    Isopoda                5     50  
+25 &gt;1500 m    Trachymedusae          2     20  
+26 &gt;1500 m    Phyllodocida           1     10  </code></pre>
+</div>
+</div>
+<p>If you run those chunks interactively (the green play button), RStudio will print out neat, text-based summaries directly below the chunk. This makes it incredibly easy to scan the outputs and start writing paragraphs like:</p>
+<p><em>“The deep-sea community was dominated by… with the family Macrouridae occurring in X% of deployments. In the mesopelagic zone (&lt;700m), the characteristic fauna shifted to…”</em></p>
+<p>The deep zone is pretty distinct. Let’s look at whether there are taxa that occurred here that also occurred elsewhere.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>=== FAUNAL DISTINCTNESS: TAXA OBSERVED &gt; 1900m ===</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Total unique taxa observed &gt; 1900m: 47 </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>--- EXCLUSIVE TO &gt;1900m ---</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 20 × 5
+   family        scientificName              n_deep_deps min_depth max_depth
+   &lt;chr&gt;         &lt;chr&gt;                             &lt;int&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+ 1 Chimaeridae   Hydrolagus                           10      1947      2046
+ 2 Ophidiidae    Ophidiidae                            9      1947      2051
+ 3 Macrouridae   Coryphaenoides                        5      1947      2046
+ 4 Moridae       Antimora rostrata                     5      1947      2011
+ 5 &lt;NA&gt;          Chordata                              1      1959      1959
+ 6 &lt;NA&gt;          Peracarida                            1      1982      1982
+ 7 &lt;NA&gt;          Stomiiformes                          1      1982      1982
+ 8 Elpidiidae    Elpidiidae                            1      1982      1982
+ 9 Ophidiidae    Spectrunculus                         2      2000      2011
+10 Ophidiidae    Bassozetus                            1      2000      2000
+11 Ophidiidae    Bassogigas                            2      2003      2046
+12 Somniosidae   Somniosus                             1      2003      2003
+13 Halicreatidae Botrynema                             1      2003      2003
+14 Chimaeridae   Chimaeridae                           2      2006      2046
+15 &lt;NA&gt;          Trachymedusae                         1      2006      2006
+16 &lt;NA&gt;          Myxini                                1      2011      2011
+17 Macrouridae   Coryphaenoides longicirrhus           2      2046      2051
+18 Tomopteridae  Tomopteridae                          1      2046      2046
+19 Myxinidae     Eptatretus                            1      2046      2046
+20 Myxinidae     Myxinidae                             1      2046      2046</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>--- SHARED WITH SHALLOWER DEPTHS ---</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 27 × 6
+   family          scientificName n_deep_deps n_shallow_deps min_depth max_depth
+   &lt;chr&gt;           &lt;chr&gt;                &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+ 1 &lt;NA&gt;            Amphipoda               12             18       390      2051
+ 2 &lt;NA&gt;            Mysida                  12             16       390      2051
+ 3 &lt;NA&gt;            Actinopteri              7             10       390      2051
+ 4 &lt;NA&gt;            Isopoda                  3              5       390      2046
+ 5 Nematocarcinid… Nematocarcinus           2             16       390      2051
+ 6 &lt;NA&gt;            Chaetognatha             2              6       390      2006
+ 7 &lt;NA&gt;            Caridea                  1             10       390      1982
+ 8 &lt;NA&gt;            Decapoda                 6              8       434      2046
+ 9 &lt;NA&gt;            Anguilliformes           3             13       434      2046
+10 &lt;NA&gt;            Ctenophora               1              4       434      1962
+11 Aristeidae      Aristeidae               7              9       443      2051
+12 Macrouridae     Macrouridae              4              8       443      2051
+13 Synaphobranchi… Synaphobranch…           3              9       443      2006
+14 Acanthephyridae Acanthephyrid…           2              7       443      2011
+15 &lt;NA&gt;            Hexactinellida           1              2       555      1962
+16 &lt;NA&gt;            Penaeoidea              11             12       565      2051
+17 Synaphobranchi… Synaphobranch…           7             10       744      2046
+18 Synaphobranchi… Synaphobranch…          11              2       865      2051
+19 Halosauridae    Halosauridae             1              6       929      2046
+20 Somniosidae     Somniosidae              1              4       978      2011
+21 &lt;NA&gt;            Hydrozoa                 2              2       979      1982
+22 Benthesicymidae Benthesicymid…           5              1       989      2015
+23 Somniosidae     Somniosus pac…           2              2       989      2011
+24 Eurytheneidae   Eurythenes               7              2      1041      2051
+25 Munnopsidae     Munnopsidae              6              3      1051      2051
+26 &lt;NA&gt;            Copepoda                 5              2      1051      2011
+27 &lt;NA&gt;            Actinopterygii           1              1      1051      2000</code></pre>
+</div>
+</div>
 </section>
 
 </main>

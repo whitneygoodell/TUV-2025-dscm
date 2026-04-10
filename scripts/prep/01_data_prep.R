@@ -1,45 +1,27 @@
----
-title: "01_data_prep"
-format: html
-editor: source
----
+# title: "01_data_prep"
+# scripts/prep/01_data_prep.R
 
-# scripts/prep/01_data_prep.qmd
-
-```{r}
-#| label: setup
-#| echo: true
-#| message: false
-#| warning: false
-#| results: hide
-
+# ==== SETUP =============================================
 library(tidyverse)
 library(readxl)
 library(PristineSeasR2)
 
-```
-
-```{r}
-#| label: configuration
-
+# ==== CONFIGURATION =============================================
 ps_paths <- ps_science_paths()
 exp_path <- file.path(ps_paths$expeditions, "TUV-2025")
 
 # where data comes from and where it goes
 raw_dir       <- file.path(exp_path, "data/primary/raw/dscm")
 processed_dir <- file.path(exp_path, "data/primary/processed/dscm")
-```
 
-```{r}
-#| label: load-data
 
+# ==== LOAD DATA =========
 excel_file <- file.path(raw_dir, "TUV_DOEX0112_dscm_Data_Summary_v2.xlsx")
 tator_data <- read_excel(excel_file, sheet = "Tator_Data_Summary")
 metadata   <- read_excel(excel_file, sheet = "Field_Log_Metadata", skip = 1) # Skip  first row (CATAMI header group name)
-```
 
-```{r}
-#| label: merge-clean
+
+# ==== MERGE AND CLEAN =========
 
 # Select columns of interest from metadata
 metadata_subset <- metadata %>%
@@ -53,10 +35,11 @@ master_data <- tator_data %>%
   rename(depth_m = `Depth (m)`, 
          substrate_type = `Substrate (Hard/Soft)`, 
          location = Location)
-```
 
-```{r}
-#| label: manual-exclusions
+
+# ====  MANUAL EXCLUSIONS ========
+
+## Taxa exclusions (QA/QC for Species List)
 
 # Manual exclusions are defined in a .csv created in the process of inital data review
 # and is used to exclude records from analysis, for whatver reason,
@@ -77,10 +60,27 @@ if (file.exists(exclusion_file)) {
 } else {
   message("No manual_exclusions.csv file found. Proceeding with all records.")
 }
-```
 
-```{r}
-#| label: export-processed-data
+## Deployment exclusions (For freq. of occ. calculations; Flagging Partial Deployments)
+
+freq_exclusion_file <- file.path(raw_dir, "freq_exclusions.csv")
+
+if (file.exists(freq_exclusion_file)) {
+  freq_exclusions <- read_csv(freq_exclusion_file, show_col_types = FALSE)
+  
+  # Create the flag: FALSE if it's in the bad list, TRUE otherwise
+  master_data <- master_data %>%
+    mutate(valid_for_freq = !deployment %in% freq_exclusions$deployment)
+  
+  message(paste("Flagged", nrow(freq_exclusions), "deployments as invalid for frequency calculations."))
+} else {
+  # If the file doesn't exist yet, assume all deployments are valid
+  master_data <- master_data %>%
+    mutate(valid_for_freq = TRUE)
+  message("No freq_exclusions.csv found. All deployments flagged as valid_for_freq = TRUE.")
+}
+
+# ======= EXPORT PROCESSED DATA =================================
 
 # Just in case the processed folder doesn't exist on the Drive yet, this creates it:
 dir.create(processed_dir, recursive = TRUE, showWarnings = FALSE)
@@ -90,4 +90,3 @@ output_file <- file.path(processed_dir, "clean_master_data.rds")
 write_rds(master_data, output_file)
 
 message(paste("Data prep complete! Clean data saved to:", output_file))
-```
