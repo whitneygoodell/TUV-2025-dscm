@@ -1,0 +1,263 @@
+---
+title: "Dropcam data analysis - TUV"
+subtitle: "Synthesizing dropcam annotations for TUV report"
+author: "whitney"
+format: html
+---
+
+# Prep
+
+This script processes the dscm annotation dataset (provided by DARC) for inclusion in expedition report.  
+Data has been prepped using 01_data_prep.qmd and 02_refined_taxa_list.R.  
+
+
+```{r}
+#| label: setup
+#| echo: true
+#| message: false
+#| warning: false
+#| results: hide
+
+# for reference later: '#| include: false' hides the code and output from the final report
+
+
+library(tidyverse)
+library(gt)
+library(PristineSeasR2)
+# library(litedown)  this was in the first script, I dont know if we need it here.
+
+```
+
+```{r}
+#| label: configuration
+#| echo: false # hides the code from the report
+
+# Define paths
+ps_paths <- ps_science_paths()
+exp_path <- file.path(ps_paths$expeditions, "TUV-2025")
+processed_dir <- file.path(exp_path, "data/primary/processed/dscm")
+
+# Load cleanly processed dataset (from 01_data_prep)
+clean_taxa <- read_rds(file.path(processed_dir, "clean_master_data.rds"))
+
+# Load phylogenetic keys for the table sorting
+source("scripts/phylo_keys.R") # this has to exist in the scripts folder of the project
+```
+In prepping the data, we refine our taxonomic richness metrics, by refining our interpretation of what to count as a distinct taxon.  
+Without this refinement, we would just be counting how many scientificName entries are fish or inverts.  
+But we want to exclude higher-level taxonomic IDs if a lower-level taxon is present, e.g. we don't count both Macrouridae and Coryphaenoides longicirrhus for a species richness of 2.
+
+Here's a step to QA/QC the logic.  
+In the process of refining our data, review the table below to see exactly what taxa the code decided to exclude.  
+This is a list of every single higher-level taxon that was successfully dropped (like Macrouridae, or Ophiuroidea) because a lower-level ID bumped it out.  
+```{r}
+#| label: refine-taxa
+#| echo: false
+
+# Run the 02_refine_taxa_list.R script to load the specific variables within
+# i.e.  refined_taxa_list, true_richness_list, total_taxa_refined, fish_taxa_refined, and invert_taxa_refined
+
+source("scripts/prep/02_refined_taxa_list.R")
+```
+
+# Sampling summary
+
+```{r}
+#| label: meta-summary-stats
+#| echo: false
+
+# Summarize Deployments
+deploy_meta <- clean_taxa %>% 
+  select(deployment, depth_m, substrate_type) %>% 
+  distinct()
+
+total_deps <- nrow(deploy_meta)
+mean_depth <- round(mean(deploy_meta$depth_m, na.rm = TRUE), 1)
+sd_depth <- round(sd(deploy_meta$depth_m, na.rm = TRUE), 1)
+min_depth <- min(deploy_meta$depth_m, na.rm = TRUE)
+max_depth <- max(deploy_meta$depth_m, na.rm = TRUE)
+
+n_soft <- sum(str_detect(tolower(deploy_meta$substrate_type), "soft"), na.rm = TRUE)
+n_hard <- sum(str_detect(tolower(deploy_meta$substrate_type), "hard"), na.rm = TRUE)
+
+```
+
+We deployed `r total_deps` deep-sea cameras in the Tuvalu EEZ, ranging in depths from `r min_depth` to `r max_depth` m (mean ± SD = `r mean_depth` ± `r sd_depth` m). Substrates represented across deployments were mixed, with about two-thirds of the deployments (n= `r n_hard`) on hard, rocky substrate, and the other third on soft, sandy substrate (n = `r n_soft`).  
+
+** NOTES FOR LATER:  
+- refine summary stats by removing deployments that weren't successful or provided any data
+
+```{r}
+#| label: taxa-richness
+#| echo: false
+
+
+# Calculate Distinct Taxa
+# pull data from 02_refined_taxa_list
+ 
+n_fish <- fish_taxa_refined
+n_inverts <- invert_taxa_refined
+n_total <- total_taxa_refined
+```
+
+
+Across these deployments, `r n_fish` distinct fish taxa and `r n_inverts` distinct invertebrate taxa were observed, for a total of `r n_total` distinct taxa that were observed on deep sea cameras in Tuvalu.
+
+# Taxa Inventory
+
+
+SPECIES TABLE
+Table of all the taxa observed on deep sea cameras
+
+** NOTES FOR LATER:  
+- need to manually refine the taxa in the report, remove redundancies (higher taxa)  
+
+```{r}
+#| label: species-table
+#| echo: false
+#| message: false
+#| warning: false
+
+library(gt)
+
+# ===== 1. QUANTITATIVE METRICS ===========
+
+# A. Calculate depth ranges for ALL taxa
+taxon_depths <- clean_taxa %>%
+  group_by(phylum, class, order, family, scientificName) %>%
+  summarise(
+    min_d = min(depth_m, na.rm = TRUE),
+    max_d = max(depth_m, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    Depth_m = if_else(min_d == max_d, 
+                      as.character(min_d), 
+                      paste0(min_d, " - ", max_d))
+  ) %>%
+  select(-min_d, -max_d)
+
+# B. Calculate quantitative stats strictly for ATTRACTED taxa
+taxon_quant <- clean_taxa %>%
+  filter(attracted == "Attracted") %>%
+  group_by(phylum, class, order, family, scientificName) %>%
+  summarise(
+    freq_occ = round((n_distinct(deployment) / total_deps) * 100),
+    MaxN = max(individualCount, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    Freq_occ = as.character(freq_occ),
+    MaxN = as.character(MaxN)
+  ) %>%
+  select(-freq_occ)
+
+# C. Extract Tentative IDs (Collapsed if there are multiple; formatting with italics before collapsing)
+tentative_list <- clean_taxa %>%
+  filter(!is.na(tentativeId)) %>%
+  mutate(
+    # Use the exact same logic to identify tentative species vs genera
+    t_is_species = str_detect(tentativeId, " "),
+    t_is_genus = !t_is_species & family != "" & tentativeId != family,
+    
+    # Apply markdown italics 
+    fmt_tentativeId = case_when(
+      t_is_species ~ paste0("*", tentativeId, "*"),
+      # If you want tentative genera to ALSO have " sp.", use paste0("*", tentativeId, "* sp.") below instead:
+      t_is_genus ~ paste0("*", tentativeId, "* sp."), 
+      TRUE ~ tentativeId
+    )
+  ) %>%
+  group_by(phylum, class, order, family, scientificName) %>%
+  summarise(
+    # Collapse the newly formatted IDs!
+    t_ids = paste(unique(fmt_tentativeId), collapse = ", "),
+    .groups = "drop"
+  )
+
+# ====== 2. DATA MERGING & FORMATTING ========================================
+
+table_data <- taxon_depths %>%
+  left_join(taxon_quant, by = c("phylum", "class", "order", "family", "scientificName")) %>%
+  left_join(tentative_list, by = c("phylum", "class", "order", "family", "scientificName")) %>%
+  
+  mutate(
+    # Apply phylogenetic sorting rules
+    phylum = factor(phylum, levels = phylo_phylum),
+    class = fct_relevel(factor(class), phylo_class),
+    order = fct_relevel(factor(order), phylo_order),
+    family = fct_relevel(factor(family), phylo_family)
+  ) %>%
+  arrange(phylum, class, order, family, scientificName) %>%
+  
+  # Fill NA values with blanks
+  mutate(across(everything(), as.character)) %>% 
+  mutate(across(everything(), ~replace_na(.x, ""))) %>%
+  
+  # Text Formatting Logic (Italics & Tentative IDs via Markdown)
+  mutate(
+    # Identify taxonomy levels based on naming conventions
+    is_species = str_detect(scientificName, " "),
+    is_genus = !is_species & family != "" & scientificName != family,
+    
+    # Apply base italics and " sp."
+    base_name = case_when(
+      is_species ~ paste0("*", scientificName, "*"),
+      is_genus ~ paste0("*", scientificName, "* sp."),
+      TRUE ~ scientificName
+    ),
+    
+    # If a tentative ID exists, append it with a line break <br>
+    scientificName = if_else(
+      t_ids != "",
+      paste0(base_name, "<br>(Tentative: ", t_ids, ")"),
+      base_name
+    )
+  ) %>%
+  # Clean up our temporary logic columns
+  select(-is_species, -is_genus, -base_name, -t_ids)
+
+# ====== 3. GENERATE TABLE ==================================================
+
+table_data %>%
+  gt() %>%
+  tab_header(
+    title = "Taxonomic Inventory of Deep-Sea Camera Observations",
+    subtitle = "Tuvalu"
+  ) %>%
+  cols_label(
+    phylum = "Phylum",
+    class = "Class",
+    order = "Order",
+    family = "Family",
+    scientificName = "Lowest Taxonomic ID",
+    Depth_m = "Depth (m)",
+    Freq_occ = "Freq. of Occ. (%)",
+    MaxN = "MaxN"
+  ) %>%
+  # Center align math columns
+  cols_align(
+    align = "center",
+    columns = c(Depth_m, Freq_occ, MaxN)
+  ) %>%
+  # Set tight widths
+  cols_width(
+    Depth_m ~ px(140),  
+    Freq_occ ~ px(90),  
+    MaxN ~ px(80),
+    # Bumped scientificName slightly to accommodate long tentative text
+    scientificName ~ px(220) 
+  ) %>%
+  # TELL GT TO READ THE ASTERISKS AND <br> AS MARKDOWN/HTML
+  fmt_markdown(columns = scientificName) %>%
+  # Prevent depth column from wrapping
+  tab_style(
+    style = cell_text(whitespace = "nowrap"),
+    locations = cells_body(columns = Depth_m)
+  ) %>%
+  opt_row_striping() %>%
+  tab_options(
+    data_row.padding = px(5),
+    table.font.size = px(12)
+  )
+```

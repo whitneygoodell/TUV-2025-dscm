@@ -4,7 +4,7 @@ format: html
 editor: source
 ---
 
-# scripts/prep/01_data_prep.R
+# scripts/prep/01_data_prep.qmd
 
 ```{r}
 #| label: setup
@@ -35,16 +35,18 @@ processed_dir <- file.path(exp_path, "data/primary/processed/dscm")
 
 excel_file <- file.path(raw_dir, "TUV_DOEX0112_dscm_Data_Summary_v2.xlsx")
 tator_data <- read_excel(excel_file, sheet = "Tator_Data_Summary")
-metadata   <- read_excel(excel_file, sheet = "Field_Log_Metadata", skip = 1)
+metadata   <- read_excel(excel_file, sheet = "Field_Log_Metadata", skip = 1) # Skip  first row (CATAMI header group name)
 ```
 
 ```{r}
 #| label: merge-clean
 
+# Select columns of interest from metadata
 metadata_subset <- metadata %>%
   select(Deployment, `Depth (m)`, Location, `Substrate (Hard/Soft)`) %>%
   rename(deployment = Deployment)
 
+# Merge metadata with annotation data
 master_data <- tator_data %>%
   select(-`depth(m)`) %>% 
   left_join(metadata_subset, by = "deployment") %>%
@@ -65,12 +67,12 @@ exclusion_file <- file.path(raw_dir, "manual_exclusions.csv")
 
 if (file.exists(exclusion_file)) {
   exclusions <- read_csv(exclusion_file, show_col_types = FALSE)
-  rows_before <- nrow(master_data)
+  rows_before <- nrow(master_data) # Store row count before exclusion for a helpful message
   
-  master_data <- master_data %>% 
+  master_data <- master_data %>%   # Drop the matching records from master_data
     anti_join(exclusions, by = c("deployment", "scientificName"))
     
-  rows_after <- nrow(master_data)
+  rows_after <- nrow(master_data)   
   message(paste("Applied manual exclusions. Dropped", (rows_before - rows_after), "records."))
 } else {
   message("No manual_exclusions.csv file found. Proceeding with all records.")
@@ -83,7 +85,7 @@ if (file.exists(exclusion_file)) {
 # Just in case the processed folder doesn't exist on the Drive yet, this creates it:
 dir.create(processed_dir, recursive = TRUE, showWarnings = FALSE)
 
-# Save the beautifully clean dataset using our named directory!
+# Save clean dataset using directory defined in configuration
 output_file <- file.path(processed_dir, "clean_master_data.rds")
 write_rds(master_data, output_file)
 
