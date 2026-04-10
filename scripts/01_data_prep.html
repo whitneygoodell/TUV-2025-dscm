@@ -110,40 +110,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(PristineSeasR2)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>ps_paths <span class="ot">&lt;-</span> <span class="fu">ps_science_paths</span>()</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>exp_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(ps_paths<span class="sc">$</span>expeditions, <span class="st">"TUV-2025"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(litedown)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>ps_paths <span class="ot">&lt;-</span> <span class="fu">ps_science_paths</span>()</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>exp_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(ps_paths<span class="sc">$</span>expeditions, <span class="st">"TUV-2025"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>** NOTES FOR LATER:<br>
 - refine manual exclusions (check contradictory attracted/not attracted)</p>
-<p>Basic summary: calculates all the values to reference in report text. ** NOTES FOR LATER:<br>
+<p>Basic summary: calculates all the values to reference in report text.<br>
+** NOTES FOR LATER:<br>
 - need to refine code to remove unsuccessful (i.e.&nbsp;no data) deployments from summary stats<br>
 - need to refine distinct taxa counts, i.e.&nbsp;remove higher-level taxonomies if lower-level are also present in the dataset.</p>
-<p>We deployed 34 deep-sea cameras in the Tuvalu EEZ, ranging in depths from 390 to 2051 m (mean ± SD = 1223.5 ± 617.7 m). Substrates represented across deployments were mixed, with about two-thirds of the deployments (n= 23) on hard, rocky substrate, and the other third on soft, sandy substrate (n = 11). Across these deployments, 62 distinct fish taxa and 89 distinct invertebrate taxa were observed.</p>
+<p>We deployed 34 deep-sea cameras in the Tuvalu EEZ, ranging in depths from 390 to 2051 m (mean ± SD = 1223.5 ± 617.7 m). Substrates represented across deployments were mixed, with about two-thirds of the deployments (n= 23) on hard, rocky substrate, and the other third on soft, sandy substrate (n = 11). Across these deployments, 61 distinct fish taxa and 89 distinct invertebrate taxa were observed.</p>
 <p>SPECIES TABLE Table of all the taxa observed on deep sea cameras</p>
 <p>** NOTES FOR LATER:<br>
 - need to refine the taxa, remove redundancies (higher taxa)<br>
-- put in phylogenetic order</p>
+- create phylo_keys.R script to ‘source()’ instead of defining vectors.</p>
 <div class="cell">
 <div class="cell-output-display">
 
-<div id="gftjebxgwx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#gftjebxgwx table {
+<div id="mrhpmdhscb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#mrhpmdhscb table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#gftjebxgwx thead, #gftjebxgwx tbody, #gftjebxgwx tfoot, #gftjebxgwx tr, #gftjebxgwx td, #gftjebxgwx th {
+#mrhpmdhscb thead, #mrhpmdhscb tbody, #mrhpmdhscb tfoot, #mrhpmdhscb tr, #mrhpmdhscb td, #mrhpmdhscb th {
   border-style: none;
 }
 
-#gftjebxgwx p {
+#mrhpmdhscb p {
   margin: 0;
   padding: 0;
 }
 
-#gftjebxgwx .gt_table {
+#mrhpmdhscb .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -169,12 +171,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-left-color: #D3D3D3;
 }
 
-#gftjebxgwx .gt_caption {
+#mrhpmdhscb .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#gftjebxgwx .gt_title {
+#mrhpmdhscb .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -186,7 +188,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-width: 0;
 }
 
-#gftjebxgwx .gt_subtitle {
+#mrhpmdhscb .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -198,7 +200,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-width: 0;
 }
 
-#gftjebxgwx .gt_heading {
+#mrhpmdhscb .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -210,13 +212,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#gftjebxgwx .gt_bottom_border {
+#mrhpmdhscb .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#gftjebxgwx .gt_col_headings {
+#mrhpmdhscb .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -231,7 +233,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#gftjebxgwx .gt_col_heading {
+#mrhpmdhscb .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -251,7 +253,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#gftjebxgwx .gt_column_spanner_outer {
+#mrhpmdhscb .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -263,15 +265,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 4px;
 }
 
-#gftjebxgwx .gt_column_spanner_outer:first-child {
+#mrhpmdhscb .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#gftjebxgwx .gt_column_spanner_outer:last-child {
+#mrhpmdhscb .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#gftjebxgwx .gt_column_spanner {
+#mrhpmdhscb .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -283,11 +285,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   width: 100%;
 }
 
-#gftjebxgwx .gt_spanner_row {
+#mrhpmdhscb .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#gftjebxgwx .gt_group_heading {
+#mrhpmdhscb .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -313,7 +315,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   text-align: left;
 }
 
-#gftjebxgwx .gt_empty_group_heading {
+#mrhpmdhscb .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -328,15 +330,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: middle;
 }
 
-#gftjebxgwx .gt_from_md > :first-child {
+#mrhpmdhscb .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#gftjebxgwx .gt_from_md > :last-child {
+#mrhpmdhscb .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#gftjebxgwx .gt_row {
+#mrhpmdhscb .gt_row {
   padding-top: 5px;
   padding-bottom: 5px;
   padding-left: 5px;
@@ -355,7 +357,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#gftjebxgwx .gt_stub {
+#mrhpmdhscb .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -368,7 +370,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#gftjebxgwx .gt_stub_row_group {
+#mrhpmdhscb .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -382,15 +384,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: top;
 }
 
-#gftjebxgwx .gt_row_group_first td {
+#mrhpmdhscb .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#gftjebxgwx .gt_row_group_first th {
+#mrhpmdhscb .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#gftjebxgwx .gt_summary_row {
+#mrhpmdhscb .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -400,16 +402,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#gftjebxgwx .gt_first_summary_row {
+#mrhpmdhscb .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#gftjebxgwx .gt_first_summary_row.thick {
+#mrhpmdhscb .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#gftjebxgwx .gt_last_summary_row {
+#mrhpmdhscb .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -419,7 +421,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#gftjebxgwx .gt_grand_summary_row {
+#mrhpmdhscb .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -429,7 +431,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#gftjebxgwx .gt_first_grand_summary_row {
+#mrhpmdhscb .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -439,7 +441,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-color: #D3D3D3;
 }
 
-#gftjebxgwx .gt_last_grand_summary_row_top {
+#mrhpmdhscb .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -449,11 +451,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#gftjebxgwx .gt_striped {
+#mrhpmdhscb .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#gftjebxgwx .gt_table_body {
+#mrhpmdhscb .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -462,7 +464,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#gftjebxgwx .gt_footnotes {
+#mrhpmdhscb .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -476,7 +478,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#gftjebxgwx .gt_footnote {
+#mrhpmdhscb .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -485,7 +487,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#gftjebxgwx .gt_sourcenotes {
+#mrhpmdhscb .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -499,7 +501,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#gftjebxgwx .gt_sourcenote {
+#mrhpmdhscb .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -507,72 +509,72 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#gftjebxgwx .gt_left {
+#mrhpmdhscb .gt_left {
   text-align: left;
 }
 
-#gftjebxgwx .gt_center {
+#mrhpmdhscb .gt_center {
   text-align: center;
 }
 
-#gftjebxgwx .gt_right {
+#mrhpmdhscb .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#gftjebxgwx .gt_font_normal {
+#mrhpmdhscb .gt_font_normal {
   font-weight: normal;
 }
 
-#gftjebxgwx .gt_font_bold {
+#mrhpmdhscb .gt_font_bold {
   font-weight: bold;
 }
 
-#gftjebxgwx .gt_font_italic {
+#mrhpmdhscb .gt_font_italic {
   font-style: italic;
 }
 
-#gftjebxgwx .gt_super {
+#mrhpmdhscb .gt_super {
   font-size: 65%;
 }
 
-#gftjebxgwx .gt_footnote_marks {
+#mrhpmdhscb .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#gftjebxgwx .gt_asterisk {
+#mrhpmdhscb .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#gftjebxgwx .gt_indent_1 {
+#mrhpmdhscb .gt_indent_1 {
   text-indent: 5px;
 }
 
-#gftjebxgwx .gt_indent_2 {
+#mrhpmdhscb .gt_indent_2 {
   text-indent: 10px;
 }
 
-#gftjebxgwx .gt_indent_3 {
+#mrhpmdhscb .gt_indent_3 {
   text-indent: 15px;
 }
 
-#gftjebxgwx .gt_indent_4 {
+#mrhpmdhscb .gt_indent_4 {
   text-indent: 20px;
 }
 
-#gftjebxgwx .gt_indent_5 {
+#mrhpmdhscb .gt_indent_5 {
   text-indent: 25px;
 }
 
-#gftjebxgwx .katex-display {
+#mrhpmdhscb .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#gftjebxgwx div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#mrhpmdhscb div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -582,7 +584,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <col>
     <col>
     <col>
-    <col style="width:180px;">
+    <col style="width:220px;">
     <col style="width:140px;">
     <col style="width:80px;">
     <col style="width:90px;">
@@ -610,7 +612,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Monothalamea</td>
 <td headers="order" class="gt_row gt_left"></td>
 <td headers="family" class="gt_row gt_left"></td>
-<td headers="scientificName" class="gt_row gt_left">Xenophyophoroidea</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="WGVub3BoeW9waG9yb2lkZWE="><span class="gt_from_md">Xenophyophoroidea</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">1041</td>
 <td headers="MaxN" class="gt_row gt_center"></td>
 <td headers="Freq_occ" class="gt_row gt_center"></td></tr>
@@ -618,7 +620,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Marinosporidia</td>
 <td headers="order" class="gt_row gt_left gt_striped">Crustaceacida</td>
 <td headers="family" class="gt_row gt_left gt_striped"></td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Crustaceacida</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="Q3J1c3RhY2VhY2lkYQ=="><span class="gt_from_md">Crustaceacida</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">464</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped"></td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped"></td></tr>
@@ -626,7 +628,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Hexactinellida</td>
 <td headers="order" class="gt_row gt_left">Sceptrulophora</td>
 <td headers="family" class="gt_row gt_left"></td>
-<td headers="scientificName" class="gt_row gt_left">Sceptrulophora</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="U2NlcHRydWxvcGhvcmE="><span class="gt_from_md">Sceptrulophora</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">443</td>
 <td headers="MaxN" class="gt_row gt_center"></td>
 <td headers="Freq_occ" class="gt_row gt_center"></td></tr>
@@ -634,7 +636,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Hexactinellida</td>
 <td headers="order" class="gt_row gt_left gt_striped"></td>
 <td headers="family" class="gt_row gt_left gt_striped"></td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Hexactinellida</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="SGV4YWN0aW5lbGxpZGE="><span class="gt_from_md">Hexactinellida</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">555 - 1962</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped"></td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped"></td></tr>
@@ -642,15 +644,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Hexacorallia</td>
 <td headers="order" class="gt_row gt_left">Actiniaria</td>
 <td headers="family" class="gt_row gt_left">Actiniidae</td>
-<td headers="scientificName" class="gt_row gt_left" style="font-style: italic;">Stylobates aeneus</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KlN0eWxvYmF0ZXMgYWVuZXVzKg=="><span class="gt_from_md"><em>Stylobates aeneus</em></span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">443 - 565</td>
-<td headers="MaxN" class="gt_row gt_center">1</td>
-<td headers="Freq_occ" class="gt_row gt_center">6</td></tr>
+<td headers="MaxN" class="gt_row gt_center"></td>
+<td headers="Freq_occ" class="gt_row gt_center"></td></tr>
     <tr><td headers="phylum" class="gt_row gt_left gt_striped">Cnidaria</td>
 <td headers="class" class="gt_row gt_left gt_striped">Hexacorallia</td>
 <td headers="order" class="gt_row gt_left gt_striped">Actiniaria</td>
 <td headers="family" class="gt_row gt_left gt_striped">Liponematidae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Liponema</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KkxpcG9uZW1hKiBzcC4="><span class="gt_from_md"><em>Liponema</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">504</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped"></td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped"></td></tr>
@@ -658,7 +660,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Hexacorallia</td>
 <td headers="order" class="gt_row gt_left">Actiniaria</td>
 <td headers="family" class="gt_row gt_left"></td>
-<td headers="scientificName" class="gt_row gt_left">Actiniaria</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="QWN0aW5pYXJpYQ=="><span class="gt_from_md">Actiniaria</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">390 - 565</td>
 <td headers="MaxN" class="gt_row gt_center"></td>
 <td headers="Freq_occ" class="gt_row gt_center"></td></tr>
@@ -666,7 +668,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Hexacorallia</td>
 <td headers="order" class="gt_row gt_left gt_striped">Antipatharia</td>
 <td headers="family" class="gt_row gt_left gt_striped">Antipathidae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Stichopathes</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KlN0aWNob3BhdGhlcyogc3Au"><span class="gt_from_md"><em>Stichopathes</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">443</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped"></td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped"></td></tr>
@@ -674,7 +676,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Hexacorallia</td>
 <td headers="order" class="gt_row gt_left">Antipatharia</td>
 <td headers="family" class="gt_row gt_left">Schizopathidae</td>
-<td headers="scientificName" class="gt_row gt_left">Schizopathidae</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="U2NoaXpvcGF0aGlkYWU8YnI+KFRlbnRhdGl2ZTogKlBhcmFudGlwYXRoZXMqIHNwLik="><span class="gt_from_md">Schizopathidae<br>(Tentative: <em>Parantipathes</em> sp.)</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">443</td>
 <td headers="MaxN" class="gt_row gt_center"></td>
 <td headers="Freq_occ" class="gt_row gt_center"></td></tr>
@@ -682,7 +684,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Hexacorallia</td>
 <td headers="order" class="gt_row gt_left gt_striped">Antipatharia</td>
 <td headers="family" class="gt_row gt_left gt_striped"></td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Antipatharia</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="QW50aXBhdGhhcmlh"><span class="gt_from_md">Antipatharia</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">443 - 744</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped"></td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped"></td></tr>
@@ -690,7 +692,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Hexacorallia</td>
 <td headers="order" class="gt_row gt_left">Scleractinia</td>
 <td headers="family" class="gt_row gt_left">Dendrophylliidae</td>
-<td headers="scientificName" class="gt_row gt_left">Enallopsammia</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KkVuYWxsb3BzYW1taWEqIHNwLg=="><span class="gt_from_md"><em>Enallopsammia</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">464</td>
 <td headers="MaxN" class="gt_row gt_center"></td>
 <td headers="Freq_occ" class="gt_row gt_center"></td></tr>
@@ -698,7 +700,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Hexacorallia</td>
 <td headers="order" class="gt_row gt_left gt_striped">Scleractinia</td>
 <td headers="family" class="gt_row gt_left gt_striped"></td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Scleractinia</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="U2NsZXJhY3Rpbmlh"><span class="gt_from_md">Scleractinia</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">390 - 744</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped"></td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped"></td></tr>
@@ -706,7 +708,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Hexacorallia</td>
 <td headers="order" class="gt_row gt_left">Zoantharia</td>
 <td headers="family" class="gt_row gt_left">Zoanthidae</td>
-<td headers="scientificName" class="gt_row gt_left">Zoanthidae</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="Wm9hbnRoaWRhZQ=="><span class="gt_from_md">Zoanthidae</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">1050 - 1177</td>
 <td headers="MaxN" class="gt_row gt_center"></td>
 <td headers="Freq_occ" class="gt_row gt_center"></td></tr>
@@ -714,7 +716,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Hexacorallia</td>
 <td headers="order" class="gt_row gt_left gt_striped"></td>
 <td headers="family" class="gt_row gt_left gt_striped"></td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Hexacorallia</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="SGV4YWNvcmFsbGlh"><span class="gt_from_md">Hexacorallia</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">464</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped"></td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped"></td></tr>
@@ -722,7 +724,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Hydrozoa</td>
 <td headers="order" class="gt_row gt_left">Narcomedusae</td>
 <td headers="family" class="gt_row gt_left">Aeginidae</td>
-<td headers="scientificName" class="gt_row gt_left">Aegina</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KkFlZ2luYSogc3Au"><span class="gt_from_md"><em>Aegina</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">1058</td>
 <td headers="MaxN" class="gt_row gt_center"></td>
 <td headers="Freq_occ" class="gt_row gt_center"></td></tr>
@@ -730,7 +732,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Hydrozoa</td>
 <td headers="order" class="gt_row gt_left gt_striped">Trachymedusae</td>
 <td headers="family" class="gt_row gt_left gt_striped">Halicreatidae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Botrynema</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KkJvdHJ5bmVtYSogc3Au"><span class="gt_from_md"><em>Botrynema</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">2003</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped"></td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped"></td></tr>
@@ -738,7 +740,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Hydrozoa</td>
 <td headers="order" class="gt_row gt_left">Trachymedusae</td>
 <td headers="family" class="gt_row gt_left"></td>
-<td headers="scientificName" class="gt_row gt_left">Trachymedusae</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="VHJhY2h5bWVkdXNhZQ=="><span class="gt_from_md">Trachymedusae</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">2006</td>
 <td headers="MaxN" class="gt_row gt_center"></td>
 <td headers="Freq_occ" class="gt_row gt_center"></td></tr>
@@ -746,7 +748,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Hydrozoa</td>
 <td headers="order" class="gt_row gt_left gt_striped"></td>
 <td headers="family" class="gt_row gt_left gt_striped"></td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Hydrozoa</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="SHlkcm96b2E8YnI+KFRlbnRhdGl2ZTogVHJhY2h5bGluYWUp"><span class="gt_from_md">Hydrozoa<br>(Tentative: Trachylinae)</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">979 - 1982</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped"></td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped"></td></tr>
@@ -754,7 +756,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Octocorallia</td>
 <td headers="order" class="gt_row gt_left">Scleralcyonacea</td>
 <td headers="family" class="gt_row gt_left">Primnoidae</td>
-<td headers="scientificName" class="gt_row gt_left">Callogorgia</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KkNhbGxvZ29yZ2lhKiBzcC4="><span class="gt_from_md"><em>Callogorgia</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">443</td>
 <td headers="MaxN" class="gt_row gt_center"></td>
 <td headers="Freq_occ" class="gt_row gt_center"></td></tr>
@@ -762,7 +764,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Octocorallia</td>
 <td headers="order" class="gt_row gt_left gt_striped">Scleralcyonacea</td>
 <td headers="family" class="gt_row gt_left gt_striped">Primnoidae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Primnoidae</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="UHJpbW5vaWRhZTxicj4oVGVudGF0aXZlOiAqTmFyZWxsYSogc3AuKQ=="><span class="gt_from_md">Primnoidae<br>(Tentative: <em>Narella</em> sp.)</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">978</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped"></td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped"></td></tr>
@@ -770,7 +772,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Octocorallia</td>
 <td headers="order" class="gt_row gt_left">Scleralcyonacea</td>
 <td headers="family" class="gt_row gt_left">Coralliidae</td>
-<td headers="scientificName" class="gt_row gt_left">Anthomastinae</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KkFudGhvbWFzdGluYWUqIHNwLg=="><span class="gt_from_md"><em>Anthomastinae</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">464</td>
 <td headers="MaxN" class="gt_row gt_center"></td>
 <td headers="Freq_occ" class="gt_row gt_center"></td></tr>
@@ -778,7 +780,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Octocorallia</td>
 <td headers="order" class="gt_row gt_left gt_striped">Scleralcyonacea</td>
 <td headers="family" class="gt_row gt_left gt_striped"></td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Pennatuloidea</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="UGVubmF0dWxvaWRlYQ=="><span class="gt_from_md">Pennatuloidea</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">443</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped"></td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped"></td></tr>
@@ -786,7 +788,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Octocorallia</td>
 <td headers="order" class="gt_row gt_left"></td>
 <td headers="family" class="gt_row gt_left"></td>
-<td headers="scientificName" class="gt_row gt_left">Octocorallia</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="T2N0b2NvcmFsbGlh"><span class="gt_from_md">Octocorallia</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">978</td>
 <td headers="MaxN" class="gt_row gt_center"></td>
 <td headers="Freq_occ" class="gt_row gt_center"></td></tr>
@@ -794,7 +796,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Scyphozoa</td>
 <td headers="order" class="gt_row gt_left gt_striped"></td>
 <td headers="family" class="gt_row gt_left gt_striped"></td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Scyphozoa</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="U2N5cGhvem9h"><span class="gt_from_md">Scyphozoa</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">758 - 1051</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped"></td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped"></td></tr>
@@ -802,7 +804,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Tentaculata</td>
 <td headers="order" class="gt_row gt_left">Platyctenida</td>
 <td headers="family" class="gt_row gt_left">Lyroctenidae</td>
-<td headers="scientificName" class="gt_row gt_left">Lyrocteis</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="Kkx5cm9jdGVpcyogc3Au"><span class="gt_from_md"><em>Lyrocteis</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">434 - 443</td>
 <td headers="MaxN" class="gt_row gt_center"></td>
 <td headers="Freq_occ" class="gt_row gt_center"></td></tr>
@@ -810,7 +812,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped"></td>
 <td headers="order" class="gt_row gt_left gt_striped"></td>
 <td headers="family" class="gt_row gt_left gt_striped"></td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Ctenophora</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="Q3Rlbm9waG9yYQ=="><span class="gt_from_md">Ctenophora</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">434 - 1962</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped"></td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped"></td></tr>
@@ -818,7 +820,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left"></td>
 <td headers="order" class="gt_row gt_left"></td>
 <td headers="family" class="gt_row gt_left"></td>
-<td headers="scientificName" class="gt_row gt_left">Nemertea</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="TmVtZXJ0ZWE="><span class="gt_from_md">Nemertea</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">1058</td>
 <td headers="MaxN" class="gt_row gt_center">1</td>
 <td headers="Freq_occ" class="gt_row gt_center">3</td></tr>
@@ -826,7 +828,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Polychaeta</td>
 <td headers="order" class="gt_row gt_left gt_striped">Terebellida</td>
 <td headers="family" class="gt_row gt_left gt_striped">Acrocirridae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Swima</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KlN3aW1hKiBzcC4="><span class="gt_from_md"><em>Swima</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">744</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped"></td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped"></td></tr>
@@ -834,7 +836,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Polychaeta</td>
 <td headers="order" class="gt_row gt_left">Eunicida</td>
 <td headers="family" class="gt_row gt_left">Onuphidae</td>
-<td headers="scientificName" class="gt_row gt_left">Onuphidae</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="T251cGhpZGFlPGJyPihUZW50YXRpdmU6ICpIeWFsaW5vZWNpYSogc3AuKQ=="><span class="gt_from_md">Onuphidae<br>(Tentative: <em>Hyalinoecia</em> sp.)</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">464</td>
 <td headers="MaxN" class="gt_row gt_center">1</td>
 <td headers="Freq_occ" class="gt_row gt_center">3</td></tr>
@@ -842,7 +844,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Polychaeta</td>
 <td headers="order" class="gt_row gt_left gt_striped">Phyllodocida</td>
 <td headers="family" class="gt_row gt_left gt_striped">Tomopteridae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Tomopteridae</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="VG9tb3B0ZXJpZGFl"><span class="gt_from_md">Tomopteridae</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">2046</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped"></td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped"></td></tr>
@@ -850,7 +852,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Polychaeta</td>
 <td headers="order" class="gt_row gt_left"></td>
 <td headers="family" class="gt_row gt_left"></td>
-<td headers="scientificName" class="gt_row gt_left">Polychaeta</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="UG9seWNoYWV0YQ=="><span class="gt_from_md">Polychaeta</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">464</td>
 <td headers="MaxN" class="gt_row gt_center"></td>
 <td headers="Freq_occ" class="gt_row gt_center"></td></tr>
@@ -858,7 +860,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped"></td>
 <td headers="order" class="gt_row gt_left gt_striped"></td>
 <td headers="family" class="gt_row gt_left gt_striped"></td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Annelida</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="QW5uZWxpZGE="><span class="gt_from_md">Annelida</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">434</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped">3</td></tr>
@@ -866,7 +868,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Cephalopoda</td>
 <td headers="order" class="gt_row gt_left"></td>
 <td headers="family" class="gt_row gt_left"></td>
-<td headers="scientificName" class="gt_row gt_left">Decapodiformes</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="RGVjYXBvZGlmb3JtZXM8YnI+KFRlbnRhdGl2ZTogKklkaW90ZXV0aGlzIGNvcmRpZm9ybWlzKik="><span class="gt_from_md">Decapodiformes<br>(Tentative: <em>Idioteuthis cordiformis</em>)</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">1177</td>
 <td headers="MaxN" class="gt_row gt_center">1</td>
 <td headers="Freq_occ" class="gt_row gt_center">3</td></tr>
@@ -874,7 +876,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Gastropoda</td>
 <td headers="order" class="gt_row gt_left gt_striped"></td>
 <td headers="family" class="gt_row gt_left gt_striped"></td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Gastropoda</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="R2FzdHJvcG9kYQ=="><span class="gt_from_md">Gastropoda</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">434 - 555</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">5</td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped">3</td></tr>
@@ -882,7 +884,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Copepoda</td>
 <td headers="order" class="gt_row gt_left"></td>
 <td headers="family" class="gt_row gt_left"></td>
-<td headers="scientificName" class="gt_row gt_left">Copepoda</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="Q29wZXBvZGE="><span class="gt_from_md">Copepoda</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">1051 - 2011</td>
 <td headers="MaxN" class="gt_row gt_center"></td>
 <td headers="Freq_occ" class="gt_row gt_center"></td></tr>
@@ -890,7 +892,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Malacostraca</td>
 <td headers="order" class="gt_row gt_left gt_striped">Amphipoda</td>
 <td headers="family" class="gt_row gt_left gt_striped">Eurytheneidae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Eurythenes</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KkV1cnl0aGVuZXMqIHNwLg=="><span class="gt_from_md"><em>Eurythenes</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">1041 - 2051</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">5</td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped">26</td></tr>
@@ -898,7 +900,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Malacostraca</td>
 <td headers="order" class="gt_row gt_left">Amphipoda</td>
 <td headers="family" class="gt_row gt_left"></td>
-<td headers="scientificName" class="gt_row gt_left">Amphipoda</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="QW1waGlwb2RhPGJyPihUZW50YXRpdmU6IEV1cnl0aGVuZXMp"><span class="gt_from_md">Amphipoda<br>(Tentative: Eurythenes)</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">390 - 2051</td>
 <td headers="MaxN" class="gt_row gt_center">1000</td>
 <td headers="Freq_occ" class="gt_row gt_center">88</td></tr>
@@ -906,7 +908,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Malacostraca</td>
 <td headers="order" class="gt_row gt_left gt_striped">Decapoda</td>
 <td headers="family" class="gt_row gt_left gt_striped">Acanthephyridae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Acanthephyridae</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="QWNhbnRoZXBoeXJpZGFl"><span class="gt_from_md">Acanthephyridae</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">443 - 2011</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">2</td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped">26</td></tr>
@@ -914,7 +916,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Malacostraca</td>
 <td headers="order" class="gt_row gt_left">Decapoda</td>
 <td headers="family" class="gt_row gt_left">Aristeidae</td>
-<td headers="scientificName" class="gt_row gt_left">Aristeidae</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="QXJpc3RlaWRhZQ=="><span class="gt_from_md">Aristeidae</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">443 - 2051</td>
 <td headers="MaxN" class="gt_row gt_center">2</td>
 <td headers="Freq_occ" class="gt_row gt_center">47</td></tr>
@@ -922,7 +924,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Malacostraca</td>
 <td headers="order" class="gt_row gt_left gt_striped">Decapoda</td>
 <td headers="family" class="gt_row gt_left gt_striped">Eumunididae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Eumunida</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KkV1bXVuaWRhKiBzcC4="><span class="gt_from_md"><em>Eumunida</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">390</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped">3</td></tr>
@@ -930,7 +932,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Malacostraca</td>
 <td headers="order" class="gt_row gt_left">Decapoda</td>
 <td headers="family" class="gt_row gt_left">Homolidae</td>
-<td headers="scientificName" class="gt_row gt_left">Homolidae</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="SG9tb2xpZGFl"><span class="gt_from_md">Homolidae</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">390 - 1050</td>
 <td headers="MaxN" class="gt_row gt_center">2</td>
 <td headers="Freq_occ" class="gt_row gt_center">21</td></tr>
@@ -938,7 +940,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Malacostraca</td>
 <td headers="order" class="gt_row gt_left gt_striped">Decapoda</td>
 <td headers="family" class="gt_row gt_left gt_striped">Homolidae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Lamoha</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KkxhbW9oYSogc3Au"><span class="gt_from_md"><em>Lamoha</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">390 - 1177</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">2</td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped">24</td></tr>
@@ -946,7 +948,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Malacostraca</td>
 <td headers="order" class="gt_row gt_left">Decapoda</td>
 <td headers="family" class="gt_row gt_left">Lithodidae</td>
-<td headers="scientificName" class="gt_row gt_left">Lithodidae</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="TGl0aG9kaWRhZQ=="><span class="gt_from_md">Lithodidae</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">929 - 1005</td>
 <td headers="MaxN" class="gt_row gt_center">1</td>
 <td headers="Freq_occ" class="gt_row gt_center">9</td></tr>
@@ -954,7 +956,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Malacostraca</td>
 <td headers="order" class="gt_row gt_left gt_striped">Decapoda</td>
 <td headers="family" class="gt_row gt_left gt_striped">Lithodidae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Neolithodes</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="Kk5lb2xpdGhvZGVzKiBzcC4="><span class="gt_from_md"><em>Neolithodes</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">1141</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">2</td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped">3</td></tr>
@@ -962,7 +964,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Malacostraca</td>
 <td headers="order" class="gt_row gt_left">Decapoda</td>
 <td headers="family" class="gt_row gt_left">Lithodidae</td>
-<td headers="scientificName" class="gt_row gt_left">Paralomis</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KlBhcmFsb21pcyogc3Au"><span class="gt_from_md"><em>Paralomis</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">565 - 758</td>
 <td headers="MaxN" class="gt_row gt_center">1</td>
 <td headers="Freq_occ" class="gt_row gt_center">6</td></tr>
@@ -970,7 +972,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Malacostraca</td>
 <td headers="order" class="gt_row gt_left gt_striped">Decapoda</td>
 <td headers="family" class="gt_row gt_left gt_striped">Munididae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Agononida</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KkFnb25vbmlkYSogc3Au"><span class="gt_from_md"><em>Agononida</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">390 - 758</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">9</td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped">21</td></tr>
@@ -978,7 +980,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Malacostraca</td>
 <td headers="order" class="gt_row gt_left">Decapoda</td>
 <td headers="family" class="gt_row gt_left">Munididae</td>
-<td headers="scientificName" class="gt_row gt_left">Munida</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="Kk11bmlkYSogc3Au"><span class="gt_from_md"><em>Munida</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">464 - 1041</td>
 <td headers="MaxN" class="gt_row gt_center">1</td>
 <td headers="Freq_occ" class="gt_row gt_center">9</td></tr>
@@ -986,7 +988,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Malacostraca</td>
 <td headers="order" class="gt_row gt_left gt_striped">Decapoda</td>
 <td headers="family" class="gt_row gt_left gt_striped">Munididae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Munididae</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="TXVuaWRpZGFlPGJyPihUZW50YXRpdmU6ICpBZ29ub25pZGEqIHNwLik="><span class="gt_from_md">Munididae<br>(Tentative: <em>Agononida</em> sp.)</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">390 - 979</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">3</td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped">21</td></tr>
@@ -994,7 +996,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Malacostraca</td>
 <td headers="order" class="gt_row gt_left">Decapoda</td>
 <td headers="family" class="gt_row gt_left">Munididae</td>
-<td headers="scientificName" class="gt_row gt_left">Paramunida</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KlBhcmFtdW5pZGEqIHNwLg=="><span class="gt_from_md"><em>Paramunida</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">443</td>
 <td headers="MaxN" class="gt_row gt_center">2</td>
 <td headers="Freq_occ" class="gt_row gt_center">3</td></tr>
@@ -1002,7 +1004,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Malacostraca</td>
 <td headers="order" class="gt_row gt_left gt_striped">Decapoda</td>
 <td headers="family" class="gt_row gt_left gt_striped">Munidopsidae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Munidopsidae</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="TXVuaWRvcHNpZGFl"><span class="gt_from_md">Munidopsidae</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">978</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped">3</td></tr>
@@ -1010,7 +1012,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Malacostraca</td>
 <td headers="order" class="gt_row gt_left">Decapoda</td>
 <td headers="family" class="gt_row gt_left">Nematocarcinidae</td>
-<td headers="scientificName" class="gt_row gt_left">Nematocarcinus</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="Kk5lbWF0b2NhcmNpbnVzKiBzcC4="><span class="gt_from_md"><em>Nematocarcinus</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">390 - 2051</td>
 <td headers="MaxN" class="gt_row gt_center">8</td>
 <td headers="Freq_occ" class="gt_row gt_center">53</td></tr>
@@ -1018,7 +1020,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Malacostraca</td>
 <td headers="order" class="gt_row gt_left gt_striped">Decapoda</td>
 <td headers="family" class="gt_row gt_left gt_striped">Oregoniidae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Cyrtomaia</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KkN5cnRvbWFpYSogc3Au"><span class="gt_from_md"><em>Cyrtomaia</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">390 - 555</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">2</td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped">9</td></tr>
@@ -1026,7 +1028,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Malacostraca</td>
 <td headers="order" class="gt_row gt_left">Decapoda</td>
 <td headers="family" class="gt_row gt_left">Pandalidae</td>
-<td headers="scientificName" class="gt_row gt_left">Heterocarpus</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KkhldGVyb2NhcnB1cyogc3AuPGJyPihUZW50YXRpdmU6ICpIZXRlcm9jYXJwdXMgZW5zaWZlciosICpIZXRlcm9jYXJwdXMgaGF5YXNoaWkqKQ=="><span class="gt_from_md"><em>Heterocarpus</em> sp.<br>(Tentative: <em>Heterocarpus ensifer</em>, <em>Heterocarpus hayashii</em>)</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">390 - 1177</td>
 <td headers="MaxN" class="gt_row gt_center">35</td>
 <td headers="Freq_occ" class="gt_row gt_center">53</td></tr>
@@ -1034,7 +1036,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Malacostraca</td>
 <td headers="order" class="gt_row gt_left gt_striped">Decapoda</td>
 <td headers="family" class="gt_row gt_left gt_striped">Pandalidae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped" style="font-style: italic;">Heterocarpus ensifer</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KkhldGVyb2NhcnB1cyBlbnNpZmVyKg=="><span class="gt_from_md"><em>Heterocarpus ensifer</em></span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">390 - 504</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">13</td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped">9</td></tr>
@@ -1042,7 +1044,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Malacostraca</td>
 <td headers="order" class="gt_row gt_left">Decapoda</td>
 <td headers="family" class="gt_row gt_left">Pandalidae</td>
-<td headers="scientificName" class="gt_row gt_left" style="font-style: italic;">Heterocarpus laevigatus</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KkhldGVyb2NhcnB1cyBsYWV2aWdhdHVzKg=="><span class="gt_from_md"><em>Heterocarpus laevigatus</em></span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">464 - 1051</td>
 <td headers="MaxN" class="gt_row gt_center">18</td>
 <td headers="Freq_occ" class="gt_row gt_center">12</td></tr>
@@ -1050,7 +1052,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Malacostraca</td>
 <td headers="order" class="gt_row gt_left gt_striped">Decapoda</td>
 <td headers="family" class="gt_row gt_left gt_striped">Pandalidae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Pandalidae</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="UGFuZGFsaWRhZTxicj4oVGVudGF0aXZlOiAqSGV0ZXJvY2FycHVzKiBzcC4sICpQbGVzaW9uaWthKiBzcC4p"><span class="gt_from_md">Pandalidae<br>(Tentative: <em>Heterocarpus</em> sp., <em>Plesionika</em> sp.)</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">390 - 1177</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">19</td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped">32</td></tr>
@@ -1058,7 +1060,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Malacostraca</td>
 <td headers="order" class="gt_row gt_left">Decapoda</td>
 <td headers="family" class="gt_row gt_left">Pandalidae</td>
-<td headers="scientificName" class="gt_row gt_left">Plesionika</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KlBsZXNpb25pa2EqIHNwLg=="><span class="gt_from_md"><em>Plesionika</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">390 - 989</td>
 <td headers="MaxN" class="gt_row gt_center">17</td>
 <td headers="Freq_occ" class="gt_row gt_center">35</td></tr>
@@ -1066,7 +1068,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Malacostraca</td>
 <td headers="order" class="gt_row gt_left gt_striped">Decapoda</td>
 <td headers="family" class="gt_row gt_left gt_striped">Parapaguridae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Parapagurus</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KlBhcmFwYWd1cnVzKiBzcC4="><span class="gt_from_md"><em>Parapagurus</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">1050 - 1177</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">2</td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped">6</td></tr>
@@ -1074,7 +1076,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Malacostraca</td>
 <td headers="order" class="gt_row gt_left">Decapoda</td>
 <td headers="family" class="gt_row gt_left">Parapaguridae</td>
-<td headers="scientificName" class="gt_row gt_left" style="font-style: italic;">Sympagurus dofleini</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KlN5bXBhZ3VydXMgZG9mbGVpbmkq"><span class="gt_from_md"><em>Sympagurus dofleini</em></span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">443 - 565</td>
 <td headers="MaxN" class="gt_row gt_center">1</td>
 <td headers="Freq_occ" class="gt_row gt_center">9</td></tr>
@@ -1082,7 +1084,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Malacostraca</td>
 <td headers="order" class="gt_row gt_left gt_striped">Decapoda</td>
 <td headers="family" class="gt_row gt_left gt_striped">Benthesicymidae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Benthesicymidae</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="QmVudGhlc2ljeW1pZGFl"><span class="gt_from_md">Benthesicymidae</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">989 - 2015</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">2</td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped">18</td></tr>
@@ -1090,7 +1092,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Malacostraca</td>
 <td headers="order" class="gt_row gt_left">Decapoda</td>
 <td headers="family" class="gt_row gt_left">Diogenidae</td>
-<td headers="scientificName" class="gt_row gt_left">Ciliopagurus</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KkNpbGlvcGFndXJ1cyogc3Au"><span class="gt_from_md"><em>Ciliopagurus</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">434</td>
 <td headers="MaxN" class="gt_row gt_center">6</td>
 <td headers="Freq_occ" class="gt_row gt_center">3</td></tr>
@@ -1098,7 +1100,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Malacostraca</td>
 <td headers="order" class="gt_row gt_left gt_striped">Decapoda</td>
 <td headers="family" class="gt_row gt_left gt_striped">Progeryonidae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Progeryonidae</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="UHJvZ2VyeW9uaWRhZQ=="><span class="gt_from_md">Progeryonidae</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">434</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped">3</td></tr>
@@ -1106,7 +1108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Malacostraca</td>
 <td headers="order" class="gt_row gt_left">Decapoda</td>
 <td headers="family" class="gt_row gt_left"></td>
-<td headers="scientificName" class="gt_row gt_left">Anomura</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="QW5vbXVyYTxicj4oVGVudGF0aXZlOiBHYWxhdGhlb2lkZWEsIE11bmlkaWRhZSk="><span class="gt_from_md">Anomura<br>(Tentative: Galatheoidea, Munididae)</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">390 - 978</td>
 <td headers="MaxN" class="gt_row gt_center">3</td>
 <td headers="Freq_occ" class="gt_row gt_center">15</td></tr>
@@ -1114,7 +1116,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Malacostraca</td>
 <td headers="order" class="gt_row gt_left gt_striped">Decapoda</td>
 <td headers="family" class="gt_row gt_left gt_striped"></td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Brachyura</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="QnJhY2h5dXJhPGJyPihUZW50YXRpdmU6IENoYWNlb24sIEhvbW9saWRhZSwgUGxhdHltYWlhKQ=="><span class="gt_from_md">Brachyura<br>(Tentative: Chaceon, Homolidae, Platymaia)</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">464 - 1058</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped">15</td></tr>
@@ -1122,7 +1124,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Malacostraca</td>
 <td headers="order" class="gt_row gt_left">Decapoda</td>
 <td headers="family" class="gt_row gt_left"></td>
-<td headers="scientificName" class="gt_row gt_left">Caridea</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="Q2FyaWRlYTxicj4oVGVudGF0aXZlOiBBY2FudGhlcGh5cmlkYWUsIFBhbmRhbGlkYWUp"><span class="gt_from_md">Caridea<br>(Tentative: Acanthephyridae, Pandalidae)</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">390 - 1982</td>
 <td headers="MaxN" class="gt_row gt_center">5</td>
 <td headers="Freq_occ" class="gt_row gt_center">32</td></tr>
@@ -1130,7 +1132,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Malacostraca</td>
 <td headers="order" class="gt_row gt_left gt_striped">Decapoda</td>
 <td headers="family" class="gt_row gt_left gt_striped"></td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Chirostyloidea</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="Q2hpcm9zdHlsb2lkZWE="><span class="gt_from_md">Chirostyloidea</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">434</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">4</td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped">3</td></tr>
@@ -1138,7 +1140,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Malacostraca</td>
 <td headers="order" class="gt_row gt_left">Decapoda</td>
 <td headers="family" class="gt_row gt_left"></td>
-<td headers="scientificName" class="gt_row gt_left">Decapoda</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="RGVjYXBvZGE8YnI+KFRlbnRhdGl2ZTogQ2FyaWRlYSwgRGVuZHJvYnJhbmNoaWF0YSk="><span class="gt_from_md">Decapoda<br>(Tentative: Caridea, Dendrobranchiata)</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">434 - 2046</td>
 <td headers="MaxN" class="gt_row gt_center">2</td>
 <td headers="Freq_occ" class="gt_row gt_center">41</td></tr>
@@ -1146,7 +1148,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Malacostraca</td>
 <td headers="order" class="gt_row gt_left gt_striped">Decapoda</td>
 <td headers="family" class="gt_row gt_left gt_striped"></td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Paguroidea</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="UGFndXJvaWRlYQ=="><span class="gt_from_md">Paguroidea</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">390 - 443</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">5</td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped">9</td></tr>
@@ -1154,7 +1156,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Malacostraca</td>
 <td headers="order" class="gt_row gt_left">Decapoda</td>
 <td headers="family" class="gt_row gt_left"></td>
-<td headers="scientificName" class="gt_row gt_left">Penaeoidea</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="UGVuYWVvaWRlYTxicj4oVGVudGF0aXZlOiBCZW50aGVzaWN5bWlkYWUp"><span class="gt_from_md">Penaeoidea<br>(Tentative: Benthesicymidae)</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">565 - 2051</td>
 <td headers="MaxN" class="gt_row gt_center">4</td>
 <td headers="Freq_occ" class="gt_row gt_center">68</td></tr>
@@ -1162,7 +1164,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Malacostraca</td>
 <td headers="order" class="gt_row gt_left gt_striped">Mysida</td>
 <td headers="family" class="gt_row gt_left gt_striped"></td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Mysida</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="TXlzaWRh"><span class="gt_from_md">Mysida</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">390 - 2051</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">35</td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped">68</td></tr>
@@ -1170,7 +1172,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Malacostraca</td>
 <td headers="order" class="gt_row gt_left">Isopoda</td>
 <td headers="family" class="gt_row gt_left">Aegidae</td>
-<td headers="scientificName" class="gt_row gt_left">Aegidae</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="QWVnaWRhZQ=="><span class="gt_from_md">Aegidae</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">434</td>
 <td headers="MaxN" class="gt_row gt_center"></td>
 <td headers="Freq_occ" class="gt_row gt_center"></td></tr>
@@ -1178,7 +1180,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Malacostraca</td>
 <td headers="order" class="gt_row gt_left gt_striped">Isopoda</td>
 <td headers="family" class="gt_row gt_left gt_striped">Munnopsidae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Munnopsidae</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="TXVubm9wc2lkYWU="><span class="gt_from_md">Munnopsidae</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">1051 - 2051</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped">3</td></tr>
@@ -1186,7 +1188,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Malacostraca</td>
 <td headers="order" class="gt_row gt_left">Isopoda</td>
 <td headers="family" class="gt_row gt_left"></td>
-<td headers="scientificName" class="gt_row gt_left">Isopoda</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="SXNvcG9kYQ=="><span class="gt_from_md">Isopoda</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">390 - 2046</td>
 <td headers="MaxN" class="gt_row gt_center"></td>
 <td headers="Freq_occ" class="gt_row gt_center"></td></tr>
@@ -1194,7 +1196,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Malacostraca</td>
 <td headers="order" class="gt_row gt_left gt_striped">Lophogastrida</td>
 <td headers="family" class="gt_row gt_left gt_striped">Gnathophausiidae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Gnathophausia</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KkduYXRob3BoYXVzaWEqIHNwLg=="><span class="gt_from_md"><em>Gnathophausia</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">744</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped">3</td></tr>
@@ -1202,7 +1204,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Malacostraca</td>
 <td headers="order" class="gt_row gt_left"></td>
 <td headers="family" class="gt_row gt_left"></td>
-<td headers="scientificName" class="gt_row gt_left">Peracarida</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="UGVyYWNhcmlkYTxicj4oVGVudGF0aXZlOiBNeXNpZGEp"><span class="gt_from_md">Peracarida<br>(Tentative: Mysida)</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">1982</td>
 <td headers="MaxN" class="gt_row gt_center">1</td>
 <td headers="Freq_occ" class="gt_row gt_center">3</td></tr>
@@ -1210,7 +1212,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped"></td>
 <td headers="order" class="gt_row gt_left gt_striped"></td>
 <td headers="family" class="gt_row gt_left gt_striped"></td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Arthropoda</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="QXJ0aHJvcG9kYQ=="><span class="gt_from_md">Arthropoda</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">978 - 989</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped"></td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped"></td></tr>
@@ -1218,7 +1220,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Asteroidea</td>
 <td headers="order" class="gt_row gt_left">Valvatida</td>
 <td headers="family" class="gt_row gt_left">Goniasteridae</td>
-<td headers="scientificName" class="gt_row gt_left">Goniasteridae</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="R29uaWFzdGVyaWRhZQ=="><span class="gt_from_md">Goniasteridae</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">555</td>
 <td headers="MaxN" class="gt_row gt_center"></td>
 <td headers="Freq_occ" class="gt_row gt_center"></td></tr>
@@ -1226,7 +1228,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Asteroidea</td>
 <td headers="order" class="gt_row gt_left gt_striped">Valvatida</td>
 <td headers="family" class="gt_row gt_left gt_striped">Goniasteridae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Mediaster</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="Kk1lZGlhc3Rlciogc3AuPGJyPihUZW50YXRpdmU6ICpNZWRpYXN0ZXIgb3JuYXR1cyop"><span class="gt_from_md"><em>Mediaster</em> sp.<br>(Tentative: <em>Mediaster ornatus</em>)</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">443 - 521</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">3</td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped">6</td></tr>
@@ -1234,7 +1236,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Asteroidea</td>
 <td headers="order" class="gt_row gt_left">Valvatida</td>
 <td headers="family" class="gt_row gt_left">Asterinidae</td>
-<td headers="scientificName" class="gt_row gt_left" style="font-style: italic;">Tremaster mirabilis</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KlRyZW1hc3RlciBtaXJhYmlsaXMq"><span class="gt_from_md"><em>Tremaster mirabilis</em></span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">434</td>
 <td headers="MaxN" class="gt_row gt_center"></td>
 <td headers="Freq_occ" class="gt_row gt_center"></td></tr>
@@ -1242,7 +1244,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Asteroidea</td>
 <td headers="order" class="gt_row gt_left gt_striped">Spinulosida</td>
 <td headers="family" class="gt_row gt_left gt_striped">Echinasteridae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Henricia</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KkhlbnJpY2lhKiBzcC4="><span class="gt_from_md"><em>Henricia</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">978</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped"></td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped"></td></tr>
@@ -1250,7 +1252,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Crinoidea</td>
 <td headers="order" class="gt_row gt_left">Comatulida</td>
 <td headers="family" class="gt_row gt_left"></td>
-<td headers="scientificName" class="gt_row gt_left">Comatulida</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="Q29tYXR1bGlkYQ=="><span class="gt_from_md">Comatulida</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">978</td>
 <td headers="MaxN" class="gt_row gt_center"></td>
 <td headers="Freq_occ" class="gt_row gt_center"></td></tr>
@@ -1258,7 +1260,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Crinoidea</td>
 <td headers="order" class="gt_row gt_left gt_striped">Isocrinida</td>
 <td headers="family" class="gt_row gt_left gt_striped">Isocrinidae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Metacrinus</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="Kk1ldGFjcmludXMqIHNwLg=="><span class="gt_from_md"><em>Metacrinus</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">555</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped"></td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped"></td></tr>
@@ -1266,7 +1268,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Echinoidea</td>
 <td headers="order" class="gt_row gt_left">Aspidodiadematoida</td>
 <td headers="family" class="gt_row gt_left">Aspidodiadematidae</td>
-<td headers="scientificName" class="gt_row gt_left">Aspidodiadematidae</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="QXNwaWRvZGlhZGVtYXRpZGFl"><span class="gt_from_md">Aspidodiadematidae</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">555</td>
 <td headers="MaxN" class="gt_row gt_center"></td>
 <td headers="Freq_occ" class="gt_row gt_center"></td></tr>
@@ -1274,7 +1276,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Echinoidea</td>
 <td headers="order" class="gt_row gt_left gt_striped">Echinothurioida</td>
 <td headers="family" class="gt_row gt_left gt_striped">Echinothuriidae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Echinothuriinae</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KkVjaGlub3RodXJpaW5hZSogc3Au"><span class="gt_from_md"><em>Echinothuriinae</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">390 - 464</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">2</td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped">6</td></tr>
@@ -1282,7 +1284,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Echinoidea</td>
 <td headers="order" class="gt_row gt_left"></td>
 <td headers="family" class="gt_row gt_left"></td>
-<td headers="scientificName" class="gt_row gt_left">Echinoidea</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="RWNoaW5vaWRlYTxicj4oVGVudGF0aXZlOiBFY2hpbm90aHVyaWlkYWUp"><span class="gt_from_md">Echinoidea<br>(Tentative: Echinothuriidae)</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">390 - 758</td>
 <td headers="MaxN" class="gt_row gt_center">1</td>
 <td headers="Freq_occ" class="gt_row gt_center">3</td></tr>
@@ -1290,7 +1292,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Holothuroidea</td>
 <td headers="order" class="gt_row gt_left gt_striped">Elasipodida</td>
 <td headers="family" class="gt_row gt_left gt_striped">Elpidiidae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Elpidiidae</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="RWxwaWRpaWRhZQ=="><span class="gt_from_md">Elpidiidae</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">1982</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped"></td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped"></td></tr>
@@ -1298,7 +1300,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Ophiuroidea</td>
 <td headers="order" class="gt_row gt_left">Euryalida</td>
 <td headers="family" class="gt_row gt_left">Euryalidae</td>
-<td headers="scientificName" class="gt_row gt_left">Ophiocreas</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="Kk9waGlvY3JlYXMqIHNwLjxicj4oVGVudGF0aXZlOiAqT3BoaW9jcmVhcyBjYXVkYXR1cyop"><span class="gt_from_md"><em>Ophiocreas</em> sp.<br>(Tentative: <em>Ophiocreas caudatus</em>)</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">443</td>
 <td headers="MaxN" class="gt_row gt_center"></td>
 <td headers="Freq_occ" class="gt_row gt_center"></td></tr>
@@ -1306,7 +1308,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Ophiuroidea</td>
 <td headers="order" class="gt_row gt_left gt_striped"></td>
 <td headers="family" class="gt_row gt_left gt_striped"></td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Ophiuroidea</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="T3BoaXVyb2lkZWE="><span class="gt_from_md">Ophiuroidea</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">390 - 978</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped">15</td></tr>
@@ -1314,7 +1316,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left"></td>
 <td headers="order" class="gt_row gt_left"></td>
 <td headers="family" class="gt_row gt_left"></td>
-<td headers="scientificName" class="gt_row gt_left">Chaetognatha</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="Q2hhZXRvZ25hdGhh"><span class="gt_from_md">Chaetognatha</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">390 - 2006</td>
 <td headers="MaxN" class="gt_row gt_center"></td>
 <td headers="Freq_occ" class="gt_row gt_center"></td></tr>
@@ -1322,7 +1324,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Myxini</td>
 <td headers="order" class="gt_row gt_left gt_striped">Myxiniformes</td>
 <td headers="family" class="gt_row gt_left gt_striped">Myxinidae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Eptatretus</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KkVwdGF0cmV0dXMqIHNwLjxicj4oVGVudGF0aXZlOiAqRXB0YXRyZXR1cyBjZi4gY2FybGh1YmJzaSop"><span class="gt_from_md"><em>Eptatretus</em> sp.<br>(Tentative: <em>Eptatretus cf. carlhubbsi</em>)</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">2046</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped">3</td></tr>
@@ -1330,7 +1332,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Myxini</td>
 <td headers="order" class="gt_row gt_left">Myxiniformes</td>
 <td headers="family" class="gt_row gt_left">Myxinidae</td>
-<td headers="scientificName" class="gt_row gt_left">Myxinidae</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="TXl4aW5pZGFl"><span class="gt_from_md">Myxinidae</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">2046</td>
 <td headers="MaxN" class="gt_row gt_center">1</td>
 <td headers="Freq_occ" class="gt_row gt_center">3</td></tr>
@@ -1338,7 +1340,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Myxini</td>
 <td headers="order" class="gt_row gt_left gt_striped"></td>
 <td headers="family" class="gt_row gt_left gt_striped"></td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Myxini</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="TXl4aW5p"><span class="gt_from_md">Myxini</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">2011</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped">3</td></tr>
@@ -1346,7 +1348,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Holocephali</td>
 <td headers="order" class="gt_row gt_left">Chimaeriformes</td>
 <td headers="family" class="gt_row gt_left">Chimaeridae</td>
-<td headers="scientificName" class="gt_row gt_left">Chimaeridae</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="Q2hpbWFlcmlkYWU8YnI+KFRlbnRhdGl2ZTogKkh5ZHJvbGFndXMqIHNwLik="><span class="gt_from_md">Chimaeridae<br>(Tentative: <em>Hydrolagus</em> sp.)</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">2006 - 2046</td>
 <td headers="MaxN" class="gt_row gt_center">2</td>
 <td headers="Freq_occ" class="gt_row gt_center">6</td></tr>
@@ -1354,7 +1356,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Holocephali</td>
 <td headers="order" class="gt_row gt_left gt_striped">Chimaeriformes</td>
 <td headers="family" class="gt_row gt_left gt_striped">Chimaeridae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Hydrolagus</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="Kkh5ZHJvbGFndXMqIHNwLg=="><span class="gt_from_md"><em>Hydrolagus</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">1947 - 2046</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">2</td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped">29</td></tr>
@@ -1362,7 +1364,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Elasmobranchii</td>
 <td headers="order" class="gt_row gt_left">Carcharhiniformes</td>
 <td headers="family" class="gt_row gt_left">Pseudotriakidae</td>
-<td headers="scientificName" class="gt_row gt_left" style="font-style: italic;">Pseudotriakis microdon</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KlBzZXVkb3RyaWFraXMgbWljcm9kb24q"><span class="gt_from_md"><em>Pseudotriakis microdon</em></span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">390 - 1177</td>
 <td headers="MaxN" class="gt_row gt_center">2</td>
 <td headers="Freq_occ" class="gt_row gt_center">56</td></tr>
@@ -1370,7 +1372,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Elasmobranchii</td>
 <td headers="order" class="gt_row gt_left gt_striped">Echinorhiniformes</td>
 <td headers="family" class="gt_row gt_left gt_striped">Echinorhinidae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped" style="font-style: italic;">Echinorhinus cookei</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KkVjaGlub3JoaW51cyBjb29rZWkq"><span class="gt_from_md"><em>Echinorhinus cookei</em></span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">390 - 443</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped">9</td></tr>
@@ -1378,7 +1380,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Elasmobranchii</td>
 <td headers="order" class="gt_row gt_left">Hexanchiformes</td>
 <td headers="family" class="gt_row gt_left">Hexanchidae</td>
-<td headers="scientificName" class="gt_row gt_left" style="font-style: italic;">Hexanchus griseus</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KkhleGFuY2h1cyBncmlzZXVzKg=="><span class="gt_from_md"><em>Hexanchus griseus</em></span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">390 - 1051</td>
 <td headers="MaxN" class="gt_row gt_center">2</td>
 <td headers="Freq_occ" class="gt_row gt_center">32</td></tr>
@@ -1386,7 +1388,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Elasmobranchii</td>
 <td headers="order" class="gt_row gt_left gt_striped">Lamniformes</td>
 <td headers="family" class="gt_row gt_left gt_striped">Odontaspididae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped" style="font-style: italic;">Odontaspis ferox</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="Kk9kb250YXNwaXMgZmVyb3gq"><span class="gt_from_md"><em>Odontaspis ferox</em></span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">978</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped">3</td></tr>
@@ -1394,7 +1396,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Elasmobranchii</td>
 <td headers="order" class="gt_row gt_left">Myliobatiformes</td>
 <td headers="family" class="gt_row gt_left">Plesiobatidae</td>
-<td headers="scientificName" class="gt_row gt_left" style="font-style: italic;">Plesiobatis daviesi</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KlBsZXNpb2JhdGlzIGRhdmllc2kq"><span class="gt_from_md"><em>Plesiobatis daviesi</em></span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">443</td>
 <td headers="MaxN" class="gt_row gt_center">1</td>
 <td headers="Freq_occ" class="gt_row gt_center">3</td></tr>
@@ -1402,7 +1404,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Elasmobranchii</td>
 <td headers="order" class="gt_row gt_left gt_striped">Squaliformes</td>
 <td headers="family" class="gt_row gt_left gt_striped">Centrophoridae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped" style="font-style: italic;">Centrophorus uyato</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KkNlbnRyb3Bob3J1cyB1eWF0byo="><span class="gt_from_md"><em>Centrophorus uyato</em></span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">464 - 758</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">2</td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped">9</td></tr>
@@ -1410,7 +1412,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Elasmobranchii</td>
 <td headers="order" class="gt_row gt_left">Squaliformes</td>
 <td headers="family" class="gt_row gt_left">Somniosidae</td>
-<td headers="scientificName" class="gt_row gt_left">Centroscymnus</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KkNlbnRyb3NjeW1udXMqIHNwLjxicj4oVGVudGF0aXZlOiAqQ2VudHJvc2N5bW51cyBvd3N0b25paSop"><span class="gt_from_md"><em>Centroscymnus</em> sp.<br>(Tentative: <em>Centroscymnus owstonii</em>)</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">1058</td>
 <td headers="MaxN" class="gt_row gt_center">1</td>
 <td headers="Freq_occ" class="gt_row gt_center">3</td></tr>
@@ -1418,7 +1420,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Elasmobranchii</td>
 <td headers="order" class="gt_row gt_left gt_striped">Squaliformes</td>
 <td headers="family" class="gt_row gt_left gt_striped">Somniosidae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Somniosidae</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="U29tbmlvc2lkYWU="><span class="gt_from_md">Somniosidae</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">978 - 2011</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped">15</td></tr>
@@ -1426,7 +1428,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Elasmobranchii</td>
 <td headers="order" class="gt_row gt_left">Squaliformes</td>
 <td headers="family" class="gt_row gt_left">Somniosidae</td>
-<td headers="scientificName" class="gt_row gt_left">Somniosus</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KlNvbW5pb3N1cyogc3AuPGJyPihUZW50YXRpdmU6ICpTb21uaW9zdXMgcGFjaWZpY3VzKik="><span class="gt_from_md"><em>Somniosus</em> sp.<br>(Tentative: <em>Somniosus pacificus</em>)</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">2003</td>
 <td headers="MaxN" class="gt_row gt_center">1</td>
 <td headers="Freq_occ" class="gt_row gt_center">3</td></tr>
@@ -1434,7 +1436,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Elasmobranchii</td>
 <td headers="order" class="gt_row gt_left gt_striped">Squaliformes</td>
 <td headers="family" class="gt_row gt_left gt_striped">Somniosidae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped" style="font-style: italic;">Somniosus pacificus</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KlNvbW5pb3N1cyBwYWNpZmljdXMq"><span class="gt_from_md"><em>Somniosus pacificus</em></span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">989 - 2011</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">2</td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped">12</td></tr>
@@ -1442,7 +1444,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Elasmobranchii</td>
 <td headers="order" class="gt_row gt_left">Squaliformes</td>
 <td headers="family" class="gt_row gt_left"></td>
-<td headers="scientificName" class="gt_row gt_left">Squaliformes</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="U3F1YWxpZm9ybWVz"><span class="gt_from_md">Squaliformes</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">565 - 1058</td>
 <td headers="MaxN" class="gt_row gt_center">1</td>
 <td headers="Freq_occ" class="gt_row gt_center">6</td></tr>
@@ -1450,7 +1452,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Elasmobranchii</td>
 <td headers="order" class="gt_row gt_left gt_striped">Torpediniformes</td>
 <td headers="family" class="gt_row gt_left gt_striped">Torpedinidae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Tetronarce</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KlRldHJvbmFyY2UqIHNwLjxicj4oVGVudGF0aXZlOiAqVGV0cm9uYXJjZSBub2JpbGlhbmEqKQ=="><span class="gt_from_md"><em>Tetronarce</em> sp.<br>(Tentative: <em>Tetronarce nobiliana</em>)</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">434</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped">3</td></tr>
@@ -1458,7 +1460,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Elasmobranchii</td>
 <td headers="order" class="gt_row gt_left"></td>
 <td headers="family" class="gt_row gt_left"></td>
-<td headers="scientificName" class="gt_row gt_left">Selachii</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="U2VsYWNoaWk="><span class="gt_from_md">Selachii</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">443 - 1051</td>
 <td headers="MaxN" class="gt_row gt_center">1</td>
 <td headers="Freq_occ" class="gt_row gt_center">12</td></tr>
@@ -1466,7 +1468,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Teleostei</td>
 <td headers="order" class="gt_row gt_left gt_striped">Ophidiiformes</td>
 <td headers="family" class="gt_row gt_left gt_striped">Ophidiidae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Bassogigas</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KkJhc3NvZ2lnYXMqIHNwLg=="><span class="gt_from_md"><em>Bassogigas</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">2003 - 2046</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped">6</td></tr>
@@ -1474,7 +1476,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Teleostei</td>
 <td headers="order" class="gt_row gt_left">Ophidiiformes</td>
 <td headers="family" class="gt_row gt_left">Ophidiidae</td>
-<td headers="scientificName" class="gt_row gt_left">Bassozetus</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KkJhc3NvemV0dXMqIHNwLg=="><span class="gt_from_md"><em>Bassozetus</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">2000</td>
 <td headers="MaxN" class="gt_row gt_center">1</td>
 <td headers="Freq_occ" class="gt_row gt_center">3</td></tr>
@@ -1482,7 +1484,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Teleostei</td>
 <td headers="order" class="gt_row gt_left gt_striped">Ophidiiformes</td>
 <td headers="family" class="gt_row gt_left gt_striped">Ophidiidae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Ophidiidae</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="T3BoaWRpaWRhZTxicj4oVGVudGF0aXZlOiAqQmFzc296ZXR1cyogc3AuLCAqUG9yb2dhZHVzKiBzcC4p"><span class="gt_from_md">Ophidiidae<br>(Tentative: <em>Bassozetus</em> sp., <em>Porogadus</em> sp.)</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">1947 - 2051</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped">24</td></tr>
@@ -1490,7 +1492,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Teleostei</td>
 <td headers="order" class="gt_row gt_left">Ophidiiformes</td>
 <td headers="family" class="gt_row gt_left">Ophidiidae</td>
-<td headers="scientificName" class="gt_row gt_left">Spectrunculus</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KlNwZWN0cnVuY3VsdXMqIHNwLg=="><span class="gt_from_md"><em>Spectrunculus</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">2000 - 2011</td>
 <td headers="MaxN" class="gt_row gt_center">1</td>
 <td headers="Freq_occ" class="gt_row gt_center">6</td></tr>
@@ -1498,7 +1500,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Teleostei</td>
 <td headers="order" class="gt_row gt_left gt_striped">Perciformes</td>
 <td headers="family" class="gt_row gt_left gt_striped">Liparidae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Liparidae</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="TGlwYXJpZGFl"><span class="gt_from_md">Liparidae</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">1177</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped">3</td></tr>
@@ -1506,7 +1508,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Teleostei</td>
 <td headers="order" class="gt_row gt_left">Perciformes</td>
 <td headers="family" class="gt_row gt_left">Zoarcidae</td>
-<td headers="scientificName" class="gt_row gt_left">Zoarcidae</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="Wm9hcmNpZGFl"><span class="gt_from_md">Zoarcidae</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">1005</td>
 <td headers="MaxN" class="gt_row gt_center"></td>
 <td headers="Freq_occ" class="gt_row gt_center"></td></tr>
@@ -1514,7 +1516,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Teleostei</td>
 <td headers="order" class="gt_row gt_left gt_striped">Perciformes</td>
 <td headers="family" class="gt_row gt_left gt_striped"></td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Scorpaenoidei</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="U2NvcnBhZW5vaWRlaQ=="><span class="gt_from_md">Scorpaenoidei</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">390</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped">3</td></tr>
@@ -1522,7 +1524,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Teleostei</td>
 <td headers="order" class="gt_row gt_left">Stomiiformes</td>
 <td headers="family" class="gt_row gt_left">Gonostomatidae</td>
-<td headers="scientificName" class="gt_row gt_left">Gonostomatidae</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="R29ub3N0b21hdGlkYWU="><span class="gt_from_md">Gonostomatidae</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">1177</td>
 <td headers="MaxN" class="gt_row gt_center"></td>
 <td headers="Freq_occ" class="gt_row gt_center"></td></tr>
@@ -1530,7 +1532,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Teleostei</td>
 <td headers="order" class="gt_row gt_left gt_striped">Stomiiformes</td>
 <td headers="family" class="gt_row gt_left gt_striped"></td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Stomiiformes</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="U3RvbWlpZm9ybWVz"><span class="gt_from_md">Stomiiformes</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">1982</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped"></td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped"></td></tr>
@@ -1538,7 +1540,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Teleostei</td>
 <td headers="order" class="gt_row gt_left">Acropomatiformes</td>
 <td headers="family" class="gt_row gt_left">Epigonidae</td>
-<td headers="scientificName" class="gt_row gt_left">Epigonidae</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="RXBpZ29uaWRhZQ=="><span class="gt_from_md">Epigonidae</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">390 - 443</td>
 <td headers="MaxN" class="gt_row gt_center"></td>
 <td headers="Freq_occ" class="gt_row gt_center"></td></tr>
@@ -1546,7 +1548,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Teleostei</td>
 <td headers="order" class="gt_row gt_left gt_striped">Acropomatiformes</td>
 <td headers="family" class="gt_row gt_left gt_striped">Epigonidae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Epigonus</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KkVwaWdvbnVzKiBzcC4="><span class="gt_from_md"><em>Epigonus</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">390 - 565</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped"></td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped"></td></tr>
@@ -1554,7 +1556,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Teleostei</td>
 <td headers="order" class="gt_row gt_left">Acropomatiformes</td>
 <td headers="family" class="gt_row gt_left">Acropomatidae</td>
-<td headers="scientificName" class="gt_row gt_left">Acropomatidae</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="QWNyb3BvbWF0aWRhZQ=="><span class="gt_from_md">Acropomatidae</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">390</td>
 <td headers="MaxN" class="gt_row gt_center"></td>
 <td headers="Freq_occ" class="gt_row gt_center"></td></tr>
@@ -1562,7 +1564,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Teleostei</td>
 <td headers="order" class="gt_row gt_left gt_striped">Anguilliformes</td>
 <td headers="family" class="gt_row gt_left gt_striped">Congridae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Bathycongrus</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KkJhdGh5Y29uZ3J1cyogc3Au"><span class="gt_from_md"><em>Bathycongrus</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">464 - 865</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped">6</td></tr>
@@ -1570,7 +1572,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Teleostei</td>
 <td headers="order" class="gt_row gt_left">Anguilliformes</td>
 <td headers="family" class="gt_row gt_left">Congridae</td>
-<td headers="scientificName" class="gt_row gt_left">Conger</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KkNvbmdlciogc3Au"><span class="gt_from_md"><em>Conger</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">390</td>
 <td headers="MaxN" class="gt_row gt_center">1</td>
 <td headers="Freq_occ" class="gt_row gt_center">3</td></tr>
@@ -1578,7 +1580,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Teleostei</td>
 <td headers="order" class="gt_row gt_left gt_striped">Anguilliformes</td>
 <td headers="family" class="gt_row gt_left gt_striped">Congridae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Congridae</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="Q29uZ3JpZGFlPGJyPihUZW50YXRpdmU6ICpBcmlvc29tYSogc3AuLCAqQmF0aHljb25ncnVzKiBzcC4p"><span class="gt_from_md">Congridae<br>(Tentative: <em>Ariosoma</em> sp., <em>Bathycongrus</em> sp.)</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">434 - 1050</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped">6</td></tr>
@@ -1586,7 +1588,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Teleostei</td>
 <td headers="order" class="gt_row gt_left">Anguilliformes</td>
 <td headers="family" class="gt_row gt_left">Ophichthidae</td>
-<td headers="scientificName" class="gt_row gt_left">Ophichthidae</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="T3BoaWNodGhpZGFl"><span class="gt_from_md">Ophichthidae</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">434 - 758</td>
 <td headers="MaxN" class="gt_row gt_center">1</td>
 <td headers="Freq_occ" class="gt_row gt_center">6</td></tr>
@@ -1594,7 +1596,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Teleostei</td>
 <td headers="order" class="gt_row gt_left gt_striped">Anguilliformes</td>
 <td headers="family" class="gt_row gt_left gt_striped">Synaphobranchidae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Synaphobranchidae</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="U3luYXBob2JyYW5jaGlkYWU8YnI+KFRlbnRhdGl2ZTogKlN5bmFwaG9icmFuY2h1cyogc3AuKQ=="><span class="gt_from_md">Synaphobranchidae<br>(Tentative: <em>Synaphobranchus</em> sp.)</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">443 - 2006</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">6</td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped">35</td></tr>
@@ -1602,7 +1604,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Teleostei</td>
 <td headers="order" class="gt_row gt_left">Anguilliformes</td>
 <td headers="family" class="gt_row gt_left">Synaphobranchidae</td>
-<td headers="scientificName" class="gt_row gt_left">Synaphobranchus</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KlN5bmFwaG9icmFuY2h1cyogc3AuPGJyPihUZW50YXRpdmU6ICpTeW5hcGhvYnJhbmNodXMgYWZmaW5pcyosICpTeW5hcGhvYnJhbmNodXMgYnJldmlkb3JzYWxpcyop"><span class="gt_from_md"><em>Synaphobranchus</em> sp.<br>(Tentative: <em>Synaphobranchus affinis</em>, <em>Synaphobranchus brevidorsalis</em>)</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">744 - 2046</td>
 <td headers="MaxN" class="gt_row gt_center">5</td>
 <td headers="Freq_occ" class="gt_row gt_center">50</td></tr>
@@ -1610,7 +1612,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Teleostei</td>
 <td headers="order" class="gt_row gt_left gt_striped">Anguilliformes</td>
 <td headers="family" class="gt_row gt_left gt_striped">Synaphobranchidae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped" style="font-style: italic;">Synaphobranchus brevidorsalis</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KlN5bmFwaG9icmFuY2h1cyBicmV2aWRvcnNhbGlzKg=="><span class="gt_from_md"><em>Synaphobranchus brevidorsalis</em></span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">865 - 2051</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">4</td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped">38</td></tr>
@@ -1618,7 +1620,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Teleostei</td>
 <td headers="order" class="gt_row gt_left">Anguilliformes</td>
 <td headers="family" class="gt_row gt_left"></td>
-<td headers="scientificName" class="gt_row gt_left">Anguilliformes</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="QW5ndWlsbGlmb3JtZXM8YnI+KFRlbnRhdGl2ZTogT3BoaWNodGhpZGFlLCBTeW5hcGhvYnJhbmNoaWRhZSk="><span class="gt_from_md">Anguilliformes<br>(Tentative: Ophichthidae, Synaphobranchidae)</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">434 - 2046</td>
 <td headers="MaxN" class="gt_row gt_center">5</td>
 <td headers="Freq_occ" class="gt_row gt_center">47</td></tr>
@@ -1626,7 +1628,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Teleostei</td>
 <td headers="order" class="gt_row gt_left gt_striped">Beryciformes</td>
 <td headers="family" class="gt_row gt_left gt_striped">Berycidae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Berycidae</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="QmVyeWNpZGFl"><span class="gt_from_md">Berycidae</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">744</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped">3</td></tr>
@@ -1634,7 +1636,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Teleostei</td>
 <td headers="order" class="gt_row gt_left">Beryciformes</td>
 <td headers="family" class="gt_row gt_left">Berycidae</td>
-<td headers="scientificName" class="gt_row gt_left">Beryx</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KkJlcnl4KiBzcC4="><span class="gt_from_md"><em>Beryx</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">464</td>
 <td headers="MaxN" class="gt_row gt_center">1</td>
 <td headers="Freq_occ" class="gt_row gt_center">3</td></tr>
@@ -1642,7 +1644,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Teleostei</td>
 <td headers="order" class="gt_row gt_left gt_striped">Eupercaria incertae sedis</td>
 <td headers="family" class="gt_row gt_left gt_striped">Lutjanidae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Etelis</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KkV0ZWxpcyogc3AuPGJyPihUZW50YXRpdmU6ICpFdGVsaXMgYm93ZW5pKik="><span class="gt_from_md"><em>Etelis</em> sp.<br>(Tentative: <em>Etelis boweni</em>)</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">390 - 555</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped">15</td></tr>
@@ -1650,7 +1652,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Teleostei</td>
 <td headers="order" class="gt_row gt_left">Eupercaria incertae sedis</td>
 <td headers="family" class="gt_row gt_left">Lutjanidae</td>
-<td headers="scientificName" class="gt_row gt_left">Lutjanidae</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="THV0amFuaWRhZQ=="><span class="gt_from_md">Lutjanidae</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">390</td>
 <td headers="MaxN" class="gt_row gt_center">1</td>
 <td headers="Freq_occ" class="gt_row gt_center">3</td></tr>
@@ -1658,7 +1660,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Teleostei</td>
 <td headers="order" class="gt_row gt_left gt_striped">Gadiformes</td>
 <td headers="family" class="gt_row gt_left gt_striped">Macrouridae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Coelorinchus</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KkNvZWxvcmluY2h1cyogc3AuPGJyPihUZW50YXRpdmU6ICpDb2Vsb3JpbmNodXMgcGFyYWxsZWx1cyop"><span class="gt_from_md"><em>Coelorinchus</em> sp.<br>(Tentative: <em>Coelorinchus parallelus</em>)</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">1050 - 1058</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped">6</td></tr>
@@ -1666,7 +1668,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Teleostei</td>
 <td headers="order" class="gt_row gt_left">Gadiformes</td>
 <td headers="family" class="gt_row gt_left">Macrouridae</td>
-<td headers="scientificName" class="gt_row gt_left">Coryphaenoides</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KkNvcnlwaGFlbm9pZGVzKiBzcC4="><span class="gt_from_md"><em>Coryphaenoides</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">1947 - 2046</td>
 <td headers="MaxN" class="gt_row gt_center">2</td>
 <td headers="Freq_occ" class="gt_row gt_center">15</td></tr>
@@ -1674,7 +1676,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Teleostei</td>
 <td headers="order" class="gt_row gt_left gt_striped">Gadiformes</td>
 <td headers="family" class="gt_row gt_left gt_striped">Macrouridae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped" style="font-style: italic;">Coryphaenoides longicirrhus</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KkNvcnlwaGFlbm9pZGVzIGxvbmdpY2lycmh1cyo="><span class="gt_from_md"><em>Coryphaenoides longicirrhus</em></span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">2046 - 2051</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped">6</td></tr>
@@ -1682,7 +1684,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Teleostei</td>
 <td headers="order" class="gt_row gt_left">Gadiformes</td>
 <td headers="family" class="gt_row gt_left">Macrouridae</td>
-<td headers="scientificName" class="gt_row gt_left">Gadomus</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KkdhZG9tdXMqIHNwLg=="><span class="gt_from_md"><em>Gadomus</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">1051</td>
 <td headers="MaxN" class="gt_row gt_center"></td>
 <td headers="Freq_occ" class="gt_row gt_center"></td></tr>
@@ -1690,7 +1692,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Teleostei</td>
 <td headers="order" class="gt_row gt_left gt_striped">Gadiformes</td>
 <td headers="family" class="gt_row gt_left gt_striped">Macrouridae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Hymenocephalus</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="Kkh5bWVub2NlcGhhbHVzKiBzcC4="><span class="gt_from_md"><em>Hymenocephalus</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">758</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped">3</td></tr>
@@ -1698,7 +1700,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left">Teleostei</td>
 <td headers="order" class="gt_row gt_left">Gadiformes</td>
 <td headers="family" class="gt_row gt_left">Macrouridae</td>
-<td headers="scientificName" class="gt_row gt_left">Macrouridae</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="TWFjcm91cmlkYWU8YnI+KFRlbnRhdGl2ZTogKkh5bWVub2NlcGhhbHVzKiBzcC4sICpNYWxhY29jZXBoYWx1cyogc3AuLCAqUHNldWRvY2V0b251cnVzKiBzcC4sICpWZW50cmlmb3NzYSogc3AuKQ=="><span class="gt_from_md">Macrouridae<br>(Tentative: <em>Hymenocephalus</em> sp., <em>Malacocephalus</em> sp., <em>Pseudocetonurus</em> sp., <em>Ventrifossa</em> sp.)</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">443 - 2051</td>
 <td headers="MaxN" class="gt_row gt_center">1</td>
 <td headers="Freq_occ" class="gt_row gt_center">35</td></tr>
@@ -1706,129 +1708,120 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="class" class="gt_row gt_left gt_striped">Teleostei</td>
 <td headers="order" class="gt_row gt_left gt_striped">Gadiformes</td>
 <td headers="family" class="gt_row gt_left gt_striped">Macrouridae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Malacocephalus</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="Kk1hbGFjb2NlcGhhbHVzKiBzcC4="><span class="gt_from_md"><em>Malacocephalus</em> sp.</span></span></td>
 <td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">434 - 989</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">26</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped">29</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Chordata</td>
 <td headers="class" class="gt_row gt_left">Teleostei</td>
 <td headers="order" class="gt_row gt_left">Gadiformes</td>
 <td headers="family" class="gt_row gt_left">Macrouridae</td>
-<td headers="scientificName" class="gt_row gt_left" style="font-style: italic;">Malacocephalus boretzi</td>
-<td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">978</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KlZlbnRyaWZvc3NhKiBzcC4="><span class="gt_from_md"><em>Ventrifossa</em> sp.</span></span></td>
+<td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">929</td>
 <td headers="MaxN" class="gt_row gt_center">1</td>
 <td headers="Freq_occ" class="gt_row gt_center">3</td></tr>
-    <tr><td headers="phylum" class="gt_row gt_left gt_striped">Chordata</td>
-<td headers="class" class="gt_row gt_left gt_striped">Teleostei</td>
-<td headers="order" class="gt_row gt_left gt_striped">Gadiformes</td>
-<td headers="family" class="gt_row gt_left gt_striped">Macrouridae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Ventrifossa</td>
-<td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">929</td>
-<td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">3</td></tr>
-    <tr><td headers="phylum" class="gt_row gt_left">Chordata</td>
-<td headers="class" class="gt_row gt_left">Teleostei</td>
-<td headers="order" class="gt_row gt_left">Gadiformes</td>
-<td headers="family" class="gt_row gt_left">Moridae</td>
-<td headers="scientificName" class="gt_row gt_left" style="font-style: italic;">Antimora rostrata</td>
-<td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">1947 - 2011</td>
-<td headers="MaxN" class="gt_row gt_center">2</td>
-<td headers="Freq_occ" class="gt_row gt_center">15</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left gt_striped">Chordata</td>
 <td headers="class" class="gt_row gt_left gt_striped">Teleostei</td>
 <td headers="order" class="gt_row gt_left gt_striped">Gadiformes</td>
 <td headers="family" class="gt_row gt_left gt_striped">Moridae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Moridae</td>
-<td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">443</td>
-<td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">3</td></tr>
-    <tr><td headers="phylum" class="gt_row gt_left">Chordata</td>
-<td headers="class" class="gt_row gt_left">Teleostei</td>
-<td headers="order" class="gt_row gt_left">Notacanthiformes</td>
-<td headers="family" class="gt_row gt_left">Halosauridae</td>
-<td headers="scientificName" class="gt_row gt_left">Halosauridae</td>
-<td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">929 - 2046</td>
-<td headers="MaxN" class="gt_row gt_center"></td>
-<td headers="Freq_occ" class="gt_row gt_center"></td></tr>
-    <tr><td headers="phylum" class="gt_row gt_left gt_striped">Chordata</td>
-<td headers="class" class="gt_row gt_left gt_striped">Teleostei</td>
-<td headers="order" class="gt_row gt_left gt_striped">Polymixiiformes</td>
-<td headers="family" class="gt_row gt_left gt_striped">Polymixiidae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Polymixia</td>
-<td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">390 - 504</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KkFudGltb3JhIHJvc3RyYXRhKg=="><span class="gt_from_md"><em>Antimora rostrata</em></span></span></td>
+<td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">1947 - 2011</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">2</td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped">15</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Chordata</td>
 <td headers="class" class="gt_row gt_left">Teleostei</td>
-<td headers="order" class="gt_row gt_left">Scombriformes</td>
-<td headers="family" class="gt_row gt_left">Bramidae</td>
-<td headers="scientificName" class="gt_row gt_left" style="font-style: italic;">Taractichthys steindachneri</td>
-<td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">504 - 555</td>
-<td headers="MaxN" class="gt_row gt_center">3</td>
-<td headers="Freq_occ" class="gt_row gt_center">6</td></tr>
+<td headers="order" class="gt_row gt_left">Gadiformes</td>
+<td headers="family" class="gt_row gt_left">Moridae</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="TW9yaWRhZQ=="><span class="gt_from_md">Moridae</span></span></td>
+<td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">443</td>
+<td headers="MaxN" class="gt_row gt_center">1</td>
+<td headers="Freq_occ" class="gt_row gt_center">3</td></tr>
+    <tr><td headers="phylum" class="gt_row gt_left gt_striped">Chordata</td>
+<td headers="class" class="gt_row gt_left gt_striped">Teleostei</td>
+<td headers="order" class="gt_row gt_left gt_striped">Notacanthiformes</td>
+<td headers="family" class="gt_row gt_left gt_striped">Halosauridae</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="SGFsb3NhdXJpZGFl"><span class="gt_from_md">Halosauridae</span></span></td>
+<td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">929 - 2046</td>
+<td headers="MaxN" class="gt_row gt_center gt_striped"></td>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped"></td></tr>
+    <tr><td headers="phylum" class="gt_row gt_left">Chordata</td>
+<td headers="class" class="gt_row gt_left">Teleostei</td>
+<td headers="order" class="gt_row gt_left">Polymixiiformes</td>
+<td headers="family" class="gt_row gt_left">Polymixiidae</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KlBvbHltaXhpYSogc3Au"><span class="gt_from_md"><em>Polymixia</em> sp.</span></span></td>
+<td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">390 - 504</td>
+<td headers="MaxN" class="gt_row gt_center">2</td>
+<td headers="Freq_occ" class="gt_row gt_center">15</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left gt_striped">Chordata</td>
 <td headers="class" class="gt_row gt_left gt_striped">Teleostei</td>
 <td headers="order" class="gt_row gt_left gt_striped">Scombriformes</td>
-<td headers="family" class="gt_row gt_left gt_striped">Gempylidae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped" style="font-style: italic;">Ruvettus pretiosus</td>
-<td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">434 - 1051</td>
-<td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">18</td></tr>
+<td headers="family" class="gt_row gt_left gt_striped">Bramidae</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="KlRhcmFjdGljaHRoeXMgc3RlaW5kYWNobmVyaSo="><span class="gt_from_md"><em>Taractichthys steindachneri</em></span></span></td>
+<td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">504 - 555</td>
+<td headers="MaxN" class="gt_row gt_center gt_striped">3</td>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped">6</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Chordata</td>
 <td headers="class" class="gt_row gt_left">Teleostei</td>
-<td headers="order" class="gt_row gt_left">Zeiformes</td>
-<td headers="family" class="gt_row gt_left">Oreosomatidae</td>
-<td headers="scientificName" class="gt_row gt_left">Neocyttus</td>
-<td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">978</td>
+<td headers="order" class="gt_row gt_left">Scombriformes</td>
+<td headers="family" class="gt_row gt_left">Gempylidae</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KlJ1dmV0dHVzIHByZXRpb3N1cyo="><span class="gt_from_md"><em>Ruvettus pretiosus</em></span></span></td>
+<td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">434 - 1051</td>
 <td headers="MaxN" class="gt_row gt_center">1</td>
-<td headers="Freq_occ" class="gt_row gt_center">3</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center">18</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left gt_striped">Chordata</td>
 <td headers="class" class="gt_row gt_left gt_striped">Teleostei</td>
 <td headers="order" class="gt_row gt_left gt_striped">Zeiformes</td>
-<td headers="family" class="gt_row gt_left gt_striped">Zeniontidae</td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Cyttomimus</td>
-<td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">443</td>
+<td headers="family" class="gt_row gt_left gt_striped">Oreosomatidae</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="Kk5lb2N5dHR1cyogc3AuPGJyPihUZW50YXRpdmU6ICpOZW9jeXR0dXMgY2YuIGFjYW50aG9yaHluY2h1cyop"><span class="gt_from_md"><em>Neocyttus</em> sp.<br>(Tentative: <em>Neocyttus cf. acanthorhynchus</em>)</span></span></td>
+<td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">978</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
 <td headers="Freq_occ" class="gt_row gt_center gt_striped">3</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Chordata</td>
-<td headers="class" class="gt_row gt_left"></td>
-<td headers="order" class="gt_row gt_left"></td>
-<td headers="family" class="gt_row gt_left"></td>
-<td headers="scientificName" class="gt_row gt_left">Actinopteri</td>
-<td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">390 - 2051</td>
+<td headers="class" class="gt_row gt_left">Teleostei</td>
+<td headers="order" class="gt_row gt_left">Zeiformes</td>
+<td headers="family" class="gt_row gt_left">Zeniontidae</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="KkN5dHRvbWltdXMqIHNwLg=="><span class="gt_from_md"><em>Cyttomimus</em> sp.</span></span></td>
+<td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">443</td>
 <td headers="MaxN" class="gt_row gt_center">1</td>
-<td headers="Freq_occ" class="gt_row gt_center">38</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center">3</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left gt_striped">Chordata</td>
 <td headers="class" class="gt_row gt_left gt_striped"></td>
 <td headers="order" class="gt_row gt_left gt_striped"></td>
 <td headers="family" class="gt_row gt_left gt_striped"></td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Actinopterygii</td>
-<td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">1051 - 2000</td>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="QWN0aW5vcHRlcmk8YnI+KFRlbnRhdGl2ZTogRXBpZ29uaWRhZSwgTWFjcm91cmlkYWUsIE9waGlkaWlkYWUsIE9waGlkaWlmb3JtZXMp"><span class="gt_from_md">Actinopteri<br>(Tentative: Epigonidae, Macrouridae, Ophidiidae, Ophidiiformes)</span></span></td>
+<td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">390 - 2051</td>
 <td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped">6</td></tr>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped">38</td></tr>
     <tr><td headers="phylum" class="gt_row gt_left">Chordata</td>
 <td headers="class" class="gt_row gt_left"></td>
 <td headers="order" class="gt_row gt_left"></td>
 <td headers="family" class="gt_row gt_left"></td>
-<td headers="scientificName" class="gt_row gt_left">Chordata</td>
-<td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">1959</td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="QWN0aW5vcHRlcnlnaWk8YnI+KFRlbnRhdGl2ZTogT3BoaWRpaWRhZSk="><span class="gt_from_md">Actinopterygii<br>(Tentative: Ophidiidae)</span></span></td>
+<td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">1051 - 2000</td>
 <td headers="MaxN" class="gt_row gt_center">1</td>
-<td headers="Freq_occ" class="gt_row gt_center">3</td></tr>
-    <tr><td headers="phylum" class="gt_row gt_left gt_striped"></td>
+<td headers="Freq_occ" class="gt_row gt_center">6</td></tr>
+    <tr><td headers="phylum" class="gt_row gt_left gt_striped">Chordata</td>
 <td headers="class" class="gt_row gt_left gt_striped"></td>
 <td headers="order" class="gt_row gt_left gt_striped"></td>
 <td headers="family" class="gt_row gt_left gt_striped"></td>
-<td headers="scientificName" class="gt_row gt_left gt_striped">Animalia</td>
-<td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">979</td>
-<td headers="MaxN" class="gt_row gt_center gt_striped"></td>
-<td headers="Freq_occ" class="gt_row gt_center gt_striped"></td></tr>
+<td headers="scientificName" class="gt_row gt_left gt_striped"><span data-qmd-base64="Q2hvcmRhdGE8YnI+KFRlbnRhdGl2ZTogQ2hvbmRyaWNodGh5ZXMp"><span class="gt_from_md">Chordata<br>(Tentative: Chondrichthyes)</span></span></td>
+<td headers="Depth_m" class="gt_row gt_center gt_striped" style="white-space: nowrap;">1959</td>
+<td headers="MaxN" class="gt_row gt_center gt_striped">1</td>
+<td headers="Freq_occ" class="gt_row gt_center gt_striped">3</td></tr>
+    <tr><td headers="phylum" class="gt_row gt_left"></td>
+<td headers="class" class="gt_row gt_left"></td>
+<td headers="order" class="gt_row gt_left"></td>
+<td headers="family" class="gt_row gt_left"></td>
+<td headers="scientificName" class="gt_row gt_left"><span data-qmd-base64="QW5pbWFsaWE8YnI+KFRlbnRhdGl2ZTogTW9sbHVzY2Ep"><span class="gt_from_md">Animalia<br>(Tentative: Mollusca)</span></span></td>
+<td headers="Depth_m" class="gt_row gt_center" style="white-space: nowrap;">979</td>
+<td headers="MaxN" class="gt_row gt_center"></td>
+<td headers="Freq_occ" class="gt_row gt_center"></td></tr>
   </tbody>
   
 </table>
 </div>
 </div>
 </div>
-<p>```</p>
 </section>
 
 </main>

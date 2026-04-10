@@ -21,6 +21,7 @@ library(tidyverse)
 library(readxl)
 library(gt)
 library(PristineSeasR2)
+library(litedown)
 
 ps_paths <- ps_science_paths()
 exp_path <- file.path(ps_paths$expeditions, "TUV-2025")
@@ -34,7 +35,7 @@ exp_path <- file.path(ps_paths$expeditions, "TUV-2025")
 
 
 # Define data path
-excel_file <- file.path(exp_path, "data/primary/raw/dscm/TUV_DOEX0112_dscm_Data_Summary.xlsx")
+excel_file <- file.path(exp_path, "data/primary/raw/dscm/TUV_DOEX0112_dscm_Data_Summary_v2.xlsx")
 
 # 1. Load datasets
 tator_data <- read_excel(excel_file, sheet = "Tator_Data_Summary")
@@ -132,7 +133,8 @@ Table of all the taxa observed on deep sea cameras
 
 ** NOTES FOR LATER:  
 - need to refine the taxa, remove redundancies (higher taxa)  
-- put in phylogenetic order  
+- create phylo_keys.R script to 'source()' instead of defining vectors. 
+
 ```{r}
 #| label: species-table
 #| echo: false
@@ -141,43 +143,9 @@ Table of all the taxa observed on deep sea cameras
 
 library(gt)
 
-# 1. Calculate depth ranges for ALL taxa
-taxon_depths <- clean_taxa %>%
-  group_by(phylum, class, order, family, scientificName) %>%
-  summarise(
-    min_d = min(depth_m, na.rm = TRUE),
-    max_d = max(depth_m, na.rm = TRUE),
-    .groups = "drop"
-  ) %>%
-  mutate(
-    # If min and max are the same, just print the number. Otherwise, print "min - max"
-    Depth_m = if_else(min_d == max_d, 
-                      as.character(min_d), 
-                      paste0(min_d, " - ", max_d))
-  ) %>%
-  select(-min_d, -max_d)
-
-# 2. Calculate quantitative stats strictly for ATTRACTED taxa
-taxon_quant <- clean_taxa %>%
-  filter(attracted == "Attracted") %>%
-  group_by(phylum, class, order, family, scientificName) %>%
-  summarise(
-    # total_deps was calculated in our first summary chunk!
-    freq_occ = round((n_distinct(deployment) / total_deps) * 100),
-    MaxN = max(individualCount, na.rm = TRUE),
-    .groups = "drop"
-  ) %>%
-  mutate(
-    # Convert to characters so they play nicely with blanks later
-    Freq_occ = as.character(freq_occ),
-    MaxN = as.character(MaxN)
-  ) %>%
-  select(-freq_occ)
-
-
-# Define axonomic hierarchies; the exact phylogenetic order for Phyla
-# pulled this from a .csv key file I built for SLB
-# (Anything not on this list will automatically drop to the bottom)
+# ==============================================================================
+# 1. CONFIGURATION: PHYLOGENETIC HIERARCHIES
+# ==============================================================================
 phylo_phyla <- c(
   "Foraminifera", "Microsporidia", "Porifera", "Cnidaria", 
   "Ctenophora", "Nemertea", "Annelida", "Mollusca", 
@@ -217,27 +185,109 @@ phylo_families <- c(
   "Trachichthyidae", "Halosauridae", "Macrouridae"
 )
 
-# 3. Merge them, apply phylogenetic factors, and clean up
+# ==============================================================================
+# 2. QUANTITATIVE METRICS
+# ==============================================================================
+
+# A. Calculate depth ranges for ALL taxa
+taxon_depths <- clean_taxa %>%
+  group_by(phylum, class, order, family, scientificName) %>%
+  summarise(
+    min_d = min(depth_m, na.rm = TRUE),
+    max_d = max(depth_m, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    Depth_m = if_else(min_d == max_d, 
+                      as.character(min_d), 
+                      paste0(min_d, " - ", max_d))
+  ) %>%
+  select(-min_d, -max_d)
+
+# B. Calculate quantitative stats strictly for ATTRACTED taxa
+taxon_quant <- clean_taxa %>%
+  filter(attracted == "Attracted") %>%
+  group_by(phylum, class, order, family, scientificName) %>%
+  summarise(
+    freq_occ = round((n_distinct(deployment) / total_deps) * 100),
+    MaxN = max(individualCount, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    Freq_occ = as.character(freq_occ),
+    MaxN = as.character(MaxN)
+  ) %>%
+  select(-freq_occ)
+
+# C. Extract Tentative IDs (Collapsed if there are multiple; formatting with italics before collapsing)
+tentative_list <- clean_taxa %>%
+  filter(!is.na(tentativeId)) %>%
+  mutate(
+    # Use the exact same logic to identify tentative species vs genera
+    t_is_species = str_detect(tentativeId, " "),
+    t_is_genus = !t_is_species & family != "" & tentativeId != family,
+    
+    # Apply markdown italics 
+    fmt_tentativeId = case_when(
+      t_is_species ~ paste0("*", tentativeId, "*"),
+      # If you want tentative genera to ALSO have " sp.", use paste0("*", tentativeId, "* sp.") below instead:
+      t_is_genus ~ paste0("*", tentativeId, "* sp."), 
+      TRUE ~ tentativeId
+    )
+  ) %>%
+  group_by(phylum, class, order, family, scientificName) %>%
+  summarise(
+    # Collapse the newly formatted IDs!
+    t_ids = paste(unique(fmt_tentativeId), collapse = ", "),
+    .groups = "drop"
+  )
+
+# ==============================================================================
+# 3. DATA MERGING & FORMATTING
+# ==============================================================================
 table_data <- taxon_depths %>%
   left_join(taxon_quant, by = c("phylum", "class", "order", "family", "scientificName")) %>%
+  left_join(tentative_list, by = c("phylum", "class", "order", "family", "scientificName")) %>%
   
   mutate(
-    # Phylum strictly follows our list
+    # Apply phylogenetic sorting rules
     phylum = factor(phylum, levels = phylo_phyla),
-    # Lower ranks prioritize our list, then sort any new ones alphabetically
     class = fct_relevel(factor(class), phylo_classes),
     order = fct_relevel(factor(order), phylo_orders),
     family = fct_relevel(factor(family), phylo_families)
   ) %>%
-  
-  # Now R will arrange them using your custom SLB logic!
   arrange(phylum, class, order, family, scientificName) %>%
   
-  # Convert back to character so we can clean up the NA values
+  # Fill NA values with blanks
   mutate(across(everything(), as.character)) %>% 
-  mutate(across(everything(), ~replace_na(.x, "")))
+  mutate(across(everything(), ~replace_na(.x, ""))) %>%
+  
+  # Text Formatting Logic (Italics & Tentative IDs via Markdown)
+  mutate(
+    # Identify taxonomy levels based on naming conventions
+    is_species = str_detect(scientificName, " "),
+    is_genus = !is_species & family != "" & scientificName != family,
+    
+    # Apply base italics and " sp."
+    base_name = case_when(
+      is_species ~ paste0("*", scientificName, "*"),
+      is_genus ~ paste0("*", scientificName, "* sp."),
+      TRUE ~ scientificName
+    ),
+    
+    # If a tentative ID exists, append it with a line break <br>
+    scientificName = if_else(
+      t_ids != "",
+      paste0(base_name, "<br>(Tentative: ", t_ids, ")"),
+      base_name
+    )
+  ) %>%
+  # Clean up our temporary logic columns
+  select(-is_species, -is_genus, -base_name, -t_ids)
 
-# 4. Generate the gt table
+# ==============================================================================
+# 4. GENERATE GT TABLE
+# ==============================================================================
 table_data %>%
   gt() %>%
   tab_header(
@@ -254,34 +304,31 @@ table_data %>%
     Freq_occ = "Freq. of Occ. (%)",
     MaxN = "MaxN"
   ) %>%
-  tab_style(
-    style = cell_text(style = "italic"),
-    locations = cells_body(
-      columns = scientificName,
-      rows = str_detect(scientificName, " ")
-    )
-  ) %>%
-  # Center align our new quantitative columns so they look sharp
+  # Center align math columns
   cols_align(
     align = "center",
     columns = c(Depth_m, Freq_occ, MaxN)
   ) %>%
-  # Define specific widths for columns so they fit tightly
- cols_width(
-    Depth_m ~ px(140),     # <--- Bumped this up so the depth ranges don't break!
+  # Set tight widths
+  cols_width(
+    Depth_m ~ px(140),  
     Freq_occ ~ px(90),  
     MaxN ~ px(80),
-    scientificName ~ px(180)
+    # Bumped scientificName slightly to accommodate long tentative text
+    scientificName ~ px(220) 
   ) %>%
- tab_style(
+  # TELL GT TO READ THE ASTERISKS AND <br> AS MARKDOWN/HTML
+  fmt_markdown(columns = scientificName) %>%
+  # Prevent depth column from wrapping
+  tab_style(
     style = cell_text(whitespace = "nowrap"),
     locations = cells_body(columns = Depth_m)
   ) %>%
   opt_row_striping() %>%
   tab_options(
     data_row.padding = px(5),
-    table.font.size = px(12) # table font size
+    table.font.size = px(12)
   )
 ```
-```
+
 
