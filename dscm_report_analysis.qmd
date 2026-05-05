@@ -36,9 +36,15 @@ library(PristineSeasR2)
 ps_paths <- ps_science_paths()
 exp_path <- file.path(ps_paths$expeditions, "TUV-2025")
 processed_dir <- file.path(exp_path, "data/primary/processed/dscm")
+processed_dir
 
 # Load cleanly processed dataset (from 01_data_prep)
 clean_taxa <- read_rds(file.path(processed_dir, "clean_master_data.rds"))
+# Load metadata from 01_data_prep
+source("scripts/prep/01_data_prep.R")
+# Load refined taxa lists
+source("scripts/prep/02_refined_taxa_list.R")
+
 
 # Load phylogenetic keys for the table sorting
 source("scripts/phylo_keys.R") # this has to exist in the scripts folder of the project
@@ -185,6 +191,13 @@ ggplot(plot_data, aes(y = depth_m, fill = effort_status)) +
 ```
 
 
+# Taxa Inventory  
+
+Worth noting this doesn't account for distinct morphospecies. This dataset didn't have any that would change the biodiversity metrics, but for future datasets, will need to check for differentiations by morphospecies.  
+
+
+## Gamma richness
+This conveys the taxonomic richness across the whole expedition, refined by removing redundant, higher-level taxa to avoid double-counting taxa for richness metrics.
 ```{r}
 #| label: taxa-richness
 #| echo: false
@@ -198,12 +211,10 @@ n_inverts <- invert_taxa_refined
 n_total <- total_taxa_refined
 ```
 
-
 Across these deployments, `r n_fish` distinct fish taxa and `r n_inverts` distinct invertebrate taxa were observed, for a total of `r n_total` distinct taxa that were observed on deep sea cameras in Tuvalu.
 
-# Taxa Inventory  
 
-Worth noting this doesn't account for distinct morphospecies. This dataset didn't have any that would change the biodiversity metrics, but for future datasets, will need to check for differentiations by morphospecies.  
+
 
 SPECIES TABLE  
 Table of all the taxa observed on deep sea cameras
@@ -229,7 +240,7 @@ table_exclusions <- c(
 )
 
 
-# ===== 1. QUANTITATIVE METRICS ===========
+# 1. QUANTITATIVE METRICS 
 
 # A. Calculate depth ranges for ALL taxa
 taxon_depths <- clean_taxa %>%
@@ -286,7 +297,7 @@ tentative_list <- clean_taxa %>%
     .groups = "drop"
   )
 
-# ====== 2. DATA MERGING & FORMATTING ========================================
+#  2. DATA MERGING & FORMATTING 
 
 table_data <- taxon_depths %>%
   left_join(taxon_quant, by = c("phylum", "class", "order", "family", "scientificName")) %>%
@@ -331,7 +342,7 @@ table_data <- taxon_depths %>%
   # Clean up our temporary logic columns
   select(-is_species, -is_genus, -base_name, -t_ids)
 
-# ====== 3. GENERATE TABLE ==================================================
+# 3. GENERATE TABLE 
 
 table_data %>%
   gt() %>%
@@ -374,6 +385,327 @@ table_data %>%
     data_row.padding = px(5),
     table.font.size = px(12)
   )
+```
+
+## Average species richness (alpha richness at deployment level)
+This explores the taxonomic richness at the deployment level, refining taxa list for each deployment by removing higher-level taxa that are represented by a lower-level taxonomic ID *at the deployment level*, so as to avoid double-counting taxa and producing inflated richness metrics.  
+
+First: what's our overall average richness per deployment?
+```{r}
+#| label: alpha-richness-average
+#| echo: false
+
+# pulling from 02_refined_taxa.R
+
+# ==== OVERALL ALPHA DIVERSITY AVERAGES ====
+
+overall_alpha_summary <- deployment_richness_list %>%
+  summarize(
+    total_deployments = n(),
+    
+    # Overall Richness
+    mean_total = mean(alpha_total),
+    sd_total   = sd(alpha_total),
+    
+    # Fish Richness
+    mean_fish  = mean(alpha_fish),
+    sd_fish    = sd(alpha_fish),
+    
+    # Invert Richness
+    mean_invert = mean(alpha_invert),
+    sd_invert   = sd(alpha_invert)
+  ) %>%
+  # Round everything to 1 decimal place so it's ready for the text
+  mutate(across(where(is.numeric), ~round(.x, 1)))
+
+# Print the results nicely to the console
+cat("\n--- OVERALL ALPHA RICHNESS (PER DEPLOYMENT) ---\n")
+cat("Valid Deployments (n):", overall_alpha_summary$total_deployments, "\n")
+cat("Average Total Taxa:", overall_alpha_summary$mean_total, "±", overall_alpha_summary$sd_total, "\n")
+cat("Average Fish Taxa:", overall_alpha_summary$mean_fish, "±", overall_alpha_summary$sd_fish, "\n")
+cat("Average Invert Taxa:", overall_alpha_summary$mean_invert, "±", overall_alpha_summary$sd_invert, "\n")
+```
+Across all standardized deployments (n = `r overall_alpha_summary$total_deployments`), we observed an average of `r overall_alpha_summary$mean_total` ± `r overall_alpha_summary$sd_total` distinct taxa per drop.
+
+We want to ultimately explore average richness (per deployment) by depth, and by region, to illuminate any spatial patterns - vertical or geographical - in species diversity.  
+
+Run 02_refined_taxa_list.R script, particularly the REFINE ALPHA RICHNESS portion.  
+We will use 'deployment_richness_list' data frame, stored in the environment, which has total richness and fish/invert richness for each deployment.  
+
+Then we must link the deployments to the metadata to pull depth and region metadata.  
+
+Oops, looks like the Tator Data Summary didn't have the Region associated with each of the deployments, so we'll have to pull that from the original fieldbook, too.
+
+```{r}
+#| label: alpha-richness-variables
+#| echo: false
+#| message: false
+#| warning: false
+
+# ==== MERGE METADATA FOR ALPHA DIVERSITY PATTERNS ====
+
+# 1. Load Region data from original fieldbook
+region_data <- read_excel(file.path(raw_dir, "TUV_2025_dscm_fieldbook.xlsx"),
+                          sheet = "deployments") %>%
+  # Select only the columns we need so we don't clutter the join
+  select(ps_site_id, region) 
+
+# 2. Build the combined exploratory dataframe
+alpha_richness_variables <- deployment_richness_list %>%
+  
+    # Step A: Join the Region data from the Excel file
+  left_join(
+    region_data,
+    by = c("deployment" = "ps_site_id")
+  ) %>%
+  
+    # Step B: Join the primary metadata
+  left_join(
+    metadata %>% select(
+      Deployment,        
+      Location, 
+      'Depth (m)', 
+     'Substrate (Hard/Soft)', 
+      primarySubstrate, 
+      secondarySubstrate
+    ),
+    by = c("deployment" = "Deployment")
+  ) %>%
+  
+  # Step C: Clean up the column names for easier plotting!
+  # Spaces and parentheses in column names make ggplot very annoying to write.
+  rename(
+    depth_m = `Depth (m)`,
+    substrate_type = `Substrate (Hard/Soft)`,
+    location = Location
+    )
+
+# Take a look at exploratory dataframe
+head(alpha_richness_variables)
+
+```
+
+
+Explore depth and region variables  
+
+```{r}
+#| label: explore-alpha-richness-depth-region
+#| echo: false
+
+# If you want to put plots side-by-side easily, patchwork is amazing
+# install.packages("patchwork") 
+library(patchwork) 
+
+# ==== 1. CREATE CATEGORICAL DEPTH BINS ====
+# this is our df where we append categorgical depth bins in a new column of the aplha_richness_variables df
+alpha_richness_binned <- alpha_richness_variables %>%
+  mutate(
+    # Force it to be a number (this strips away the "text" formatting)
+    depth_numeric = as.numeric(depth_m),
+    
+    # Use case_when  on guaranteed numeric column to assign the bins
+   depth_bin = case_when(
+      depth_numeric <= 700 ~ "500 m",
+      depth_numeric > 700 & depth_numeric <= 1500 ~ "1000 m",
+      depth_numeric > 1500 ~ "2000 m"
+    ),
+    # CRITICAL: Convert to factor so ggplot doesn't order them alphabetically
+    # (Alphabetical would put "> 1500 m" before "< 700 m")
+    depth_bin = factor(depth_bin, levels = c("500 m", "1000 m", "2000 m"))
+  )
+
+
+# ==== 2. BUILD THE BOXPLOTS ====
+
+# Plot A: Depth Bins
+plot_depth <- ggplot(alpha_richness_binned, aes(x = depth_bin, y = alpha_total)) +
+  # outlier.shape = NA prevents the boxplot from double-drawing points we are about to jitter
+  geom_boxplot(fill = "steelblue", alpha = 0.5, outlier.shape = NA) +
+  geom_jitter(width = 0.15, alpha = 0.7, color = "black", size = 2) +
+  theme_bw() +
+  labs(
+    x = "Depth Bin",
+    y = "Total Distinct Taxa per Deployment"
+  ) +
+  theme(
+    text = element_text(size = 13),                   # Keeps your main text size (like titles/legends)
+    axis.title = element_text(size = 10),             # Shrinks the main axis titles
+    axis.text = element_text(size = 9),                # Shrinks the tick labels (500m, 1000m, etc.)
+    
+    # margin(t, r, b, l) = Top, Right, Bottom, Left
+    # 't = 10' adds 10 units of space to the TOP of the x-axis label
+    axis.title.x = element_text(size = 10, margin = margin(t = 10)),
+    
+    # 'r = 10' adds 10 units of space to the RIGHT of the y-axis label
+    axis.title.y = element_text(size = 10, margin = margin(r = 10)),
+    
+    # Grid lines: Keep only major Y, remove minor Y and all X
+    panel.grid.major.y = element_line(color = "grey85"),
+    panel.grid.minor.y = element_blank(),
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank(),
+    
+    # Border color
+    panel.border = element_rect(color = "grey80", fill = NA),
+    
+    # Remove x-axis tick marks
+    axis.ticks.x = element_blank()
+  )
+
+# Plot B: Regions
+plot_region <- ggplot(alpha_richness_binned, aes(x = region, y = alpha_total)) +
+  geom_boxplot(fill = "darkseagreen", alpha = 0.5, outlier.shape = NA) +
+  geom_jitter(width = 0.15, alpha = 0.7, color = "black", size = 2) +
+  theme_bw() +
+  labs(
+    x = "Region",
+    y = "Total Distinct Taxa per Deployment"
+  ) +
+  theme(
+    text = element_text(size = 13),                   
+    axis.text = element_text(size = 9),               
+    axis.title.x = element_text(size = 10, margin = margin(t = 10)),
+    axis.title.y = element_text(size = 10, margin = margin(r = 10)),
+    
+    # Grid lines: Keep only major Y, remove minor Y and all X
+    panel.grid.major.y = element_line(color = "grey85"),
+    panel.grid.minor.y = element_blank(),
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank(),
+    
+    # Lighten the overall plot border
+    panel.border = element_rect(color = "grey80", fill = NA),
+    
+    # Remove the little tick marks on the X-axis
+    axis.ticks.x = element_blank()
+  )
+
+plot_region
+
+
+# ==== 3. DISPLAY THE RESULTS AND PLOTS ====
+
+# ------ Print richness by depth results --------
+
+# Richness by depth
+
+depth_bin_summary <- alpha_richness_binned %>%
+  group_by(depth_bin) %>%
+  summarize(
+    total_deployments = n(),
+    
+    # Overall Richness
+    mean_total = mean(alpha_total),
+    sd_total   = sd(alpha_total),
+    
+    # Fish Richness
+    mean_fish  = mean(alpha_fish),
+    sd_fish    = sd(alpha_fish),
+    
+    # Invert Richness
+    mean_invert = mean(alpha_invert),
+    sd_invert   = sd(alpha_invert)
+  ) %>%
+  # Round everything to 1 decimal place so it's ready for the text
+  mutate(across(where(is.numeric), ~round(.x, 1)))
+
+# Print the results nicely to the console
+cat("\n--- Average richness by depth bin ---\n")
+cat("Valid Deployments (n):", overall_alpha_summary$total_deployments, "\n")
+cat("Average Total Taxa:", overall_alpha_summary$mean_total, "±", overall_alpha_summary$sd_total, "\n")
+cat("Average Fish Taxa:", overall_alpha_summary$mean_fish, "±", overall_alpha_summary$sd_fish, "\n")
+cat("Average Invert Taxa:", overall_alpha_summary$mean_invert, "±", overall_alpha_summary$sd_invert, "\n")
+
+# --------- Print richness plots -----------
+
+# You can print them individually:
+print(plot_depth)
+# print(plot_region)
+
+# Or, if you loaded 'patchwork', you can perfectly stitch them together side-by-side:
+plot_depth + plot_region
+```
+
+In the shallowest zone (< 700 m, n = `r depth_bin_summary %>% filter(depth_bin == "< 700 m") %>% pull(total_deployments)`), we observed an average of `r depth_bin_summary %>% filter(depth_bin == "< 700 m") %>% pull(mean_total)` ± `r depth_bin_summary %>% filter(depth_bin == "< 700 m") %>% pull(sd_total)` taxa per drop.
+
+
+
+```{r}
+#| label: save-plot-alpha-richness-by-depth
+#| echo: false
+
+# Define what and where
+out_file <- "alpha_richness_by_depth.png"
+out_path <- file.path(processed_dir, out_file) # Uses your processed_dir from earlier!
+
+ggsave(
+  filename = out_path, # The file name and format (.png, .pdf, .jpg)
+  plot = plot_depth,                        # The name of your plot object
+  width = 5,                                # Width of the image
+  height = 4,                               # Height of the image
+  units = "in",                             # Units for width/height (inches)
+  dpi = 300                                 # 300 dpi is the standard for crisp, publication-ready images
+)
+
+message(sprintf("✅ SUCCESS: Plot saved as '%s'\n📂 Location: %s", out_file, out_path))
+```
+
+
+
+### Fish richness by depth
+```{r}
+#| label: fish-richness-by-depth
+#| echo: false
+
+# ==== PLOT FISH RICHNESS BY DEPTH ====
+
+plot_fish_depth <- ggplot(alpha_richness_binned, aes(x = depth_bin, y = alpha_fish)) +
+  geom_boxplot(fill = "indianred", alpha = 0.5, outlier.shape = NA) +
+  geom_jitter(width = 0.15, alpha = 0.7, color = "black", size = 2) +
+  theme_bw() +
+  labs(
+    title = "Fish Richness by Depth Zone",
+    x = "Depth Bin",
+    y = "Distinct Fish Taxa per Deployment"
+  ) +
+  theme(text = element_text(size = 13))
+
+print(plot_fish_depth)
+plot_depth + plot_fish_depth
+```
+### ### Fish richness by substrate
+
+```{r}
+#| label: fish-richness-by-substrate
+#| echo: false
+
+# ==== PLOT FISH RICHNESS BY SUBSTRATE ====
+
+plot_fish_substrate <- ggplot(alpha_richness_binned, aes(x = substrate_type, y = alpha_fish)) +
+  geom_boxplot(fill = "goldenrod", alpha = 0.5, outlier.shape = NA) +
+  geom_jitter(width = 0.15, alpha = 0.7, color = "black", size = 2) +
+  theme_bw() +
+  labs(
+    title = "Fish Alpha Richness by Substrate",
+    x = "Substrate Type",
+    y = "Distinct Fish Taxa per Deployment"
+  ) +
+  theme(text = element_text(size = 13))
+
+print(plot_fish_substrate)
+
+```
+
+
+Explore substrate variables  
+```{r}
+#| label: explore-alpha-richness-substrate
+#| echo: false
+
+# First look at boxplot of alpha diversity by substrate (hard/soft)
+ggplot(alpha_richness_variables, aes(x = substrate_type, y = alpha_total, fill = substrate_type)) +
+  geom_boxplot() +
+  theme_minimal()
 ```
 
 
@@ -479,7 +811,7 @@ cat("\n")
 cat("--- TOP 10 MOST ABUNDANT INVERTEBRATES (Highest MaxN) ---\n")
 print(top_maxn_inverts)
 ```
-# Characteristic fauna by depth zone  
+## Characteristic fauna by depth zone  
 For this chunk, we are going to define your depth bins using "case_when()". 
 
 **Important ecological math note:** When calculating the frequency of occurrence for a depth zone, we don't divide by the *total* number of deployments on the expedition. We divide by the number of deployments *inside that specific depth bin*. (e.g., If a fish is seen on 5 deep deployments, and there were only 6 deep deployments total, it has an 83% frequency for that zone, making it highly characteristic!)

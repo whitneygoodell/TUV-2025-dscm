@@ -1,6 +1,11 @@
 # title: "01_data_prep"
 # scripts/prep/01_data_prep.R
 
+# This script preps dropcam annotation data for analyses.
+# It merges the metadata (fieldbook) with the annotation data (Tator),
+# flags partial deployments (from a manually-created .csv),
+# and exports "clean_master_data.rds" of Tator annotations linked with metadata and flagged with partial deployments.
+
 # ==== SETUP =============================================
 library(tidyverse)
 library(readxl)
@@ -15,7 +20,7 @@ raw_dir       <- file.path(exp_path, "data/primary/raw/dscm")
 processed_dir <- file.path(exp_path, "data/primary/processed/dscm")
 
 
-# ==== LOAD DATA =========
+# load data
 excel_file <- file.path(raw_dir, "TUV_DOEX0112_dscm_Data_Summary_v2.xlsx")
 tator_data <- read_excel(excel_file, sheet = "Tator_Data_Summary")
 metadata   <- read_excel(excel_file, sheet = "Field_Log_Metadata", skip = 1) # Skip  first row (CATAMI header group name)
@@ -23,9 +28,9 @@ metadata   <- read_excel(excel_file, sheet = "Field_Log_Metadata", skip = 1) # S
 
 # ==== MERGE AND CLEAN =========
 
-# Select columns of interest from metadata
+# Select columns of interest from fieldbook metadata
 metadata_subset <- metadata %>%
-  select(Deployment, `Depth (m)`, Location, `Substrate (Hard/Soft)`) %>%
+  select(Deployment, `Depth (m)`, Location, `Substrate (Hard/Soft)`, primarySubstrate) %>%
   rename(deployment = Deployment)
 
 # Merge metadata with annotation data
@@ -61,7 +66,7 @@ if (file.exists(exclusion_file)) {
   message("No manual_exclusions.csv file found. Proceeding with all records.")
 }
 
-## Deployment exclusions (For freq. of occ. calculations; Flagging Partial Deployments)
+## Deployment exclusions (For freq. of occ. calculations; Flagging partial deployments)
 
 freq_exclusion_file <- file.path(raw_dir, "freq_exclusions.csv")
 
